@@ -19,33 +19,32 @@
 
   <body>
 
-Trivia Game by Jeff Brown
-<div class="topArea"> topArea</div>
-<button class="btn1">GENERATE QUESTION</button> <br>
-<div class="bigCanvas">
-<div class="canvas"></div>
-</div>
-
-
-<button id="openModal">Modal Open</button>    <!-- trigger with answering a question -->
-<div class="container">           <!-- transfer to inside cnavas -->
-
-  <div id="modal">
-    <div id="modalTextbox">
-
-      <h1>Correct/Incorrect and Points</h1> <!-- currentMessage -->
-        <p>Correct!</p>
-        <p>Incorrect </p>
-        <p>Explanation</p>
-        
-        <div id="modalFooter">      <!-- modal at game start?/ after question is answered -->
-          <button class="modalButtons" id="close" href="#">Close</button><!-- close modal -->
-        </div>
+    <div class="topArea"> topArea</div>
+    <button class="btn1">GENERATE QUESTION</button> <br>
+    <div class="bigCanvas">
+    <div class="canvas"></div>
     </div>
-  </div>
-
-</div>
-<button id="btn">Debug List</button>
+    
+    
+    <button id="openModal">Modal Open</button>    <!-- trigger with answering a question -->
+    <div class="container">           <!-- transfer to inside cnavas -->
+    
+      <div id="modal">
+        <div id="modal-textbox">
+    
+          <h1>Correct/Incorrect and Points</h1> <!-- currentMessage -->
+            <p>Correct!</p>
+            <p>Incorrect </p>
+            <p>Explanation</p>
+            
+            <div id="modal-footer">
+              <button class="modal-buttons" id="close" href="#">Close</button>
+            </div>
+        </div>
+      </div>
+    
+    </div>
+    <button id="btn">Debug List</button>
     <script src="scripts/script.js"></script>
 
 

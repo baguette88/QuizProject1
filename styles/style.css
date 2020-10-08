@@ -6,6 +6,7 @@
 .topArea{
   background-color: rgb(231, 255, 209);
   color: black;
+  height: 50px;
 }
 #modal {
 background-color: rgba(0,0,0,0.4);

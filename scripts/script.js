@@ -24,8 +24,19 @@ $(document).ready(function(){
           $('body').prepend($points)
           $($points).text("X correct, " +points)
 
-
-
+ $(".btn1").click(function btn1(){ //TITLE SCREEN
+    console.log("new")
+    questionNumber++
+    console.log(questionNumber)
+    points= points+1 // FIX UPDATE EACH QUESTIONS
+    $points.text(points)
+               // points = $points
+    const $bigCanvas = $('<bigCanvas>');
+    const $questionCanvas = $('<canvas>');
+    const $lhead = $('<lhead>').attr('id',questionNumber);
+    const $ul = $('<ul>').attr('id',questionNumber);
+    $($lhead.eq(questionNumber-1)).empty()
+ }
 // $(".generate").click(function btn1(){ //Toggle between scene divs
 //     $(".scene").hide()
 //     $(".gameOverScene").fadeIn(700).show();
@@ -37,3 +48,4 @@ $(document).ready(function(){
 
    
 })
+
