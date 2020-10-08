@@ -19,7 +19,10 @@ $(document).ready(function(){
    
           //ADD $questionText
    
-   
+          const $points = $('<div>')
+          $($points).addClass('points')
+          $('body').prepend($points)
+          $($points).text("X correct, " +points)
 
 
 
