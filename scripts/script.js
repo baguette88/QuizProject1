@@ -10,6 +10,18 @@ $(document).ready(function(){
     $($div).text("This is the first div title")   //Change Div Text
    // $($div).style.color("blue")
 
+   let toggleScreen = 0
+   let points = 0
+   let questionNumber = 0
+   let questionBank = ["Question Alpha","Question Bravo","Question Charlie","Question Delta",]
+   //create an ARRAY questionS object with question, 3 class="wrong" answers, 1 class="wrong" right
+          //An OBJECT for each question?
+   
+          //ADD $questionText
+   
+   
+
+
 
 // $(".generate").click(function btn1(){ //Toggle between scene divs
 //     $(".scene").hide()

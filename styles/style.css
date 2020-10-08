@@ -22,7 +22,14 @@ ul{
      border-color: crimson */
      border: 4px solid black
  }
+ .canvas {
+  background-color: rgb(101, 218, 101);
+}
 
+.topArea{
+  background-color: rgb(231, 255, 209);
+  color: black;
+}
 
 @media screen and (max-width: 560px){
   }
