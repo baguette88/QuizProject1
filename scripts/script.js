@@ -1,14 +1,10 @@
-  
-  $(() => {
-  
+   $(() => {
+    let cl = (value) => console.log(value); cl("Jquery Active")
+//variables to scope for entire script
 let toggleScreen = 0
 let points = -1
 let questionNumber = 0
 let questionBank = ["Question Alpha","Question Bravo","Question Charlie","Question Delta",]
-
-    let cl = (value) => console.log(value);
-    cl("Jquery Active")
-
 
     const $div = $('<div>')
     $($div).addClass('title')
@@ -34,6 +30,15 @@ const $titlescreen = $('<div>')
     $($titlescreen).css("font-size", "72px")
     $($titlescreen).css("color", "white")
     $($titlescreen).css("background-color", "green")
+
+//API LINK
+//URL = https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986
+
+
+
+
+
+
 
 $(".startGame").click(function startGame(){ //STARTS GAME
     $($mega).show()
@@ -72,7 +77,6 @@ $(".nextQuestion").click(function nextQuestion(){ //GENERATE QUIZ QUESTION
     $('<li>').text(questions[questionNumber].answer3).addClass('answer').appendTo($ul);
     $('<li>').text(questions[questionNumber].answer4).addClass('answer').appendTo($ul);
  
-    
     $('<lhead>').text("Question #" + questionNumber + ". " + questions[questionNumber].questiontext + "?.").attr('id',questions[questionNumber].questiontext).appendTo($lhead);
     $('.canvas').fadeIn(500)                //FADE BACK IN
     //  GIVE each lhead an `ID` tag of the corresponding question #
@@ -84,38 +88,30 @@ $(".nextQuestion").click(function nextQuestion(){ //GENERATE QUIZ QUESTION
     $('.canvas').append($ul);
 if (toggleScreen = 0) {
   toggleScreen++
-
 }
 else  {
   toggleScreen--
 }
 console.log(toggleScreen + 'toggle')
 
-
        });
-
 
 
 $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
         // $('.canvas').css('border',"2px solid white")
      
-
         $($mega).show()
         $('.btn2').show()
         $('.btn3').hide()
         $($titlescreen).hide()
 
-
         // $('.canvas').css('background-color',"grey")
     
        })
 
-
-
-
  const addH2 = () => {
-        let $h2 =$('<h2>').text("Coding Trivia!")
-        $('body').append($h2)
+        let $h2 =$('<h2>').text("Coding Trivia!") //TEXT ON SCREEN
+        $($mega).append($h2)
       }
   addH2()
   
@@ -134,7 +130,7 @@ $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
         { questiontext: "10. Methods are..", answer1: "Arrays stored as function" , answer2: "Actions that can be performed by objects", answer3: "Actions performed by the user", answer4: "Asynchronous Functions" },
     ];
     
-    //// Adapted from GA lesson on making a table from data w jQuery
+    //// Adapted from GA lesson technique for making a table from data w jQuery
     const buildTable = () => {
       console.log("buildTable")
         const $infoTable = $('<table>').addClass('info-table');
@@ -190,10 +186,9 @@ $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
   //   $(event.currentTarget).toggleClass('card-back')
   //   playHand()
   // })
+  ////////////////////
 
-
-
-  // Citation - Modal declaration adapted from Modal lab
+  // Citation - Modal declaration adapted from technique learned in Modal lab
 //MODAL DECLARATIONS AND EVENT HANDLERS
 const $openBtn = $('#openModal'); //variables declared
 const $modal = $('#modal');
@@ -224,6 +219,5 @@ $closeBtn.on('click', closeModal);
 
 
 // $('.btn3').hide()  //Hide re-open button until screen is closed
-
 
 });
