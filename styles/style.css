@@ -6,7 +6,6 @@
 .topArea{
   background-color: rgb(231, 255, 209);
   color: black;
-  height: 50px;
 }
 #modal {
 background-color: rgba(0,0,0,0.4);
@@ -19,7 +18,7 @@ z-index: 1;
 overflow: auto;
 }
 
-#modalTextbox {
+#modal-textbox {
   background-color: lightgreen;
   border-radius: 10px;
 height: 350px;
@@ -30,7 +29,7 @@ margin: 150px auto;
   border: 5px solid black;
 }
 
-.modalButtons {
+.modal-buttons {
 padding: 14px 18px;
 background-color: #677996;
 border: none;
@@ -87,12 +86,3 @@ lhead {
   text-shadow: 1px 1px 1px black;
   border: 1px solid gray;
 }
-
-@media screen and (max-width: 560px){
-  }
-@media screen and (max-width: 700px){
-  }
-@media screen and (max-width: 960px){
-  }
-@media screen and (max-width: 140px){
-  }
