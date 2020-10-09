@@ -43,70 +43,59 @@ const apiKey = ``
 const queryType = `t=`
 let questionQuery = "question"
 
-$.getJSON(url, function(data){
-    let allQuestions=data.results
-    let currentScore = data.response_code
-    $('#results').text(allquestions.length + "add score here")
-}
-)
-
 // let queryURL = baseURL + apiKey + '&' + queryType
 
-//     const getTriviaQuestion = () => {
-//       $.ajax({
-//         questionQuery
-//       }).then((data) => {           /////// Charles helped debug this'
-//    console.log("hello")
-//    let allQuestions = data.results
-//    console.log(allQuestions)
-//         $('.APIcontainer').html(`
-//           <h2> ${data.Question} </h2>
-//           <h3> ${data.category} </h3>
-//           <h4> ${data.category} <h4>
-//           <h5> ${data.category} <h5>
-//           <p> ${data.category} </p>
-//           `)
-//       }, (error) => {
-//         console.error(error)
-//       })
-//     }
+    const getTriviaQuestion = () => {
+      $.ajax({
+        questionQuery
+      }).then((data) => {           /////// Charles helped debug this'
+   console.log("hello")
+   let allQuestions = data.results
+   console.log(allQuestions)
+        $('.APIcontainer').html(`
+          <h2> ${data.id} </h2>
+          <h3> ${data.question} </h3>
+          <h4> ${data.category} <h4>
+          <h5> ${data.type} <h5>
+          <p> ${data.difficulty} </p>
+          `)
+console.log(data)
+
+
+      }, (error) => {
+        console.error(error)
+      })
+    }
 
  
-//         getTriviaQuestion()
+        getTriviaQuestion()
       
-//         $('form').on('submit', (event) => {
-//           event.preventDefault()
-//           console.log('clicked submit')
-//           questionQuery = $('input[type="text"]').val()
-//           getTriviaQuestion()
-//         })
+        
+        $('form').on('submit', (event) => {
+          event.preventDefault()
+          console.log('clicked submit')
+          questionQuery = $('input[type="text"]').val()
+          getTriviaQuestion()
+        })
       
       
 
-// fetch(baseURL)
-//   .then(res => res.json())
-//   .then(json => console.log(json.results))
-//   .catch(error => console.error("error"))
-//   console.log(data.results.category)
 
-
-$(".startGame").click(function startGame(){ //STARTS GAME
+$(".startGame").click(function startGame(){ //BUTTON "START GAME" 
     $($mega).show()
     $($titlescreen).hide()
     $('.btn4').hide()
     
 
 })
-let clicks = 0
-function startQuiz() {     // START QUIZ
-   console.log ("startQuiz() called")
-}
+
+
 
 
 
 $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
-    if (clicks = 0) startQuiz()
-    clicks = clicks + 1
+    const output = []
+
     $('.canvas').css('border',"2px solid white")
     $('.canvas').hide() 
     $('.canvas').slideDown(450).empty()
