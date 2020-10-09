@@ -45,10 +45,11 @@ $(".startGame").click(function startGame(){ //STARTS GAME
 $(".nextQuestion").click(function nextQuestion(){ //GENERATE QUIZ QUESTION
     $('.canvas').css('border',"2px solid white")
  
-    $('.canvas').hide()
+    $('.canvas').hide() 
     $('.canvas').slideDown(450).empty()
-    $('.canvas').css('border',"2px solid white")
-    $('.canvas').css('background-color',"grey")
+    $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
+    $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
+    $('.canvas').css('color',"black")
      //CLEARS PREVIOUS QUESTION
 
 
