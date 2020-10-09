@@ -1,4 +1,7 @@
    $(() => {
+
+
+
     let cl = (value) => console.log(value); cl("Jquery Active")
 //variables to scope for entire script
 let toggleScreen = 0
@@ -17,7 +20,7 @@ let questionBank = ["Question Alpha","Question Bravo","Question Charlie","Questi
     $($points).text("X correct, " +points)
    // $($div).style.color("blue")
 
-$mega = document.getElementsByClassName('mega')
+let $mega = document.getElementsByClassName('mega')
 $($mega).hide()
 //////
 // TITLE SCREEN HERE
@@ -31,33 +34,85 @@ const $titlescreen = $('<div>')
     $($titlescreen).css("color", "white")
     $($titlescreen).css("background-color", "green")
 
+
 //API LINK
 //URL = https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986
 
+const baseURL = `https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986/?`
+const apiKey = ``  
+const queryType = `t=`
+let questionQuery = "question"
 
+$.getJSON(url, function(data){
+    let allQuestions=data.results
+    let currentScore = data.response_code
+    $('#results').text(allquestions.length + "add score here")
+}
+)
 
+// let queryURL = baseURL + apiKey + '&' + queryType
 
+//     const getTriviaQuestion = () => {
+//       $.ajax({
+//         questionQuery
+//       }).then((data) => {           /////// Charles helped debug this'
+//    console.log("hello")
+//    let allQuestions = data.results
+//    console.log(allQuestions)
+//         $('.APIcontainer').html(`
+//           <h2> ${data.Question} </h2>
+//           <h3> ${data.category} </h3>
+//           <h4> ${data.category} <h4>
+//           <h5> ${data.category} <h5>
+//           <p> ${data.category} </p>
+//           `)
+//       }, (error) => {
+//         console.error(error)
+//       })
+//     }
 
+ 
+//         getTriviaQuestion()
+      
+//         $('form').on('submit', (event) => {
+//           event.preventDefault()
+//           console.log('clicked submit')
+//           questionQuery = $('input[type="text"]').val()
+//           getTriviaQuestion()
+//         })
+      
+      
+
+// fetch(baseURL)
+//   .then(res => res.json())
+//   .then(json => console.log(json.results))
+//   .catch(error => console.error("error"))
+//   console.log(data.results.category)
 
 
 $(".startGame").click(function startGame(){ //STARTS GAME
     $($mega).show()
     $($titlescreen).hide()
     $('.btn4').hide()
+    
 
 })
+let clicks = 0
+function startQuiz() {     // START QUIZ
+   console.log ("startQuiz() called")
+}
 
-$(".nextQuestion").click(function nextQuestion(){ //GENERATE QUIZ QUESTION
+
+
+$(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
+    if (clicks = 0) startQuiz()
+    clicks = clicks + 1
     $('.canvas').css('border',"2px solid white")
- 
     $('.canvas').hide() 
     $('.canvas').slideDown(450).empty()
     $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
     $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
     $('.canvas').css('color',"black")
-     //CLEARS PREVIOUS QUESTION
-
-
     console.log(questionNumber + "old") 
     questionNumber++
     console.log(questionNumber + "is incremented")
@@ -82,24 +137,22 @@ $(".nextQuestion").click(function nextQuestion(){ //GENERATE QUIZ QUESTION
     //  GIVE each lhead an `ID` tag of the corresponding question #
     // $lhead.attr("id", questions[i]);
     //$('<lhead>').attr('id',questions[questionNumber]); // NEW
-  
     $('body').append($canvas);
     $('.canvas').append($lhead);
     $('.canvas').append($ul);
-if (toggleScreen = 0) {
-  toggleScreen++
-}
-else  {
-  toggleScreen--
-}
-console.log(toggleScreen + 'toggle')
-
+      if (toggleScreen = 0) {
+          toggleScreen++
+        }
+      else  {
+          toggleScreen--
+          }
+          console.log(toggleScreen + 'toggle')
        });
 
 
 $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
         // $('.canvas').css('border',"2px solid white")
-     
+        let $mega = document.getElementsByClassName('mega')
         $($mega).show()
         $('.btn2').show()
         $('.btn3').hide()
@@ -110,6 +163,7 @@ $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
        })
 
  const addH2 = () => {
+    let $mega = document.getElementsByClassName('mega')
         let $h2 =$('<h2>').text("Coding Trivia!") //TEXT ON SCREEN
         $($mega).append($h2)
       }
@@ -217,7 +271,11 @@ $closeBtn.on('click', closeModal);
 
    });
 
+ });
+
+//  });
+
+
 
 // $('.btn3').hide()  //Hide re-open button until screen is closed
 
-});
