@@ -14,15 +14,11 @@ let questionBank = ["Question Alpha","Question Bravo","Question Charlie","Questi
     //   alert( event.currentTarget === this ); // true
     // });
 
-        const addH2 = () => {
-          let $h2 =$('<h2>').text("Coding Trivia!")
-          $('body').prepend($h2)
-        }
-    addH2()
+       
 
     const $div = $('<div>')
     $($div).addClass('title')
-    $('body').prepend($div)
+    $('<bigCanvas>').append($div)
     $($div).text("Welcome to Coding Trivia")
 
     const $points = $('<div>')
@@ -46,7 +42,9 @@ $('.canvas').empty()
     const $canvas = $('<canvas>');
     const $lhead = $('<lhead>').attr('id',questionNumber);
     const $ul = $('<ul>').attr('id',questionNumber);
-    $($lhead.eq(questionNumber-1)).empty() 
+   if (questionNumber>questions.length-1) {
+       questionNumber=1
+   }
 
     $('<li>').text(questions[questionNumber].answer1).appendTo($ul);   //link to list id#
     $('<li>').text(questions[questionNumber].answer2).addClass('answer').appendTo($ul); //append to each
@@ -75,6 +73,12 @@ console.log(toggleScreen + 'toggle')
 
        });
 
+ const addH2 = () => {
+        let $h2 =$('<h2>').text("Coding Trivia!")
+        $('body').append($h2)
+      }
+  addH2()
+  
        const questions = [ // {question:   , answer:    , correctCheck: false}
 
         //ADD TOPICS, CORRECTNESS, QUESTION
