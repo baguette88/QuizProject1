@@ -35,13 +35,15 @@ let questionBank = ["Question Alpha","Question Bravo","Question Charlie","Questi
 
 $(".btn1").click(function btn1(){ //GENERATE QUIZ QUESTION
  console.log("new")
-  questionNumber++
+$('.canvas').empty()
+ console.log(questionNumber) 
+ questionNumber++
   console.log(questionNumber)
     points= points+1 // FIX UPDATE EACH QUESTIONS
     $points.text(points)
     // points = $points
     const $bigCanvas = $('<bigCanvas>');
-    const $questionCanvas = $('<canvas>');
+    const $canvas = $('<canvas>');
     const $lhead = $('<lhead>').attr('id',questionNumber);
     const $ul = $('<ul>').attr('id',questionNumber);
     $($lhead.eq(questionNumber-1)).empty() 
@@ -58,7 +60,7 @@ $(".btn1").click(function btn1(){ //GENERATE QUIZ QUESTION
     // $lhead.attr("id", questions[i]);
     //$('<lhead>').attr('id',questions[questionNumber]); // NEW
   
-    $('body').append($questionCanvas);
+    $('body').append($canvas);
     $('.canvas').append($lhead);
     $('.canvas').append($ul);
 if (toggleScreen = 0) {
@@ -69,6 +71,7 @@ else  {
   toggleScreen--
 }
 console.log(toggleScreen + 'toggle')
+
 
        });
 
@@ -95,7 +98,7 @@ console.log(toggleScreen + 'toggle')
             `<thead>
               <tr>
                 <th>QuestionText</th>
-                <th>Location</th>
+                <th>answer</th>
               </tr>
             </thead>`
         );
@@ -126,7 +129,7 @@ console.log(toggleScreen + 'toggle')
     }
 
     const addQuestionToTable = () => {
-        addData('Question', 'Answer');
+        addData('QuestionTextHERE'), ('QuestionAnswer');
     }
     
         buildTable(); // CREATE TABLE AT START
