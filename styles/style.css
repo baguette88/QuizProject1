@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
+.categories{
+  display: flex;
+  background-color: lightskyblue;
+  height: 30%;
+  width: 80%;
+  flex-wrap: wrap;
+  margin-left: 10%;
+ 
+}
+
+.Cat1{
+  color: green;
+} 
+
 .topArea{
   background-color:green;
   color: white;

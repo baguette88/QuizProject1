@@ -55,11 +55,11 @@ let questionQuery = "question"
         $('.APIcontainer').html(`
           <h2> ${data.id} </h2>
           <h3> ${data.question} </h3>
-          <h4> ${data.category} <h4>
+          <h4> ${data.trivia_categories} <h4>
           <h5> ${data.type} <h5>
           <p> ${data.difficulty} </p>
           `)
-console.log(data)
+console.log(data) //// PRINTING MY HTML INTO CONSOLE????
 
 
       }, (error) => {
@@ -85,6 +85,18 @@ $(".startGame").click(function startGame(){ //BUTTON "START GAME"
     $($mega).show()
     $($titlescreen).hide()
     $('.btn4').hide()
+    $('.categories').hide()
+    $('.playerScreen').hide()
+    
+
+})
+
+$(".statSheet").click(function statSheet(){ //BUTTON "START GAME" 
+    $($mega).hide()
+    $($titlescreen).hide()
+    $('.btn4').hide()
+    $('.categories').hide()
+    $('.playerScreen').show()
     
 
 })
@@ -93,8 +105,10 @@ $(".startGame").click(function startGame(){ //BUTTON "START GAME"
 
 
 
+
 $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
     const output = []
+    $('.playerScreen').hide()
 
     $('.canvas').css('border',"2px solid white")
     $('.canvas').hide() 
@@ -146,6 +160,7 @@ $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
         $('.btn2').show()
         $('.btn3').hide()
         $($titlescreen).hide()
+        $('.categories').hide()
 
         // $('.canvas').css('background-color',"grey")
     
@@ -255,6 +270,7 @@ $closeBtn.on('click', closeModal);
       $('.btn3').show()
       $('.btn2').hide()
       $($titlescreen).show()
+      $('.categories').show()
         // $($bigCanvas.hide())
      console.log("hide game canvas")
 
