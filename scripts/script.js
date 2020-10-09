@@ -8,13 +8,7 @@ let questionBank = ["Question Alpha","Question Bravo","Question Charlie","Questi
 
     let cl = (value) => console.log(value);
     cl("Jquery Active")
-    
-    //event.currentTarget TARGET SPECIFIC ELEMENT!!!
-    // $( "p" ).click(function( event ) {
-    //   alert( event.currentTarget === this ); // true
-    // });
 
-       
 
     const $div = $('<div>')
     $($div).addClass('title')
@@ -23,7 +17,7 @@ let questionBank = ["Question Alpha","Question Bravo","Question Charlie","Questi
 
     const $points = $('<div>')
     $($points).addClass('points')
-    $('body').prepend($points)
+    $('body').append($points)
     $($points).text("X correct, " +points)
    // $($div).style.color("blue")
 
@@ -32,14 +26,35 @@ $($mega).hide()
 //////
 // TITLE SCREEN HERE
 /////// then activate mega.show()   // (below)
-$($mega).show()
+// $($mega).show()
+const $titlescreen = $('<div>')
+    $($titlescreen).addClass('h1')
+    $('body').prepend($titlescreen)
+    $($titlescreen).text("TITLE SCREEN TEXT")
+    $($titlescreen).css("font-size", "72px")
+    $($titlescreen).css("color", "white")
+    $($titlescreen).css("background-color", "green")
 
-$(".btn1").click(function btn1(){ //GENERATE QUIZ QUESTION
- console.log("new")
-$('.canvas').empty()
- console.log(questionNumber) 
- questionNumber++
-  console.log(questionNumber)
+$(".startGame").click(function startGame(){ //STARTS GAME
+    $($mega).show()
+    $($titlescreen).hide()
+    $('.btn4').hide()
+
+})
+
+$(".nextQuestion").click(function nextQuestion(){ //GENERATE QUIZ QUESTION
+    $('.canvas').css('border',"2px solid white")
+ 
+    $('.canvas').hide()
+    $('.canvas').slideDown(450).empty()
+    $('.canvas').css('border',"2px solid white")
+    $('.canvas').css('background-color',"grey")
+     //CLEARS PREVIOUS QUESTION
+
+
+    console.log(questionNumber + "old") 
+    questionNumber++
+    console.log(questionNumber + "is incremented")
     points= points+1 // FIX UPDATE EACH QUESTIONS
     $points.text(points)
     // points = $points
@@ -47,7 +62,7 @@ $('.canvas').empty()
     const $canvas = $('<canvas>');
     const $lhead = $('<lhead>').attr('id',questionNumber);
     const $ul = $('<ul>').attr('id',questionNumber);
-   if (questionNumber>questions.length-1) {
+   if (questionNumber>questions.length-1) { // RESET QUESTION ARRAY IF FINISHED
        questionNumber=1
    }
 
@@ -58,7 +73,7 @@ $('.canvas').empty()
  
     
     $('<lhead>').text("Question #" + questionNumber + ". " + questions[questionNumber].questiontext + "?.").attr('id',questions[questionNumber].questiontext).appendTo($lhead);
-   
+    $('.canvas').fadeIn(500)                //FADE BACK IN
     //  GIVE each lhead an `ID` tag of the corresponding question #
     // $lhead.attr("id", questions[i]);
     //$('<lhead>').attr('id',questions[questionNumber]); // NEW
@@ -77,6 +92,25 @@ console.log(toggleScreen + 'toggle')
 
 
        });
+
+
+
+$(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
+        // $('.canvas').css('border',"2px solid white")
+     
+
+        $($mega).show()
+        $('.btn2').show()
+        $('.btn3').hide()
+        $($titlescreen).hide()
+
+
+        // $('.canvas').css('background-color',"grey")
+    
+       })
+
+
+
 
  const addH2 = () => {
         let $h2 =$('<h2>').text("Coding Trivia!")
@@ -156,6 +190,8 @@ console.log(toggleScreen + 'toggle')
   //   playHand()
   // })
 
+
+
   // Citation - Modal declaration adapted from Modal lab
 //MODAL DECLARATIONS AND EVENT HANDLERS
 const $openBtn = $('#openModal'); //variables declared
@@ -175,11 +211,18 @@ $closeBtn.on('click', closeModal);
 
 
    // TARGET A SPECIFIC ITEM OF CLASS  (GRAB JUST ONE ANSWER/TRIANGLE)
-    $( ".btn2" ).click(function() {
+    $( ".closeQuiz" ).click(function() {
       $($mega).hide()
+      $('.btn3').show()
+      $('.btn2').hide()
+      $($titlescreen).show()
         // $($bigCanvas.hide())
      console.log("hide game canvas")
 
    });
+
+
+// $('.btn3').hide()  //Hide re-open button until screen is closed
+
 
 });
