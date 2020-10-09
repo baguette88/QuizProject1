@@ -27,7 +27,12 @@ let questionBank = ["Question Alpha","Question Bravo","Question Charlie","Questi
     $($points).text("X correct, " +points)
    // $($div).style.color("blue")
 
-
+$mega = document.getElementsByClassName('mega')
+$($mega).hide()
+//////
+// TITLE SCREEN HERE
+/////// then activate mega.show()   // (below)
+$($mega).show()
 
 $(".btn1").click(function btn1(){ //GENERATE QUIZ QUESTION
  console.log("new")
@@ -79,8 +84,8 @@ console.log(toggleScreen + 'toggle')
       }
   addH2()
   
+  ///QUIZ ARRAY OF OBJECTS
        const questions = [ // {question:   , answer:    , correctCheck: false}
-
         //ADD TOPICS, CORRECTNESS, QUESTION
         { questiontext: "1Which one..?", answer1: "Olive" , answer2: "Bacon", answer3: "Olive", answer4: "Bacon" },
         { questiontext: "Inside which HTML element do we put the Javascript?", answer1: "<div>" , answer2: "<script>", answer3: "<js>", answer4: "<iframe>" },
@@ -170,11 +175,11 @@ $closeBtn.on('click', closeModal);
 
 
    // TARGET A SPECIFIC ITEM OF CLASS  (GRAB JUST ONE ANSWER/TRIANGLE)
-  //  $( ".triangle" ).click(function() {
-  //   alert( "Handler for .click() called." );
-  //   $(event.currentTarget).css('border-radius', '50%')
-  //   $(event.currentTarget).css('color', '100%')
-  //   $(event.currentTarget).addClass('circle')
-  // });
+    $( ".btn2" ).click(function() {
+      $($mega).hide()
+        // $($bigCanvas.hide())
+     console.log("hide game canvas")
+
+   });
 
 });
