@@ -3,21 +3,34 @@ $(() => {
 
   let data
   let cl = (value) => console.log(value); cl("Jquery Active")
-  //variables to scope for entire script
-  let toggleScreen = 0
-  let points = -1
+ 
+
   let questionNumber = 0
+  let score =0
+  let $currentScore =0
+  let highScore =0
+  let questionsAnswered = []
+  let questionsCorrect = []
+  let doNotRepeat = [51]
+  let baseURL
+  let categoryChoice = 1
+  let points = 0
+let $points = points
+  
+
   
   
       const $div = $('<div>')
       $($div).addClass('title')
       $('<bigCanvas>').append($div)
-      $($div).text("Welcome to Coding Trivia")
+      $($div).text(score)
   
-      const $points = $('<div>')
-      $($points).addClass('points')
-      $('body').append($points)
-      $($points).text("X correct, " +points)
+      let $score = $('<div>')
+      $($score).addClass('score')
+      $('body').append($score)
+      $($score).appendTo('.topArea')
+
+      $($score).text("NUMBER CORRECT = " +score)
      // $($div).style.color("blue")
   
   let $mega = document.getElementsByClassName('mega')
@@ -38,7 +51,12 @@ $(() => {
   //API LINK
   //URL = https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986
   
-  const baseURL =` https://opentdb.com/api.php?amount=50&category=18&type=multiple `
+   if (categoryChoice = 1) {
+       baseURL =` https://opentdb.com/api.php?amount=50&category=18&type=multiple ` }
+       else if (categoryChoice = 2) {
+       baseURL =` https://opentdb.com/api.php?amount=50&category=15&type=multiple ` }
+
+       console.log(baseURL)
   const apiKey = ``  
   let currentQuestion=0
   
@@ -54,36 +72,42 @@ $(() => {
             type: "GET",
                 
             
-            success: function(data) {
-                  let dataObject = {}
-                  obj = JSON.parse(data);
-                  dataObject = data
-                  let category= data.category
-                  let currentScore = data.response_code
-                  let myquestions = data
-                  console.log(obj.results[1])
+          success: function(data) {
+                let dataObject = {}
+                obj = JSON.parse(data);
+                dataObject = data
+                let category= data.category
+                let currentScore = data.response_code
+                let myquestions = data
+                console.log(obj.results[1])
                     // console.log(data)
                   //FOR LOOP?
                   // let question=myQuestions[i].question
                   // let correctAnswer=myQuestions[i].correct_answer
                   // let incorrectAnswer=myQuestions[i].incorrect_answers
             
-            
-                  
-            
-                    let selector = Math.ceil(Math.random)*10
-                    $('.APIcontainer').html(`
-                    <h2> ${obj.results[1].category} </h2>
-                    <h3> ${obj.results[1].question} </h3>
-                   <h4> ${obj.results[1].question} <h4>
-                   <h5> ${obj.results[1].correct_answer} <h5>
-                   <h5> ${obj.results[1].incorrect_answers[1]} <h5>
-              
-                    `)
+                  // let selector = Math.ceil(Math.random)*10
+                  // $('.APIcontainer').html(`
+                  // <h2> ${obj.results[1].question} </h2>
+                  // <h3> ${obj.results[1].correct_answer} </h3>
+                  // <h3>  ${obj.results[1].incorrect_answers[0]} <h3>
+                  //  <h3>  ${obj.results[1].incorrect_answers[1]} <h3>
+                  // <h3> ${obj.results[1].incorrect_answers[2]} <h3>
+                  //  `)
+
+const $topArea = $('<topArea>');
 
 
                     $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
                       const output = []
+                      if (categoryChoice = 1) {
+                        baseURL =` https://opentdb.com/api.php?amount=50&category=18&type=multiple ` }   
+                        else if (categoryChoice = 2) {
+                        baseURL =` https://opentdb.com/api.php?amount=50&category=15&type=multiple ` }     // THIS IS NOT TRIGGERING. MOVE SCOPE
+                        console.log(categoryChoice + "computer choice")
+
+
+
                       $('.playerScreen').hide()
                   
                       $('.canvas').css('border',"2px solid white")
@@ -94,212 +118,122 @@ $(() => {
                       $('.canvas').css('color',"black")
                       console.log(questionNumber + "old") 
                       questionNumber++
+            
+                        score++
+                       $score = score
+                       console.log("score is "+ score)
                       console.log(questionNumber + "is incremented")
-                      points= points+1 // FIX UPDATE EACH QUESTIONS
-                      $points.text(points)
-                      // points = $points
+                     
+                      points = $points
                       const $bigCanvas = $('<bigCanvas>');
+                    
                       const $canvas = $('<canvas>');
                       const $lhead = $('<lhead>').attr('id',questionNumber);
                       const $ul = $('<ul>').attr('id',questionNumber);
-                     if (questionNumber>questions.length-1) { // RESET QUESTION ARRAY IF FINISHED
-                         questionNumber=1
-                     }
+                   
+                    //  if (questionNumber>questionsAnswered.length-1) { // RESET QUESTION ARRAY IF FINISHED
+                    //      questionNumber=1
+                    //  }
                   let x= Math.floor(Math.random() * 50);
-                      $('<li>').text(obj.results[x].correct_answer[0]).appendTo($ul);   //link to list id#
+                  console.log(x)
+                  doNotRepeat.push(x)
+
+                  function doNotRepeatCheck()
+                    {console.log("for loop?") ///*** */
+                    }
+              
+
+                  console.log(doNotRepeat)
+                      $('<li>').text(obj.results[x].correct_answer).appendTo($ul);   //link to list id#
                       $('<li>').text(obj.results[x].incorrect_answers[0]).addClass('answer').appendTo($ul); //append to each
                       $('<li>').text(obj.results[x].incorrect_answers[1]).addClass('answer').appendTo($ul);
                       $('<li>').text(obj.results[x].incorrect_answers[2]).addClass('answer').appendTo($ul);
+                       $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
+                      $('<p>').text(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
+                      
                    
-                      $('<lhead>').text("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questions[questionNumber].questiontext).appendTo($lhead);
+                      $('<lhead>').text("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionsAnswered).appendTo($lhead);
+                      $('<modal-open>').text("SCORE = " + score + ". " + obj.results[x].incorrect).attr('id',questionsAnswered)
                       $('.canvas').fadeIn(500)                //FADE BACK IN
-                      //  GIVE each lhead an `ID` tag of the corresponding question #
-                      // $lhead.attr("id", questions[i]);
-                      //$('<lhead>').attr('id',questions[questionNumber]); // NEW
                       $('body').append($canvas);
                       $('.canvas').append($lhead);
                       $('.canvas').append($ul);
-                        if (toggleScreen = 0) {
-                            toggleScreen++
-                          }
-                        else  {
-                            toggleScreen--
-                            }
-                            console.log(toggleScreen + 'toggle')
+
+
+
+                   
                          });
-                  
-
-
-
-
+                     
                   }
+            
                 })
       
-
-   
-
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
       $($mega).show()
       $($titlescreen).hide()
       $('.btn4').hide()
       $('.categories').hide()
       $('.playerScreen').hide()
+      
   })
   
-  $(".category").click(function startGame(){ //BUTTON "START GAME" 
+  $(".categoryComputers").click(function categoryComputers(){ //BUTTON "START GAME" 
+  categoryChoice=1
   $($mega).show()
   $($titlescreen).hide()
   $('.btn4').hide()
   $('.categories').hide()
   $('.playerScreen').hide();
-   nextQuestion()   
    $('.categories').fadeIn()
+  })
+
+  $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GAME"
+  categoryChoice=2
+  $($mega).show()
+  $($titlescreen).hide()
+  $('.btn4').hide()
+  $('.categories').hide()
+  $('.playerScreen').hide();
+  $('.categories').fadeIn()
   })
   
   $(".statSheet").click(function statSheet(){ //BUTTON "START GAME" 
-      $($mega).hide()
-      $($titlescreen).hide()
-      $('.btn4').hide()
-      $('.categories').hide()
-      $('.playerScreen').show()
+    $($mega).hide()
+    $($titlescreen).hide()
+    $('.btn4').hide()
+    $('.categories').hide()
+    $('.playerScreen').show()
   })
-  
-  // $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
-  //     const output = []
-  //     $('.playerScreen').hide()
-  
-  //     $('.canvas').css('border',"2px solid white")
-  //     $('.canvas').hide() 
-  //     $('.canvas').slideDown(450).empty()
-  //     $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
-  //     $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
-  //     $('.canvas').css('color',"black")
-  //     console.log(questionNumber + "old") 
-  //     questionNumber++
-  //     console.log(questionNumber + "is incremented")
-  //     points= points+1 // FIX UPDATE EACH QUESTIONS
-  //     $points.text(points)
-  //     // points = $points
-  //     const $bigCanvas = $('<bigCanvas>');
-  //     const $canvas = $('<canvas>');
-  //     const $lhead = $('<lhead>').attr('id',questionNumber);
-  //     const $ul = $('<ul>').attr('id',questionNumber);
-  //    if (questionNumber>questions.length-1) { // RESET QUESTION ARRAY IF FINISHED
-  //        questionNumber=1
-  //    }
-  
-  //     $('<li>').text(questions[questionNumber].answer1).appendTo($ul);   //link to list id#
-  //     $('<li>').text(questions[questionNumber].answer2).addClass('answer').appendTo($ul); //append to each
-  //     $('<li>').text(questions[questionNumber].answer3).addClass('answer').appendTo($ul);
-  //     $('<li>').text(questions[questionNumber].answer4).addClass('answer').appendTo($ul);
-   
-  //     $('<lhead>').text("Question #" + questionNumber + ". " + questions[questionNumber].questiontext + "?.").attr('id',questions[questionNumber].questiontext).appendTo($lhead);
-  //     $('.canvas').fadeIn(500)                //FADE BACK IN
-  //     //  GIVE each lhead an `ID` tag of the corresponding question #
-  //     // $lhead.attr("id", questions[i]);
-  //     //$('<lhead>').attr('id',questions[questionNumber]); // NEW
-  //     $('body').append($canvas);
-  //     $('.canvas').append($lhead);
-  //     $('.canvas').append($ul);
-  //       if (toggleScreen = 0) {
-  //           toggleScreen++
-  //         }
-  //       else  {
-  //           toggleScreen--
-  //           }
-  //           console.log(toggleScreen + 'toggle')
-  //        });
-  
   
   $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
           // $('.canvas').css('border',"2px solid white")
-          let $mega = document.getElementsByClassName('mega')
-          $($mega).show()
-          $('.btn2').show()
-          $('.btn3').hide()
-          $($titlescreen).hide()
-          $('.categories').hide()
-  
-          // $('.canvas').css('background-color',"grey")
-      
-         })
-  
+      let $mega = document.getElementsByClassName('mega')
+      $($mega).show()
+      $('.btn2').show()
+      $('.btn3').hide()
+      $($titlescreen).hide()
+      $('.categories').hide()
+        })
+let rank = "Noob"
    const addH2 = () => {
       let $mega = document.getElementsByClassName('mega')
-          let $h2 =$('<h2>').text("Coding Trivia!") //TEXT ON SCREEN
-          $($mega).append($h2)
+          let $h2 =$('<h2>').text("Score= " +score+ " Points= " +points) //TEXT ON SCREEN
+          $('.topArea').prepend($h2)
+          let $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
+          $('.topArea').prepend($rank)
+          $($rank).css('display', 'inline')
+          $($rank).css('float', 'right')
+          $($rank).css('font-size', '36px')
         }
     addH2()
-    
-    ///QUIZ ARRAY OF OBJECTS
-         const questions = [ // {question:   , answer:    , correctCheck: false}
-          //ADD TOPICS, CORRECTNESS, QUESTION
-          { questiontext: "1Which one..?", answer1: "Olive" , answer2: "Bacon", answer3: "Olive", answer4: "Bacon" },
-          { questiontext: "Inside which HTML element do we put the Javascript?", answer1: "<div>" , answer2: "<script>", answer3: "<js>", answer4: "<iframe>" },
-          { questiontext: "3What is??", answer1: "Bacon" , answer2: "Bacon", answer3: "Olive", answer4: "Bacon" },
-          { questiontext: "4Whhen is??", answer1: "Bacon" , answer2: "Bacon", answer3: "Olive", answer4: "Bacon" },
-          { questiontext: "5Why is", answer1: "Bacon" , answer2: "Bacon", answer3: "Olive", answer4: "Bacon" },
-          { questiontext: "6Why is", answer1: "Olive" , answer2: "Bacon", answer3: "Bacon", answer4: "Bacon" },
-          { questiontext: "7Why is", answer1: "ggg" , answer2: "Olive", answer3: "Bacon", answer4: "Olive" },
-          { questiontext: "8Why is", answer1: "hhh" , answer2: "Bacon", answer3: "Bacon", answer4: "Bacon" },
-          { questiontext: "9Why is", answer1: "Olive" , answer2: "Bacon", answer3: "Bacon", answer4: "Bacon" },
-          { questiontext: "10. Methods are..", answer1: "Arrays stored as function" , answer2: "Actions that can be performed by objects", answer3: "Actions performed by the user", answer4: "Asynchronous Functions" },
-      ];
-      
-      //// Adapted from GA lesson technique for making a table from data w jQuery
-      // const buildTable = () => {
-      //   console.log("buildTable")
-      //     const $infoTable = $('<table>').addClass('info-table');
-      //     $infoTable.html(
-      //         `<thead>
-      //           <tr>
-      //             <th>QuestionText</th>
-      //             <th>answer</th>
-      //           </tr>
-      //         </thead>`
-      //     );
-      //     for (const question of questions) {
-      //         // console.log(question);
-      
-      //         const $infoRow = $('<tr>');
-      //         const $questiontextCell = $('<td>').addClass('questiontext').text(question.questiontext);
-      //         const $answerCell = $('<td>').addClass('answer').text(question.answer);
-      //         $infoRow.append($questiontextCell, $answerCell);
-      //         $infoTable.append($infoRow);
-      //     }
-      //     $('.container').append($infoTable);
-      // }
-      
-      // const addData = (questiontext, answer) => {
-      //     questions.push({ questiontext: questiontext, answer: answer });
-      //     $('.container').empty();
-      //     buildTable();
-      // }
-      
-      // const addText = () => {
-      //     $('body').append("clicked!");
-      // }
-      
-      // const changeClass = () => {
-      //     $('body').toggleClass('black');
-      // }
+
   
-      // const addQuestionToTable = () => {
-      //     addData('QuestionTextHERE'), ('QuestionAnswer');
-      // }
-      
-      //     buildTable(); // CREATE TABLE AT START
-      // /////////////////////////////////////////
-      //     const $btn = $('#btn');
-          
-      //     // $btn.on('click', addText);
-      //     // $btn.on('click', changeClass);
-      //     $btn.on('click', addQuestionToTable);  
   ///////////////////////
     //TOGGLE CLASS technique learned in toggle card lab
-    //const $card = $('.card').on('click', (event)=>{
-    //   $(event.currentTarget).toggleClass('card-back')
-    //   playHand()
+    //const $circlePress = $('.circlePress').on('click', (event)=>{
+    //   $(event.currentTarget).toggleClass('answered')
+    //   checkIfCorrect()
+    //)
     // })
     ////////////////////
   
@@ -311,16 +245,17 @@ $(() => {
   //Event Handlers
   const openModal = () => {     //open Modal
     $modal.css('display', 'block');
+
   }
   const closeModal = () => {     //close Modal
     $modal.css('display', 'none');
   }
-  closeModal() //close on START PROGRAM
+  closeModal() //close on START PROGRAM - HOW TO PLAY!
   //Event Listeners for Modal
   $openBtn.on('click', openModal); // REVISE TO OPEN ON QUESTION ANSWER
   $closeBtn.on('click', closeModal);
   
-     // TARGET A SPECIFIC ITEM OF CLASS  (GRAB JUST ONE ANSWER/TRIANGLE)
+
       $( ".closeQuiz" ).click(function() {
         $($mega).hide()
         $('.btn3').show()
@@ -331,5 +266,6 @@ $(() => {
        console.log("hide game canvas")
   
      });
+
    });
    
