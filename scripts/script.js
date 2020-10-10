@@ -2,7 +2,7 @@ $(() => {
 
 
   let data
-      let cl = (value) => console.log(value); cl("Jquery Active")
+  let cl = (value) => console.log(value); cl("Jquery Active")
   //variables to scope for entire script
   let toggleScreen = 0
   let points = -1
@@ -44,7 +44,7 @@ $(() => {
   
   const queryType = `t=`
   let questionQuery = "category"
-
+  let obj
   /////// Charles helped debug
   let queryURL = baseURL + apiKey + '&' + queryType
   //pass in an object (url, datatype, type of request, SUCCESS HANDLER FUNCTION)
@@ -56,7 +56,7 @@ $(() => {
             
             success: function(data) {
                   let dataObject = {}
-                  var obj = JSON.parse(data);
+                  obj = JSON.parse(data);
                   dataObject = data
                   let category= data.category
                   let currentScore = data.response_code
@@ -80,34 +80,64 @@ $(() => {
                    <h5> ${obj.results[1].incorrect_answers[1]} <h5>
               
                     `)
-                  }})
 
-          //CREATE RANDOM NUMBER VARIABLE
-         
-                
-                
-        
-          
-  
-  
-        
-  
-  
-        // }).then((data) => {           /////// Charles helped debug this'
-        //    console.log("then")
-           
-    
-    
-      //   }, (error) => {
-      //     console.error(error)
-      //   })
-      // }
-   
-          
-        
-         
-  
+
+                    $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
+                      const output = []
+                      $('.playerScreen').hide()
+                  
+                      $('.canvas').css('border',"2px solid white")
+                      $('.canvas').hide() 
+                      $('.canvas').slideDown(450).empty()
+                      $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
+                      $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
+                      $('.canvas').css('color',"black")
+                      console.log(questionNumber + "old") 
+                      questionNumber++
+                      console.log(questionNumber + "is incremented")
+                      points= points+1 // FIX UPDATE EACH QUESTIONS
+                      $points.text(points)
+                      // points = $points
+                      const $bigCanvas = $('<bigCanvas>');
+                      const $canvas = $('<canvas>');
+                      const $lhead = $('<lhead>').attr('id',questionNumber);
+                      const $ul = $('<ul>').attr('id',questionNumber);
+                     if (questionNumber>questions.length-1) { // RESET QUESTION ARRAY IF FINISHED
+                         questionNumber=1
+                     }
+                  
+                      $('<li>').text(questions[questionNumber].answer1).appendTo($ul);   //link to list id#
+                      $('<li>').text(questions[questionNumber].answer2).addClass('answer').appendTo($ul); //append to each
+                      $('<li>').text(questions[questionNumber].answer3).addClass('answer').appendTo($ul);
+                      $('<li>').text(questions[questionNumber].answer4).addClass('answer').appendTo($ul);
+                   
+                      $('<lhead>').text("Question #" + questionNumber + ". " + questions[questionNumber].questiontext + "?.").attr('id',questions[questionNumber].questiontext).appendTo($lhead);
+                      $('.canvas').fadeIn(500)                //FADE BACK IN
+                      //  GIVE each lhead an `ID` tag of the corresponding question #
+                      // $lhead.attr("id", questions[i]);
+                      //$('<lhead>').attr('id',questions[questionNumber]); // NEW
+                      $('body').append($canvas);
+                      $('.canvas').append($lhead);
+                      $('.canvas').append($ul);
+                        if (toggleScreen = 0) {
+                            toggleScreen++
+                          }
+                        else  {
+                            toggleScreen--
+                            }
+                            console.log(toggleScreen + 'toggle')
+                         });
+                  
+
+
+
+
+                  }
+                })
       
+
+   
+
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
       $($mega).show()
       $($titlescreen).hide()
@@ -134,51 +164,51 @@ $(() => {
       $('.playerScreen').show()
   })
   
-  $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
-      const output = []
-      $('.playerScreen').hide()
+  // $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
+  //     const output = []
+  //     $('.playerScreen').hide()
   
-      $('.canvas').css('border',"2px solid white")
-      $('.canvas').hide() 
-      $('.canvas').slideDown(450).empty()
-      $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
-      $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
-      $('.canvas').css('color',"black")
-      console.log(questionNumber + "old") 
-      questionNumber++
-      console.log(questionNumber + "is incremented")
-      points= points+1 // FIX UPDATE EACH QUESTIONS
-      $points.text(points)
-      // points = $points
-      const $bigCanvas = $('<bigCanvas>');
-      const $canvas = $('<canvas>');
-      const $lhead = $('<lhead>').attr('id',questionNumber);
-      const $ul = $('<ul>').attr('id',questionNumber);
-     if (questionNumber>questions.length-1) { // RESET QUESTION ARRAY IF FINISHED
-         questionNumber=1
-     }
+  //     $('.canvas').css('border',"2px solid white")
+  //     $('.canvas').hide() 
+  //     $('.canvas').slideDown(450).empty()
+  //     $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
+  //     $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
+  //     $('.canvas').css('color',"black")
+  //     console.log(questionNumber + "old") 
+  //     questionNumber++
+  //     console.log(questionNumber + "is incremented")
+  //     points= points+1 // FIX UPDATE EACH QUESTIONS
+  //     $points.text(points)
+  //     // points = $points
+  //     const $bigCanvas = $('<bigCanvas>');
+  //     const $canvas = $('<canvas>');
+  //     const $lhead = $('<lhead>').attr('id',questionNumber);
+  //     const $ul = $('<ul>').attr('id',questionNumber);
+  //    if (questionNumber>questions.length-1) { // RESET QUESTION ARRAY IF FINISHED
+  //        questionNumber=1
+  //    }
   
-      $('<li>').text(questions[questionNumber].answer1).appendTo($ul);   //link to list id#
-      $('<li>').text(questions[questionNumber].answer2).addClass('answer').appendTo($ul); //append to each
-      $('<li>').text(questions[questionNumber].answer3).addClass('answer').appendTo($ul);
-      $('<li>').text(questions[questionNumber].answer4).addClass('answer').appendTo($ul);
+  //     $('<li>').text(questions[questionNumber].answer1).appendTo($ul);   //link to list id#
+  //     $('<li>').text(questions[questionNumber].answer2).addClass('answer').appendTo($ul); //append to each
+  //     $('<li>').text(questions[questionNumber].answer3).addClass('answer').appendTo($ul);
+  //     $('<li>').text(questions[questionNumber].answer4).addClass('answer').appendTo($ul);
    
-      $('<lhead>').text("Question #" + questionNumber + ". " + questions[questionNumber].questiontext + "?.").attr('id',questions[questionNumber].questiontext).appendTo($lhead);
-      $('.canvas').fadeIn(500)                //FADE BACK IN
-      //  GIVE each lhead an `ID` tag of the corresponding question #
-      // $lhead.attr("id", questions[i]);
-      //$('<lhead>').attr('id',questions[questionNumber]); // NEW
-      $('body').append($canvas);
-      $('.canvas').append($lhead);
-      $('.canvas').append($ul);
-        if (toggleScreen = 0) {
-            toggleScreen++
-          }
-        else  {
-            toggleScreen--
-            }
-            console.log(toggleScreen + 'toggle')
-         });
+  //     $('<lhead>').text("Question #" + questionNumber + ". " + questions[questionNumber].questiontext + "?.").attr('id',questions[questionNumber].questiontext).appendTo($lhead);
+  //     $('.canvas').fadeIn(500)                //FADE BACK IN
+  //     //  GIVE each lhead an `ID` tag of the corresponding question #
+  //     // $lhead.attr("id", questions[i]);
+  //     //$('<lhead>').attr('id',questions[questionNumber]); // NEW
+  //     $('body').append($canvas);
+  //     $('.canvas').append($lhead);
+  //     $('.canvas').append($ul);
+  //       if (toggleScreen = 0) {
+  //           toggleScreen++
+  //         }
+  //       else  {
+  //           toggleScreen--
+  //           }
+  //           console.log(toggleScreen + 'toggle')
+  //        });
   
   
   $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
