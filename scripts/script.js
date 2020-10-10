@@ -38,57 +38,71 @@ const $titlescreen = $('<div>')
 //API LINK
 //URL = https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986
 
-const baseURL = `https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986/?`
+const baseURL =` https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986 `
 const apiKey = ``  
+let currentQuestion=0
+
 const queryType = `t=`
-let questionQuery = "question"
+let questionQuery = "trivia_categories"
 
-// let queryURL = baseURL + apiKey + '&' + queryType
+/////// Charles helped debug
+let queryURL = baseURL + apiKey + '&' + queryType
+//pass in an object (url, datatype, type of request, SUCCESS HANDLER FUNCTION)
+      jQuery.ajax({
+          url:baseURL,
+          dataType: 'text',
+          type: "GET",
+              success: function(data) {
+                let myQuestions=data.results
+                let currentScore = data.response_code
 
-    const getTriviaQuestion = () => {
-      $.ajax({
-        questionQuery
-      }).then((data) => {           /////// Charles helped debug this'
-   console.log("hello")
-   let allQuestions = data.results
-   console.log(allQuestions)
+                //FOR LOOP?
+                // let question=myQuestions[i].question
+                // let correctAnswer=myQuestions[i].correct_answer
+                // let incorrectAnswer=myQuestions[i].incorrect_answers
+
+              
         $('.APIcontainer').html(`
-          <h2> ${data.id} </h2>
-          <h3> ${data.question} </h3>
-          <h4> ${data.trivia_categories} <h4>
-          <h5> ${data.type} <h5>
-          <p> ${data.difficulty} </p>
-          `)
-console.log(data) //// PRINTING MY HTML INTO CONSOLE????
-
-
-      }, (error) => {
-        console.error(error)
-      })
-    }
-
+        <h2> ${data} </h2>
+        <h3> ${currentScore} </h3>
+       <h4> ${data.results} <h4>
+         <h5> ${data.type} <h5>
+         <p> ${data.difficulty} </p>
+        `)
+              }
+              });
+       
+      // }).then((data) => {           /////// Charles helped debug this'
+      //    console.log("then")
+         
+  
+  
+    //   }, (error) => {
+    //     console.error(error)
+    //   })
+    // }
  
-        getTriviaQuestion()
-      
         
-        $('form').on('submit', (event) => {
-          event.preventDefault()
-          console.log('clicked submit')
-          questionQuery = $('input[type="text"]').val()
-          getTriviaQuestion()
-        })
       
-      
+       
 
-
+    
 $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
     $($mega).show()
     $($titlescreen).hide()
     $('.btn4').hide()
     $('.categories').hide()
     $('.playerScreen').hide()
-    
+})
 
+$(".category").click(function startGame(){ //BUTTON "START GAME" 
+$($mega).show()
+$($titlescreen).hide()
+$('.btn4').hide()
+$('.categories').hide()
+$('.playerScreen').hide();
+ nextQuestion()   
+ $('.categories').fadeIn()
 })
 
 $(".statSheet").click(function statSheet(){ //BUTTON "START GAME" 
@@ -97,14 +111,7 @@ $(".statSheet").click(function statSheet(){ //BUTTON "START GAME"
     $('.btn4').hide()
     $('.categories').hide()
     $('.playerScreen').show()
-    
-
 })
-
-
-
-
-
 
 $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
     const output = []
@@ -236,8 +243,7 @@ $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
         console.log($btn);
         // $btn.on('click', addText);
         // $btn.on('click', changeClass);
-        $btn.on('click', addQuestionToTable);
-    
+        $btn.on('click', addQuestionToTable);  
 ///////////////////////
   //TOGGLE CLASS technique learned in toggle card lab
   //const $card = $('.card').on('click', (event)=>{
@@ -263,7 +269,6 @@ closeModal() //close on START PROGRAM
 $openBtn.on('click', openModal); // REVISE TO OPEN ON QUESTION ANSWER
 $closeBtn.on('click', closeModal);
 
-
    // TARGET A SPECIFIC ITEM OF CLASS  (GRAB JUST ONE ANSWER/TRIANGLE)
     $( ".closeQuiz" ).click(function() {
       $($mega).hide()
@@ -275,12 +280,4 @@ $closeBtn.on('click', closeModal);
      console.log("hide game canvas")
 
    });
-
  });
-
-//  });
-
-
-
-// $('.btn3').hide()  //Hide re-open button until screen is closed
-
