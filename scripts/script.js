@@ -105,13 +105,13 @@ $(() => {
                      if (questionNumber>questions.length-1) { // RESET QUESTION ARRAY IF FINISHED
                          questionNumber=1
                      }
-                  
-                      $('<li>').text(questions[questionNumber].answer1).appendTo($ul);   //link to list id#
-                      $('<li>').text(questions[questionNumber].answer2).addClass('answer').appendTo($ul); //append to each
-                      $('<li>').text(questions[questionNumber].answer3).addClass('answer').appendTo($ul);
-                      $('<li>').text(questions[questionNumber].answer4).addClass('answer').appendTo($ul);
+                  let x= Math.floor(Math.random() * 50);
+                      $('<li>').text(obj.results[x].correct_answer[0]).appendTo($ul);   //link to list id#
+                      $('<li>').text(obj.results[x].incorrect_answers[0]).addClass('answer').appendTo($ul); //append to each
+                      $('<li>').text(obj.results[x].incorrect_answers[1]).addClass('answer').appendTo($ul);
+                      $('<li>').text(obj.results[x].incorrect_answers[2]).addClass('answer').appendTo($ul);
                    
-                      $('<lhead>').text("Question #" + questionNumber + ". " + questions[questionNumber].questiontext + "?.").attr('id',questions[questionNumber].questiontext).appendTo($lhead);
+                      $('<lhead>').text("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questions[questionNumber].questiontext).appendTo($lhead);
                       $('.canvas').fadeIn(500)                //FADE BACK IN
                       //  GIVE each lhead an `ID` tag of the corresponding question #
                       // $lhead.attr("id", questions[i]);
@@ -247,54 +247,54 @@ $(() => {
       ];
       
       //// Adapted from GA lesson technique for making a table from data w jQuery
-      const buildTable = () => {
-        console.log("buildTable")
-          const $infoTable = $('<table>').addClass('info-table');
-          $infoTable.html(
-              `<thead>
-                <tr>
-                  <th>QuestionText</th>
-                  <th>answer</th>
-                </tr>
-              </thead>`
-          );
-          for (const question of questions) {
-              // console.log(question);
+      // const buildTable = () => {
+      //   console.log("buildTable")
+      //     const $infoTable = $('<table>').addClass('info-table');
+      //     $infoTable.html(
+      //         `<thead>
+      //           <tr>
+      //             <th>QuestionText</th>
+      //             <th>answer</th>
+      //           </tr>
+      //         </thead>`
+      //     );
+      //     for (const question of questions) {
+      //         // console.log(question);
       
-              const $infoRow = $('<tr>');
-              const $questiontextCell = $('<td>').addClass('questiontext').text(question.questiontext);
-              const $answerCell = $('<td>').addClass('answer').text(question.answer);
-              $infoRow.append($questiontextCell, $answerCell);
-              $infoTable.append($infoRow);
-          }
-          $('.container').append($infoTable);
-      }
+      //         const $infoRow = $('<tr>');
+      //         const $questiontextCell = $('<td>').addClass('questiontext').text(question.questiontext);
+      //         const $answerCell = $('<td>').addClass('answer').text(question.answer);
+      //         $infoRow.append($questiontextCell, $answerCell);
+      //         $infoTable.append($infoRow);
+      //     }
+      //     $('.container').append($infoTable);
+      // }
       
-      const addData = (questiontext, answer) => {
-          questions.push({ questiontext: questiontext, answer: answer });
-          $('.container').empty();
-          buildTable();
-      }
+      // const addData = (questiontext, answer) => {
+      //     questions.push({ questiontext: questiontext, answer: answer });
+      //     $('.container').empty();
+      //     buildTable();
+      // }
       
-      const addText = () => {
-          $('body').append("clicked!");
-      }
+      // const addText = () => {
+      //     $('body').append("clicked!");
+      // }
       
-      const changeClass = () => {
-          $('body').toggleClass('black');
-      }
+      // const changeClass = () => {
+      //     $('body').toggleClass('black');
+      // }
   
-      const addQuestionToTable = () => {
-          addData('QuestionTextHERE'), ('QuestionAnswer');
-      }
+      // const addQuestionToTable = () => {
+      //     addData('QuestionTextHERE'), ('QuestionAnswer');
+      // }
       
-          buildTable(); // CREATE TABLE AT START
-      /////////////////////////////////////////
-          const $btn = $('#btn');
+      //     buildTable(); // CREATE TABLE AT START
+      // /////////////////////////////////////////
+      //     const $btn = $('#btn');
           
-          // $btn.on('click', addText);
-          // $btn.on('click', changeClass);
-          $btn.on('click', addQuestionToTable);  
+      //     // $btn.on('click', addText);
+      //     // $btn.on('click', changeClass);
+      //     $btn.on('click', addQuestionToTable);  
   ///////////////////////
     //TOGGLE CLASS technique learned in toggle card lab
     //const $card = $('.card').on('click', (event)=>{
