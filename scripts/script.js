@@ -48,9 +48,7 @@ $(() => {
   /////// Charles helped debug
   let queryURL = baseURL + apiKey + '&' + queryType
   //pass in an object (url, datatype, type of request, SUCCESS HANDLER FUNCTION)
-       
-  let obj= {};
-  jQuery.ajax({
+        jQuery.ajax({
             url:baseURL,
             dataType: 'text',
             type: "GET",
@@ -59,7 +57,7 @@ $(() => {
             success: function(data) {
                   let dataObject = {}
                   var obj = JSON.parse(data);
-                  // dataBlock = data
+                  dataObject = data
                   let category= data.category
                   let currentScore = data.response_code
                   let myquestions = data
@@ -69,28 +67,27 @@ $(() => {
                   // let question=myQuestions[i].question
                   // let correctAnswer=myQuestions[i].correct_answer
                   // let incorrectAnswer=myQuestions[i].incorrect_answers
-            }});
-
-
-
-                    let selector = (Math.ceil(Math.random)*10)
+            
+            
+                  
+            
+                    let selector = Math.ceil(Math.random)*10
                     $('.APIcontainer').html(`
-                    <h2> ${obj.results[selector].category} </h2>
-                    <h3> ${obj.results[selector].question} </h3>
-                   <h4> ${obj.results[selector].question} <h4>
-                   <h5> ${obj.results[selector].correct_answer} <h5>
-                   <h5> ${obj.results[selector].incorrect_answers[1]} <h5>
+                    <h2> ${obj.results[1].category} </h2>
+                    <h3> ${obj.results[1].question} </h3>
+                   <h4> ${obj.results[1].question} <h4>
+                   <h5> ${obj.results[1].correct_answer} <h5>
+                   <h5> ${obj.results[1].incorrect_answers[1]} <h5>
               
                     `)
-                  
+                  }})
 
           //CREATE RANDOM NUMBER VARIABLE
          
-          //store data as variable
                 
                 
-                
-          console.log(dataBlock); //UNDEFINED!?!?!
+        
+          
   
   
         
@@ -305,3 +302,4 @@ $(() => {
   
      });
    });
+   
