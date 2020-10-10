@@ -148,7 +148,7 @@ const $topArea = $('<topArea>');
                       $('<li>').text(obj.results[x].incorrect_answers[0]).addClass('answer').appendTo($ul); //append to each
                       $('<li>').text(obj.results[x].incorrect_answers[1]).addClass('answer').appendTo($ul);
                       $('<li>').text(obj.results[x].incorrect_answers[2]).addClass('answer').appendTo($ul);
-                       $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
+                      //  $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
                       $('<p>').text(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
                       
                    
