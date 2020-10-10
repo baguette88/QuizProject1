@@ -1,13 +1,13 @@
    $(() => {
 
 
-
+let data
     let cl = (value) => console.log(value); cl("Jquery Active")
 //variables to scope for entire script
 let toggleScreen = 0
 let points = -1
 let questionNumber = 0
-let questionBank = ["Question Alpha","Question Bravo","Question Charlie","Question Delta",]
+
 
     const $div = $('<div>')
     $($div).addClass('title')
@@ -43,7 +43,7 @@ const apiKey = ``
 let currentQuestion=0
 
 const queryType = `t=`
-let questionQuery = "trivia_categories"
+let questionQuery = "category"
 
 /////// Charles helped debug
 let queryURL = baseURL + apiKey + '&' + queryType
@@ -52,26 +52,36 @@ let queryURL = baseURL + apiKey + '&' + queryType
           url:baseURL,
           dataType: 'text',
           type: "GET",
-              success: function(data) {
-                let myQuestions=data.results
+              
+          
+          success: function(data) {
+                
                 let currentScore = data.response_code
-
+                let myquestions = data
+                console.log(data)
+                  // console.log(data)
                 //FOR LOOP?
                 // let question=myQuestions[i].question
                 // let correctAnswer=myQuestions[i].correct_answer
                 // let incorrectAnswer=myQuestions[i].incorrect_answers
-
+          
               
         $('.APIcontainer').html(`
-        <h2> ${data} </h2>
+        <h2> ${data.results} </h2>
         <h3> ${currentScore} </h3>
-       <h4> ${data.results} <h4>
+       <h4> ${data.type} <h4>
          <h5> ${data.type} <h5>
-         <p> ${data.difficulty} </p>
+         <p> ${data.type} </p>
         `)
               }
+              
               });
-       
+        console.log(data) //UNDEFINED!?!?!
+
+
+
+
+
       // }).then((data) => {           /////// Charles helped debug this'
       //    console.log("then")
          
