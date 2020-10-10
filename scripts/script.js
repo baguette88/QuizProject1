@@ -4,9 +4,9 @@ $(() => {
   let data
   let cl = (value) => console.log(value); cl("Jquery Active")
  
-
+let level = 1
   let questionNumber = 0
-  let score =0
+  let playerScore = 0
   let $currentScore =0
   let highScore =0
   let questionsAnswered = []
@@ -16,21 +16,22 @@ $(() => {
   let categoryChoice = 1
   let points = 0
 let $points = points
-  
+
+
 
   
   
       const $div = $('<div>')
       $($div).addClass('title')
       $('<bigCanvas>').append($div)
-      $($div).text(score)
+      $($div).text(playerScore)
   
-      let $score = $('<div>')
-      $($score).addClass('score')
-      $('body').append($score)
-      $($score).appendTo('.topArea')
-
-      $($score).text("NUMBER CORRECT = " +score)
+      let $playerScore = $('<playerScore>')
+      $($playerScore).addClass('score')
+      $('body').append($playerScore)
+      $($playerScore).appendTo('.body')
+      playerScore= questionNumber
+      $($playerScore).text("NUMBER CORRECT = " +playerScore)
      // $($div).style.color("blue")
   
   let $mega = document.getElementsByClassName('mega')
@@ -77,7 +78,7 @@ let $points = points
                 obj = JSON.parse(data);
                 dataObject = data
                 let category= data.category
-                let currentScore = data.response_code
+                // let currentScore = data.response_code
                 let myquestions = data
                 console.log(obj.results[1])
                     // console.log(data)
@@ -87,42 +88,37 @@ let $points = points
                   // let incorrectAnswer=myQuestions[i].incorrect_answers
             
                   // let selector = Math.ceil(Math.random)*10
-                  // $('.APIcontainer').html(`
-                  // <h2> ${obj.results[1].question} </h2>
-                  // <h3> ${obj.results[1].correct_answer} </h3>
-                  // <h3>  ${obj.results[1].incorrect_answers[0]} <h3>
-                  //  <h3>  ${obj.results[1].incorrect_answers[1]} <h3>
-                  // <h3> ${obj.results[1].incorrect_answers[2]} <h3>
-                  //  `)
+                
 
-const $topArea = $('<topArea>');
+       const $topArea = $('<topArea>');
 
 
-                    $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
-                      const output = []
-                      if (categoryChoice = 1) {
-                        baseURL =` https://opentdb.com/api.php?amount=50&category=18&type=multiple ` }   
-                        else if (categoryChoice = 2) {
-                        baseURL =` https://opentdb.com/api.php?amount=50&category=15&type=multiple ` }     // THIS IS NOT TRIGGERING. MOVE SCOPE
-                        console.log(categoryChoice + "computer choice")
+          $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
+            $($playerScore).text(questionNumber);
+            const output = []
+            if (categoryChoice = 1) {
+            baseURL =` https://opentdb.com/api.php?amount=50&category=18&type=multiple ` }   
+              else if (categoryChoice = 2) {
+              baseURL =` https://opentdb.com/api.php?amount=50&category=15&type=multiple ` }     // THIS IS NOT TRIGGERING. MOVE SCOPE
+             console.log(categoryChoice + "computer choice")
 
 
 
-                      $('.playerScreen').hide()
+                $('.playerScreen').hide()
                   
-                      $('.canvas').css('border',"2px solid white")
-                      $('.canvas').hide() 
-                      $('.canvas').slideDown(450).empty()
-                      $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
-                      $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
-                      $('.canvas').css('color',"black")
-                      console.log(questionNumber + "old") 
-                      questionNumber++
-            
-                        score++
-                       $score = score
-                       console.log("score is "+ score)
-                      console.log(questionNumber + "is incremented")
+                $('.canvas').css('border',"2px solid white")
+                $('.canvas').hide() 
+                 $('.canvas').empty()   //slideDown(450)
+                $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
+                $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
+                $('.canvas').css('color',"black")
+                console.log(questionNumber + "old") 
+                questionNumber++
+                points++
+               playerScore++
+               
+                console.log("score is "+ playerScore)
+              
                      
                       points = $points
                       const $bigCanvas = $('<bigCanvas>');
@@ -144,26 +140,33 @@ const $topArea = $('<topArea>');
               
 
                   console.log(doNotRepeat)
-                      $('<li>').text(obj.results[x].correct_answer).appendTo($ul);   //link to list id#
-                      $('<li>').text(obj.results[x].incorrect_answers[0]).addClass('answer').appendTo($ul); //append to each
-                      $('<li>').text(obj.results[x].incorrect_answers[1]).addClass('answer').appendTo($ul);
-                      $('<li>').text(obj.results[x].incorrect_answers[2]).addClass('answer').appendTo($ul);
+                      $('<li>').text(obj.results[x].correct_answer).addClass('correct').appendTo($ul);   //link to list id#
+                      $('<li>').text(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul); //append to each
+                      $('<li>').text(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
+                      $('<li>').text(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
                       //  $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
-                      $('<p>').text(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
-                      
+                      $('<playerScore>').text(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
+                      $($playerScore).text(questionNumber);
+                      points++
                    
-                      $('<lhead>').text("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionsAnswered).appendTo($lhead);
-                      $('<modal-open>').text("SCORE = " + score + ". " + obj.results[x].incorrect).attr('id',questionsAnswered)
+                      $('<lhead>').text("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionsAnswered).appendTo($lhead); //QUESTION
+                      $('<modal-open>').text("SCORE = " + playerScore + ". " + obj.results[x].incorrect).attr('id',questionsAnswered)
                       $('.canvas').fadeIn(500)                //FADE BACK IN
                       $('body').append($canvas);
                       $('.canvas').append($lhead);
                       $('.canvas').append($ul);
-
-
-
+          $('.APIcontainer').html(`
+                         // <li> ${obj.results[x].question.appendTo($ul)} </li>
+                         // <li> ${obj.results[x].correct_answer.appendTo($ul)} </li>
+                         // <li>  ${obj.results[x].incorrect_answers[0].appendTo($ul)} <li>
+                         //  <li>  ${obj.results[x].incorrect_answers[1].appendTo($ul)} <li>
+                         // <li> ${obj.results[x].incorrect_answers[2].appendTo($ul)} <li>
+                        //   `)
+           
                    
                          });
-                     
+               
+   
                   }
             
                 })
@@ -217,7 +220,7 @@ const $topArea = $('<topArea>');
 let rank = "Noob"
    const addH2 = () => {
       let $mega = document.getElementsByClassName('mega')
-          let $h2 =$('<h2>').text("Score= " +score+ " Points= " +points) //TEXT ON SCREEN
+          let $h2 =$('<h2>').text("Score= " +playerScore+ " Points= " +points) //TEXT ON SCREEN
           $('.topArea').prepend($h2)
           let $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
           $('.topArea').prepend($rank)
