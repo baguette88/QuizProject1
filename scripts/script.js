@@ -59,6 +59,9 @@ $(() => {
   let obj
   /////// Charles helped debug
   let queryURL = baseURL + apiKey + '&' + queryType
+
+
+
   //pass in an object (url, datatype, type of request, SUCCESS HANDLER FUNCTION)
         jQuery.ajax({
             url:baseURL,
@@ -69,6 +72,7 @@ $(() => {
           success: function(data) {
                 let dataObject = {}
                 obj = JSON.parse(data);
+                
                 dataObject = data
                 let category= data.category
               
@@ -116,6 +120,9 @@ $(() => {
                       const $canvas = $('<canvas>');
                       const $lhead = $('<lhead>').attr('id',questionNumber);
                       const $ul = $('<ul>').attr('id',questionNumber);
+                      const $li = $('<li>')
+                      const $form = $('<form>')
+                      $($form).appendTo($lhead)
                    
                     //  if (questionNumber>questionsAnswered.length-1) { // RESET QUESTION ARRAY IF FINISHED
                     //      questionNumber=1
@@ -125,16 +132,22 @@ $(() => {
                   doNotRepeat.push(x)
                  //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
 
-                  function doNotRepeatCheck()
-                    {console.log("for loop?") ///*** */
-                    }
-              
+               
+                 $("input[name='playerChoice']").click(function(){
+                  console.log("Answer selected")
+              });
 
                   console.log(doNotRepeat)
-                      $('<li>').text(obj.results[x].correct_answer).addClass('correct').appendTo($ul);   //link to list id#
-                      $('<li>').text(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul); //append to each
+
+                      $('<input type="radio" name="playerChoice" value="incorrect" class="correct">').addClass('correct').appendTo($ul);   //link to list id#
+                      $('<li>').text(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
+                      $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul); //append to each
+                      $('<li>').text(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
+                      $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
                       $('<li>').text(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
-                      $('<li>').text(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
+                      $(' <input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
+                      $(' <li>').text(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
+
                       //  $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
                       $('<category>').text(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
           
@@ -153,10 +166,7 @@ $(() => {
           //                //  <li>  ${obj.results[x].incorrect_answers[1].appendTo($ul)} <li>
           //                // <li> ${obj.results[x].incorrect_answers[2].appendTo($ul)} <li>
           //               //   `)
-           
                          });
-               
-   
                   }
             
                 })
@@ -170,9 +180,40 @@ $(() => {
       $('.playerScreen').hide()
       $('.startGame').hide()
 
-      
+    
+    
+      let timeoutHandle;
+    //Adapted from https://stackoverflow.com/questions/52547625/1-minutes-30-second-countdown-timer-javascript
+    function countdown(minutes, seconds) {
+      var seconds = 60;
+      var mins = minutes
+
+    function tick() {
+      var counter = document.getElementById("timer");
+      var currentMinutes = mins - 1
+      seconds--;
+      counter.innerHTML =
+        "Time Left: "+currentMinutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+      if (seconds > 0) {
+        timeoutHandle = setTimeout(tick, 1000); //one second
+      } else {
+
+        if (mins > 1) {
+          console.log("timer ended?")
+          //END GAME FUNCTION HERE
+          // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst (via Stack Overflow)
+          setTimeout(function() {
+            countdown(mins - 1);
+          }, 1000);
+        }
+      }
+    }
+    tick();
+  }
+
+  countdown(1); //three minutes  
   })
-  
+  ///////////
   $(".categoryComputers").click(function categoryComputers(){ //BUTTON "START GAME" 
   categoryChoice=1
   $($mega).show()

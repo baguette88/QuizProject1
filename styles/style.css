@@ -10,6 +10,7 @@
  
 }
 
+
 .Cat1{
   color: green;
 } 
@@ -54,14 +55,28 @@ font-family: 'Arial';
 
 }
 
+
+input {
+  display: inline;
+  float: left;
+  width: 20px;
+  height: 20px;
+  border: 3px solid red;
+  padding-left: 35px;
+  margin-right: 25px;
+  margin-top: 10px;
+}
 ul {
-  margin: 0 auto
+  margin: 0 auto;
   padding: 10px;
   font-size: 36px;
+  list-style-type: none;
 }
 li:{
    margin-top: 10px;
+   display: inline;
    font-size: 36px;
+   list-style-type: none;
 
 }
 li:hover{
@@ -210,14 +225,27 @@ font-family: 'Arial';
 
 }
 
+input {
+  display: inline;
+  float: left;
+  width: 10px;
+  height: 10px;
+  border: 3px solid red;
+  padding-left: 10px;
+  margin-right: 10px;
+  margin-top: 2px;
+}
 ul {
   margin: 0 auto;
-  padding: 10px;
+  padding: 3px;
   font-size: 14px;
+  list-style-type: none;
 }
-li{
-   margin-top: 10px;
+li:{
+   margin-top: 0px;
+   display: inline;
    font-size: 14px;
+   list-style-type: none;
 
 }
 li:hover{
