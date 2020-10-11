@@ -9,29 +9,24 @@ let level = 1
   let playerScore = 0
   let $currentScore =0
   let highScore =0
-  let questionsAnswered = []
+
   let questionsCorrect = []
   let doNotRepeat = [51]
+  
   let baseURL
   let categoryChoice = 1
   let points = 0
 let $points = points
 
 
-
-  
-  
-      const $div = $('<div>')
-      $($div).addClass('title')
-      $('<bigCanvas>').append($div)
-      $($div).text(playerScore)
   
       let $playerScore = $('<playerScore>')
       $($playerScore).addClass('score')
-      $('body').append($playerScore)
-      $($playerScore).appendTo('.body')
+      $('body').prepend($playerScore)
+      $($playerScore).css('color', 'white')
+      $($playerScore).css('font-size', '24px')
       playerScore= questionNumber
-      $($playerScore).text("NUMBER CORRECT = " +playerScore)
+      $($playerScore).text("NUMBER CORRECT = " +(playerScore*100))
      // $($div).style.color("blue")
   
   let $mega = document.getElementsByClassName('mega')
@@ -53,9 +48,9 @@ let $points = points
   //URL = https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986
   
    if (categoryChoice = 1) {
-       baseURL =` https://opentdb.com/api.php?amount=50&category=18&type=multiple ` }
-       else if (categoryChoice = 2) {
        baseURL =` https://opentdb.com/api.php?amount=50&category=15&type=multiple ` }
+       else if (categoryChoice = 2) {
+       baseURL =` https://opentdb.com/api.php?amount=50&category=18&type=multiple ` }
 
        console.log(baseURL)
   const apiKey = ``  
@@ -78,7 +73,7 @@ let $points = points
                 obj = JSON.parse(data);
                 dataObject = data
                 let category= data.category
-                // let currentScore = data.response_code
+              
                 let myquestions = data
                 console.log(obj.results[1])
                     // console.log(data)
@@ -103,9 +98,7 @@ let $points = points
              console.log(categoryChoice + "computer choice")
 
 
-
                 $('.playerScreen').hide()
-                  
                 $('.canvas').css('border',"2px solid white")
                 $('.canvas').hide() 
                  $('.canvas').empty()   //slideDown(450)
@@ -118,7 +111,6 @@ let $points = points
                playerScore++
                
                 console.log("score is "+ playerScore)
-              
                      
                       points = $points
                       const $bigCanvas = $('<bigCanvas>');
@@ -133,6 +125,7 @@ let $points = points
                   let x= Math.floor(Math.random() * 50);
                   console.log(x)
                   doNotRepeat.push(x)
+                 //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
 
                   function doNotRepeatCheck()
                     {console.log("for loop?") ///*** */
@@ -145,8 +138,8 @@ let $points = points
                       $('<li>').text(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
                       $('<li>').text(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
                       //  $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
-                      $('<playerScore>').text(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
-                      $($playerScore).text(questionNumber);
+                      $('<category>').text(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
+          
                       points++
                    
                       $('<lhead>').text("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionsAnswered).appendTo($lhead); //QUESTION
@@ -155,15 +148,14 @@ let $points = points
                       $('body').append($canvas);
                       $('.canvas').append($lhead);
                       $('.canvas').append($ul);
-          $('.APIcontainer').html(`
-                         // <li> ${obj.results[x].question.appendTo($ul)} </li>
-                         // <li> ${obj.results[x].correct_answer.appendTo($ul)} </li>
-                         // <li>  ${obj.results[x].incorrect_answers[0].appendTo($ul)} <li>
-                         //  <li>  ${obj.results[x].incorrect_answers[1].appendTo($ul)} <li>
-                         // <li> ${obj.results[x].incorrect_answers[2].appendTo($ul)} <li>
-                        //   `)
+          // $('.APIcontainer').html(`
+          //                // <li> ${obj.results[x].question.appendTo($ul)} </li>
+          //                // <li> ${obj.results[x].correct_answer.appendTo($ul)} </li>
+          //                // <li>  ${obj.results[x].incorrect_answers[0].appendTo($ul)} <li>
+          //                //  <li>  ${obj.results[x].incorrect_answers[1].appendTo($ul)} <li>
+          //                // <li> ${obj.results[x].incorrect_answers[2].appendTo($ul)} <li>
+          //               //   `)
            
-                   
                          });
                
    
@@ -177,6 +169,9 @@ let $points = points
       $('.btn4').hide()
       $('.categories').hide()
       $('.playerScreen').hide()
+      $('.playerScreen').hide()
+      $('.startGame').hide()
+
       
   })
   
@@ -220,7 +215,7 @@ let $points = points
 let rank = "Noob"
    const addH2 = () => {
       let $mega = document.getElementsByClassName('mega')
-          let $h2 =$('<h2>').text("Score= " +playerScore+ " Points= " +points) //TEXT ON SCREEN
+          let $h2 =$('<h2>').text("Brown's Trivia Game") //TEXT ON SCREEN
           $('.topArea').prepend($h2)
           let $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
           $('.topArea').prepend($rank)
@@ -231,15 +226,19 @@ let rank = "Noob"
     addH2()
 
   
-  ///////////////////////
+function checkIfCorrect() {
+
+
     //TOGGLE CLASS technique learned in toggle card lab
-    //const $circlePress = $('.circlePress').on('click', (event)=>{
+    //const $liPress = $('li').on('click', (event)=>{
     //   $(event.currentTarget).toggleClass('answered')
     //   checkIfCorrect()
     //)
     // })
     ////////////////////
-  
+  }
+
+
     // Citation - Modal declaration adapted from technique learned in Modal lab
   //MODAL DECLARATIONS AND EVENT HANDLERS
   const $openBtn = $('#openModal'); //variables declared

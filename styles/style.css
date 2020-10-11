@@ -115,11 +115,19 @@ lhead {
   border: 1px solid gray;
 }
 
-.nextQuestion {
+button.nextQuestion {
   float: right;
   height: 75px;
   border: 3px solid black;
   border: 10px black;
+  border-radius: 10px;
+
+}
+button.nextQuestion:hover {
+  float: right;
+  height: 75px;
+  border: 3px solid black;
+  border: 20px black;
   border-radius: 10px;
 
 }
@@ -265,9 +273,9 @@ li:hover{
 
 .nextQuestion {
   float: right;
-  height: 75px;
+  height: 30px;
   border: 3px solid black;
-  border: 10px black;
+  border: 5px black;
   border-radius: 10px;
 
 }
