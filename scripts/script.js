@@ -44,25 +44,28 @@ $(() => {
   
   //API LINK
   //URL = https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986
-  
-   if (categoryChoice = 1) {
-       baseURL =` https://opentdb.com/api.php?amount=50&category=15&type=multiple ` }
-       else if (categoryChoice = 2) {
-       baseURL =` https://opentdb.com/api.php?amount=50&category=18&type=multiple ` }
+   categoryChoice=18    // COMPUTER SCIENCE   HOW DO I TOGGLE BETWEEN?
+   categoryChoice=15   // VIDEO GAMES
+       baseURL =` https://opentdb.com/api.php?amount=50&category=15&type=multiple ` 
+    
+
 
        console.log(baseURL)
+       
   const apiKey = ``  
   let currentQuestion=0
   
   const queryType = `t=`
-  let questionQuery = "category"
+ 
   let obj
   /////// Charles helped debug
   let queryURL = baseURL + apiKey + '&' + queryType
 
 
 
-  //pass in an object (url, datatype, type of request, SUCCESS HANDLER FUNCTION)
+  // ADD FUNCTION SO THIS DOES NOT RUN IMMEDIATELY ON LOAD (UNTIL AFTER CATEGORY SELECTION)
+     //function startGame()  **BRING UP HERE***
+  
         jQuery.ajax({
             url:baseURL,
             dataType: 'text',
@@ -91,15 +94,8 @@ $(() => {
 
 
           $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
-            $($playerScore).text(questionNumber);
-            const output = []
-            if (categoryChoice = 1) {
-            baseURL =` https://opentdb.com/api.php?amount=50&category=18&type=multiple ` }   
-              else if (categoryChoice = 2) {
-              baseURL =` https://opentdb.com/api.php?amount=50&category=15&type=multiple ` }     // THIS IS NOT TRIGGERING. MOVE SCOPE
-             console.log(categoryChoice + "computer choice")
-
-
+            $($playerScore).text("NUMBER CORRECT = " + questionNumber);
+            
                 $('.playerScreen').hide()
                 $('.canvas').css('border',"2px solid white")
                 $('.canvas').hide() 
@@ -116,13 +112,12 @@ $(() => {
                      
                       points = $points
                       const $bigCanvas = $('<bigCanvas>');
-                    
                       const $canvas = $('<canvas>');
                       const $lhead = $('<lhead>').attr('id',questionNumber);
                       const $ul = $('<ul>').attr('id',questionNumber);
                       const $li = $('<li>')
                       const $form = $('<form>')
-                      $($form).appendTo($lhead)
+                      $($form).appendTo($ul)
                    
                     //  if (questionNumber>questionsAnswered.length-1) { // RESET QUESTION ARRAY IF FINISHED
                     //      questionNumber=1
@@ -139,7 +134,7 @@ $(() => {
 
                   console.log(doNotRepeat)
 
-                      $('<input type="radio" name="playerChoice" value="incorrect" class="correct">').addClass('correct').appendTo($ul);   //link to list id#
+                      $('<input type="radio" name="playerChoice" value="incorrect">').addClass('correct').appendTo($ul);   //link to list id#
                       $('<li>').text(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
                       $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul); //append to each
                       $('<li>').text(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
@@ -147,6 +142,10 @@ $(() => {
                       $('<li>').text(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
                       $(' <input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
                       $(' <li>').text(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
+
+                      $("input[name='playerChoice']").click(function selection(){
+                        console.log("button pressed")
+                            })
 
                       //  $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
                       $('<category>').text(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
@@ -168,7 +167,7 @@ $(() => {
           //               //   `)
                          });
                   }
-            
+
                 })
       
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
@@ -181,17 +180,24 @@ $(() => {
       $('.startGame').hide()
 
     
-    
+      $('#timer').appendTo('rank').css('color','white')
       let timeoutHandle;
+      var ticks= 0
     //Adapted from https://stackoverflow.com/questions/52547625/1-minutes-30-second-countdown-timer-javascript
     function countdown(minutes, seconds) {
       var seconds = 60;
       var mins = minutes
-
+      
+     
     function tick() {
       var counter = document.getElementById("timer");
+      ticks++
+     
       var currentMinutes = mins - 1
       seconds--;
+       if (ticks>150){     // TURN RED ON 30 SECONDS LEFT
+        $('#timer').css('color','red')
+      }
       counter.innerHTML =
         "Time Left: "+currentMinutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
       if (seconds > 0) {
@@ -211,27 +217,19 @@ $(() => {
     tick();
   }
 
-  countdown(1); //three minutes  
+  countdown(3); //three minutes  
   })
-  ///////////
+  ///////////////////////////////////////
   $(".categoryComputers").click(function categoryComputers(){ //BUTTON "START GAME" 
-  categoryChoice=1
-  $($mega).show()
-  $($titlescreen).hide()
-  $('.btn4').hide()
-  $('.categories').hide()
-  $('.playerScreen').hide();
-   $('.categories').fadeIn()
+categoryChoice=15
+  
+   loadAPI()
   })
 
   $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GAME"
-  categoryChoice=2
-  $($mega).show()
-  $($titlescreen).hide()
-  $('.btn4').hide()
-  $('.categories').hide()
-  $('.playerScreen').hide();
-  $('.categories').fadeIn()
+  categoryChoice=18
+
+  loadAPI()
   })
   
   $(".statSheet").click(function statSheet(){ //BUTTON "START GAME" 
@@ -245,13 +243,15 @@ $(() => {
   $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
           // $('.canvas').css('border',"2px solid white")
       let $mega = document.getElementsByClassName('mega')
-      $($mega).show()
-      $('.btn2').show()
-      $('.btn3').hide()
-      $($titlescreen).hide()
-      $('.categories').hide()
+    $($mega).show()
+    $('.btn2').show()
+    $('.btn3').hide()
+    $($titlescreen).hide()
+    $('.categories').hide()
         })
-let rank = "Noob"
+
+let rank = "Noob "+ questionNumber
+
    const addH2 = () => {
       let $mega = document.getElementsByClassName('mega')
           let $h2 =$('<h2>').text("Brown's Trivia Game") //TEXT ON SCREEN
