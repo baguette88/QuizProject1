@@ -232,6 +232,7 @@ li:hover{
   background-color:black;
   color: white;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .canvas {
@@ -274,10 +275,11 @@ li:hover{
 .nextQuestion {
   float: right;
   height: 30px;
+  width: 100px;
   border: 3px solid black;
   border: 5px black;
   border-radius: 10px;
-
+  margin-top: 50%;
 }
 
 .clickCircle {

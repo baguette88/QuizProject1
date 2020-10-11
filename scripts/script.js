@@ -1,10 +1,8 @@
 $(() => {
-
-
   let data
   let cl = (value) => console.log(value); cl("Jquery Active")
  
-let level = 1
+  let level = 1
   let questionNumber = 0
   let playerScore = 0
   let $currentScore =0
@@ -12,13 +10,11 @@ let level = 1
 
   let questionsCorrect = []
   let doNotRepeat = [51]
-  
+
   let baseURL
   let categoryChoice = 1
   let points = 0
-let $points = points
-
-
+  let $points = points
   
       let $playerScore = $('<playerScore>')
       $($playerScore).addClass('score')
@@ -32,16 +28,18 @@ let $points = points
   let $mega = document.getElementsByClassName('mega')
   $($mega).hide()
   //////
-  // TITLE SCREEN HERE
+  // TITLE SCREEN LOGIC HERE
   /////// then activate mega.show()   // (below)
   // $($mega).show()
+
   const $titlescreen = $('<div>')
       $($titlescreen).addClass('h1')
       $('body').prepend($titlescreen)
-      $($titlescreen).text("TITLE SCREEN TEXT")
-      $($titlescreen).css("font-size", "72px")
+      $($titlescreen).text("VIDEO GAME TRIVIA")
+      $($titlescreen).css("font-size", "64px")
       $($titlescreen).css("color", "white")
       $($titlescreen).css("background-color", "green")
+      $($titlescreen).css("text-align", "center")
   
   
   //API LINK
@@ -142,8 +140,8 @@ let $points = points
           
                       points++
                    
-                      $('<lhead>').text("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionsAnswered).appendTo($lhead); //QUESTION
-                      $('<modal-open>').text("SCORE = " + playerScore + ". " + obj.results[x].incorrect).attr('id',questionsAnswered)
+                      $('<lhead>').text("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionNumber).appendTo($lhead); //QUESTION
+                      $('<modal-open>').text("SCORE = " + playerScore + ". " + obj.results[x].incorrect).attr('id',questionNumber)
                       $('.canvas').fadeIn(500)                //FADE BACK IN
                       $('body').append($canvas);
                       $('.canvas').append($lhead);
