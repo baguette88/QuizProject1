@@ -1,6 +1,7 @@
 $(() => {
   let data
-  let cl = (value) => console.log(value); cl("Jquery Active")
+  let cl = (value) => console.log(value); 
+  // cl("Jquery Active")
  
   let level = 1
   let questionNumber = 0
@@ -51,9 +52,55 @@ $($categorydisplay).prependTo('.categories')
        baseURL =` https://opentdb.com/api.php?amount=50&category=15&type=multiple ` 
     
 
+//// 1   COOSE CAT
+ $(".categoryComputers").click(function categoryComputers(){ //BUTTON "START GAME" 
+  categoryChoice=15
 
-       console.log(baseURL)
-       
+})
+//// 2 CHOOSE ANSWER
+  function chooseAnswer() {cl("chooseAnswer")
+       isCorrect()
+       isWrong()
+}
+
+function updateScore() {
+     //add 100 points to score
+}
+
+function updateTimer() {
+  //Add 5 seconds to timer
+}
+
+//// 3   IS ANSWER CORRECT?
+  function isCorrect() {cl("isCorrect")
+      //if yes... toggle or correct() function
+      ///if no...
+      //updateScore()
+      //updateTimer()
+}
+
+//// 4   IS ANSWER INCORRECT?
+function isWrong() {cl("isCorrect")
+//if yes... toggle or correct() function
+///if no...
+}
+
+//// 4 
+  function endGame() {
+    //if timer = 0
+    //freeze the score
+  }
+
+ //// 4 
+$(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GAME"
+    categoryChoice=18
+    //To DO modify URL of API to include categoryCHOICE
+    loadAPI()
+    })
+
+ //// 5 LOAD API FUNCTION AROUND GETAPI 
+
+
   const apiKey = ``  
   let currentQuestion=0
   
@@ -96,7 +143,7 @@ $($categorydisplay).prependTo('.categories')
 
 
           $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
-            $($playerScore).text("NUMBER CORRECT = " + questionNumber);
+            $($playerScore).html("NUMBER CORRECT = " + questionNumber);
             
                 $('.playerScreen').hide()
                 $('.canvas').css('border',"2px solid white")
@@ -105,7 +152,7 @@ $($categorydisplay).prependTo('.categories')
                 $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
                 $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
                 $('.canvas').css('color',"black")
-                cl(questionNumber + "old") 
+                // cl(questionNumber + "old") 
                 questionNumber++
                 points++
                playerScore++
@@ -143,11 +190,19 @@ $($categorydisplay).prependTo('.categories')
                       $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
                       $('<li>').html(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
                       $(' <input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
-                      $(' <li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
+                      $('<li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
 
                       $("input[name='playerChoice']").click(function selection(){
-                        console.log("button pressed")
+                        console.log("radio button pressed")
                             })
+                      
+                          $($ul).click(function select() 
+                             { 
+                             if (event.target.hasClass('correct'))
+                             {cl("correct")}
+                          //   isCorrect? Addpoints : WrongAnswer
+                             });
+
 
                       //  $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
                       $('<category>').html(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
@@ -222,17 +277,7 @@ $($categorydisplay).prependTo('.categories')
   countdown(3); //three minutes  
   })
   ///////////////////////////////////////
-  $(".categoryComputers").click(function categoryComputers(){ //BUTTON "START GAME" 
-categoryChoice=15
-  
-   loadAPI()
-  })
 
-  $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GAME"
-  categoryChoice=18
-
-  loadAPI()
-  })
   
   $(".statSheet").click(function statSheet(){ //BUTTON "START GAME" 
     $($mega).hide()
