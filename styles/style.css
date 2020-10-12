@@ -69,19 +69,21 @@ input {
 ul {
   margin: 0 auto;
   padding: 10px;
+  margin-left: 50px;
   font-size: 36px;
-  list-style-type: none;
-}
+  list-style-type: upper-alpha; }
 li:{
    margin-top: 10px;
+   margin-left: 50px;
    display: inline;
    font-size: 36px;
-   list-style-type: none;
+   list-style-type: upper-alpha; 
 
 }
 li:hover{
   color: blue;
   font-size: 36px;
+  
 }
 
 lhead {
@@ -110,14 +112,6 @@ lhead {
   margin-left: 10%
 }  */
 
-.container {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  border: 2px solid gray;
-  padding: 3px;
-}
 
 .square {
   height: 50px;
@@ -239,18 +233,21 @@ ul {
   margin: 0 auto;
   padding: 3px;
   font-size: 14px;
-  list-style-type: none;
+  list-style-type: upper-alpha; 
+  margin-left: 50px;
 }
 li:{
    margin-top: 0px;
    display: inline;
-   font-size: 14px;
+   font-size: 12px;
    list-style-type: none;
+   margin-left: 50px;
 
 }
 li:hover{
   color: blue;
-  font-size: 14px;
+  font-size: 12px;
+  margin-left: 50px;
 }
 
 .lhead {
@@ -266,28 +263,21 @@ li:hover{
 .canvas {
   border: 1px solid black;
   border-radius: 5px;
-  width: 80%;
+  width: 90%;
   height: 40%;
-  margin-left: 10%;
-  font-size: 14px;
+  margin-left: 5%;
+  font-size: 12px;
 }
 
- /* .bigCanvas{
+  .bigCanvas{
   border: 1px solid black;
   border-radius: 5px;
   width: 80%;
   height: 40%;
   margin-left: 10%
-}  */
+  */
 
-.container {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  border: 2px solid gray;
-  padding: 3px;
-}
+
 
 .square {
   height: 50px;

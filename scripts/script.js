@@ -19,8 +19,8 @@ $(() => {
   let categoryDisplay = document.getElementById('categoryDisplay')
       let $playerScore = $('<playerScore>')
       $($playerScore).addClass('score')
-      $('body').prepend($playerScore)
-      $($playerScore).css('color', 'black')
+     
+      $($playerScore).css('color', 'white')
       $($playerScore).css('font-size', '24px')
       playerScore= questionNumber
       $($playerScore).html(playerScore)
@@ -63,6 +63,7 @@ $($categorydisplay).prependTo('.categories')
   function chooseAnswer() {cl("chooseAnswer")
        isCorrect()
        isWrong()
+  
 }
 
 // let $totalScore =$('<h2>').text(totalScore) //TEXT ON SCREEN
@@ -76,40 +77,8 @@ function updateScore() {
 
 }
 
-function moreTime() {
-  cl("add time to clock")// seconds = seconds+5 
-}
 
-//// 3   IS ANSWER CORRECT?
-//   function isCorrect() {cl(" checking isCorrect...")
 
-//   if($(event.target).is('.correct'))  {
-//   cl("verified correct")
-//   $(event.target).css('color', "green")
-//   updateScore()
-//   moreTime()
-//   setTimeout(function(){ nextQuestion(); }, 1000);
-
-// }
-//       //if yes... toggle or correct() function
-//       ///if no...
-//       //updateScore()
-//       //updateTimer()
-// }
-
-// //// 4   IS ANSWER INCORRECT?
-// function isWrong() {cl("checking is wrong...")
-// //if yes... toggle or correct() function
-// ///if no...
-
-// if($(event.target).is('.wrongAnswer')) {
-//   cl("verified wrong")
-//   cl($(this))
-//   $(event.target).css('color', "red")
-//   $(event.target).css('text-decoration', "line-through")
-//   setTimeout(function(){ nextQuestion(); }, 1000);
-// }
-// }
 
 //// 4 
   function endGame() {
@@ -178,12 +147,13 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                 $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
                 $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
                 $('.canvas').css('color',"black")
+                
                 // cl(questionNumber + "old") 
                 questionNumber++
                 points++
                playerScore++
                
-                cl("score is "+ playerScore)
+                cl("Question # stored as playerScore= "+ playerScore)
                      
                       points = $points
                       const $bigCanvas = $('<bigCanvas>');
@@ -199,6 +169,9 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                     //  }
                   let x= Math.floor(Math.random() * 50);
                   console.log(x)
+                  // if (doNotRepeat.contains(x)) {                 PREVENT REPEAT QUESTIONS HERE!!!
+                  //   x= Math.floor(Math.random() * 50);
+                  // }
                   doNotRepeat.push(x)
                  //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
 
@@ -209,13 +182,13 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
 
                   console.log(doNotRepeat)
 
-                      $('<input type="radio" name="playerChoice" value="correct">').addClass('correct').appendTo($ul);   //link to list id#
+                      // $('<input type="radio" name="playerChoice" value="correct">').addClass('correct').appendTo($ul);   //link to list id#
                       $('<li>').html(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
-                      $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul); //append to each
+                      // $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul); //append to each
                       $('<li>').html(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
-                      $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
+                      // $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
                       $('<li>').html(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
-                      $(' <input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
+                      // $(' <input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
                       $('<li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
 
                       $("input[name='playerChoice']").click(function selection(){
@@ -246,50 +219,44 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
 
 
 
-          function isCorrect() {cl(" checking isCorrect...")  //placed within NEXT question function due to Scoping issues
+                      function moreTime() {
+                        cl("add time to clock")// seconds = seconds+5 
+                      }            
+
+  function isCorrect() {cl(" checking isCorrect...")  //placed within NEXT question function due to Scoping issues
 
   if($(event.target).is('.correct'))  {
-  cl("verified correct")
-  $(event.target).css('color', "green")
-  updateScore()
-  moreTime()
-  setTimeout(function(){ nextQuestion(); }, 1000);
+    cl("verified correct")
+    $(event.target).css('color', "green")
+    
+    updateScore()
+    moreTime()
+    setTimeout(function(){ nextQuestion(); }, 1000);
+     //Play "correct" sound
+    }
+   }
 
-}
-      //if yes... toggle or correct() function
-      ///if no...
-      //updateScore()
-      //updateTimer()
-}
-
-//// 4   IS ANSWER INCORRECT?
 function isWrong() {cl("checking is wrong...")
-//if yes... toggle or correct() function
-///if no...
+  if($(event.target).is('.wrongAnswer')) {
+    cl("verified wrong")
+    cl($(this))
+    $($ul).css('background-color', "lightred")
+    $($bigCanvas).css('background-color', "lightred")
+    $(event.target).css('color', "red")
+    $(event.target).css('text-decoration', "line-through")
+  
+    setTimeout(function(){ nextQuestion(); }, 1000);
+    //Play "wrong" sound
+    
+  }
+  }
 
-if($(event.target).is('.wrongAnswer')) {
-  cl("verified wrong")
-  cl($(this))
-  $(event.target).css('color', "red")
-  $(event.target).css('text-decoration', "line-through")
-  setTimeout(function(){ nextQuestion(); }, 1000);
-}
-}
-
-          //               //   `)
-                         });
-
-
-
-
-                         
+                         });      
                   }
 
                 })
   
-                
-
-                
+                          
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
       $($mega).show()
       $($titlescreen).hide()
@@ -312,8 +279,8 @@ if($(event.target).is('.wrongAnswer')) {
     function tick() {
       var counter = document.getElementById("timer");
       ticks++
-     
-      var currentMinutes = mins - 1
+      
+      var currentMinutes = mins - 1 
       seconds--;
        if (ticks>150){     // TURN RED ON 30 SECONDS LEFT
         $('#timer').css('color','red')
@@ -364,13 +331,14 @@ if($(event.target).is('.wrongAnswer')) {
 
    const addH2 = () => {
       let $mega = document.getElementsByClassName('mega')
-          let $h2 =$('<h2>').text("NoobCheck Trivia") //TEXT ON SCREEN
+          let $h2 =$('<h2>').text("Score= ") //TEXT ON SCREEN
           $('.topArea').prepend($h2)
           let $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
           $('.topArea').prepend($rank)
           $($rank).css('display', 'inline')
           $($rank).css('float', 'right')
           $($rank).css('font-size', '36px')
+          $('h2').append($playerScore)
         }
     addH2()
 
@@ -406,6 +374,9 @@ if($(event.target).is('.wrongAnswer')) {
        console.log("hide game canvas")
   
      });
+
+
+
 
    });
    
