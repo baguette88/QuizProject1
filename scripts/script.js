@@ -7,7 +7,7 @@ $(() => {
   let playerScore = 0
   let $currentScore =0
   let highScore =0
-
+  let rank = "Noob "
   let questionsCorrect = []
   let doNotRepeat = [51]
 
@@ -15,14 +15,14 @@ $(() => {
   let categoryChoice = 1
   let points = 0
   let $points = points
-  
+  let categoryDisplay = document.getElementById('categoryDisplay')
       let $playerScore = $('<playerScore>')
       $($playerScore).addClass('score')
       $('body').prepend($playerScore)
       $($playerScore).css('color', 'white')
       $($playerScore).css('font-size', '24px')
       playerScore= questionNumber
-      $($playerScore).text("NUMBER CORRECT = " +(playerScore*100))
+      $($playerScore).html("NUMBER CORRECT = " +(playerScore*100))
      // $($div).style.color("blue")
   
   let $mega = document.getElementsByClassName('mega')
@@ -35,13 +35,15 @@ $(() => {
   const $titlescreen = $('<div>')
       $($titlescreen).addClass('h1')
       $('body').prepend($titlescreen)
-      $($titlescreen).text("VIDEO GAME TRIVIA")
+      $($titlescreen).text("NoobCheck TRIVIA")
       $($titlescreen).css("font-size", "64px")
       $($titlescreen).css("color", "white")
       $($titlescreen).css("background-color", "green")
       $($titlescreen).css("text-align", "center")
-  
-  
+
+let $categorydisplay = $('<categoryDisplay>')
+$($categorydisplay).text("3")
+$($categorydisplay).prependTo('.categories')
   //API LINK
   //URL = https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986
    categoryChoice=18    // COMPUTER SCIENCE   HOW DO I TOGGLE BETWEEN?
@@ -103,12 +105,12 @@ $(() => {
                 $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
                 $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
                 $('.canvas').css('color',"black")
-                console.log(questionNumber + "old") 
+                cl(questionNumber + "old") 
                 questionNumber++
                 points++
                playerScore++
                
-                console.log("score is "+ playerScore)
+                cl("score is "+ playerScore)
                      
                       points = $points
                       const $bigCanvas = $('<bigCanvas>');
@@ -135,25 +137,25 @@ $(() => {
                   console.log(doNotRepeat)
 
                       $('<input type="radio" name="playerChoice" value="incorrect">').addClass('correct').appendTo($ul);   //link to list id#
-                      $('<li>').text(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
+                      $('<li>').html(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
                       $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul); //append to each
-                      $('<li>').text(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
+                      $('<li>').html(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
                       $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
-                      $('<li>').text(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
+                      $('<li>').html(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
                       $(' <input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
-                      $(' <li>').text(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
+                      $(' <li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
 
                       $("input[name='playerChoice']").click(function selection(){
                         console.log("button pressed")
                             })
 
                       //  $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
-                      $('<category>').text(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
+                      $('<category>').html(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
           
                       points++
                    
-                      $('<lhead>').text("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionNumber).appendTo($lhead); //QUESTION
-                      $('<modal-open>').text("SCORE = " + playerScore + ". " + obj.results[x].incorrect).attr('id',questionNumber)
+                      $('<lhead>').html("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionNumber).appendTo($lhead); //QUESTION
+                      $('<modal-open>').html("SCORE = " + questionNumber + ". " + obj.results[x].incorrect).attr('id',questionNumber)
                       $('.canvas').fadeIn(500)                //FADE BACK IN
                       $('body').append($canvas);
                       $('.canvas').append($lhead);
@@ -179,7 +181,7 @@ $(() => {
       $('.playerScreen').hide()
       $('.startGame').hide()
 
-    
+  
       $('#timer').appendTo('rank').css('color','white')
       let timeoutHandle;
       var ticks= 0
@@ -250,11 +252,11 @@ categoryChoice=15
     $('.categories').hide()
         })
 
-let rank = "Noob "+ questionNumber
+
 
    const addH2 = () => {
       let $mega = document.getElementsByClassName('mega')
-          let $h2 =$('<h2>').text("Brown's Trivia Game") //TEXT ON SCREEN
+          let $h2 =$('<h2>').text("NoobCheck Trivia") //TEXT ON SCREEN
           $('.topArea').prepend($h2)
           let $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
           $('.topArea').prepend($rank)

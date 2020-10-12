@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Title</title>
+    <title>NoobCheck Trivia</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/style.css">
@@ -20,7 +20,7 @@
       <input type="text" />
       <input type="submit" name="Submit" />
     </form> -->
-   
+  <div class="promptPlayer"></div>
 <div class="categories">Categories:
   <button class=categoryComputers>Category 1</button>
   <button class=categoryVideoGames>Category 2</button>
@@ -32,6 +32,8 @@
   <button class=category>Category 8</button>
   <button class=category>Category 9</button> </div>
 
+
+  Category Selection: <span class=categoryDisplay></span>
      
   <div class="mega">   <!-- Mega Div holds trivia question scene -->
 
@@ -57,9 +59,10 @@
     <div id="modal-textbox">
 
       <h1>Correct/Incorrect and Points</h1> <!-- currentMessage -->
-        <p>Correct!</p>
+        <p class="category">Correct!</p>
         <p>Incorrect </p>
         <p>Explanation</p>
+
         
         <div id="modal-footer">
           <button class="modal-buttons" id="close" href="#">Close</button>
@@ -69,20 +72,20 @@
   </div><!-- Modal End -->
  
 </div>
-<button class="statSheet">Player StatSheet</button>
-<div class=playerStats>
+<!-- <button class="statSheet">Player StatSheet</button>
+<div class=playerStats> -->
 
 
 </div>
 </div>
 
 
-<div class="playerScreen"> PLAYER STAT SHEET
+<!-- <div class="playerScreen"> PLAYER STAT SHEET
 
-</div>
+</div> -->
 
 
-<div class="APIcontainer"></div>
+<!-- <div class="APIcontainer"></div> -->
 
     <script src="scripts/script.js" async defer></script>
   </body>
