@@ -13,13 +13,39 @@ button {
   font-size: 1rem;
   cursor: pointer;
   border: 3px solid black;
-  border-radius 5px;
+  border-radius: 10px;
   text-align: center;
-  transition: background 250ms ease-in-out, 
-              transform 150ms ease;
+  transition: background 250ms ease-in-out,               transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
   width: 150px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+button:hover {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: #a1e494;
+  color: #000000;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 3px solid green;
+  border-radius: 10px;
+  text-align: center;
+  transition: background 250ms ease-in-out,               transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 150px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .categories{

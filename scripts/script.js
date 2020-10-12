@@ -8,16 +8,15 @@ $(() => {
   let playerScore = 0
   let $currentScore =0
   let highScore =0
-  let rank = "Plebe "
+  let rank = "Noob "
   let questionsCorrect = []
   let doNotRepeat = [51]
-
   let baseURL
   let categoryChoice = 1
   let points = 0
   let $points = points
   let categoryDisplay = document.getElementById('categoryDisplay')
-      let $playerScore = $('<playerScore>')
+  let $playerScore = $('<playerScore>')
       $($playerScore).addClass('score')
      
       $($playerScore).css('color', 'white')
@@ -45,26 +44,21 @@ $(() => {
 let $categorydisplay = $('<categoryDisplay>')
 $($categorydisplay).text(categoryDisplay)
 $($categorydisplay).appendTo('.categories')
-  //API LINK
-  //URL = https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986
+ 
+//API LINK
 
   //18 is SPORTS!!!!
-   categoryChoice=18    // COMPUTER SCIENCE   HOW DO I TOGGLE BETWEEN?
-   categoryChoice=15   // VIDEO GAMES
-       baseURL =` https://opentdb.com/api.php?amount=50&category=21&type=multiple ` 
+   categoryChoice=15 
+   categoryChoice=18    //sports?
+   categoryChoice=21   // VIDEO GAMES
+       baseURL =` https://opentdb.com/api.php?amount=50&category=`+categoryChoice+`&type=multiple ` 
     
 
 //// 1   COOSE CAT
  $(".categoryComputers").click(function categoryComputers(){ //BUTTON "START GAME" 
   categoryChoice=15
-
 })
-//// 2 CHOOSE ANSWER
-  function chooseAnswer() {cl("chooseAnswer")
-       isCorrect()
-       isWrong()
-  
-}
+
 
 // let $totalScore =$('<h2>').text(totalScore) //TEXT ON SCREEN
 // $('.topArea').prepend($totalScore)
@@ -126,7 +120,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                 let myquestions = data
                 console.log(obj.results[1])
                     // console.log(data)
-                  //FOR LOOP?
+                  //FOR LOOP HERE INSTEAD?
                   // let question=myQuestions[i].question
                   // let correctAnswer=myQuestions[i].correct_answer
                   // let incorrectAnswer=myQuestions[i].incorrect_answers
@@ -167,11 +161,25 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                     //  if (questionNumber>questionsAnswered.length-1) { // RESET QUESTION ARRAY IF FINISHED
                     //      questionNumber=1
                     //  }
-                  let x= Math.floor(Math.random() * 50);
+                  var x= Math.floor(Math.random() * 50);
                   console.log(x)
                   // if (doNotRepeat.contains(x)) {                 PREVENT REPEAT QUESTIONS HERE!!!
                   //   x= Math.floor(Math.random() * 50);
                   // }
+
+
+                  function inArray(x,doNotRepeat)
+{
+                        var count=doNotRepeat.length;
+                         for(var i=0;i<count;i++)
+                           {
+                             if(doNotRepeat[i]===x){
+                               console.log("match block")
+                              x= Math.floor(Math.random() * 50)
+                             }
+                           }
+                            return false;
+                          }
                   doNotRepeat.push(x)
                  //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
 
@@ -223,6 +231,13 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                         cl("add time to clock")// seconds = seconds+5 
                       }            
 
+                      function chooseAnswer() {cl("chooseAnswer")
+                      isCorrect()
+                      isWrong()
+                 
+               }
+               
+
   function isCorrect() {cl(" checking isCorrect...")  //placed within NEXT question function due to Scoping issues
 
   if($(event.target).is('.correct'))  {
@@ -257,7 +272,7 @@ function isWrong() {cl("checking is wrong...")
                          });      
                   }
 
-                })
+                }) // END OF ASYNC
   
                           
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
@@ -278,7 +293,7 @@ function isWrong() {cl("checking is wrong...")
       var seconds = 121;
       var mins = minutes
       
-     
+     //TIMER DEVICE AND OUTPUTS
     function tick() {
       var counter = document.getElementById("timer");
       ticks++
@@ -299,7 +314,7 @@ function isWrong() {cl("checking is wrong...")
         if (mins > 1) {
           console.log("timer ended?")
           //END GAME FUNCTION HERE
-          // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst (via Stack Overflow)
+           countdown(mins-1);  // never reach “00″ issue solved:Contributed by Victor Streithorst (via Stack Overflow)
           setTimeout(function() {
             countdown(mins - 1);
           }, 1000);
@@ -308,12 +323,10 @@ function isWrong() {cl("checking is wrong...")
     }
     tick();
   }
-
   countdown(3); //three minutes  
   })
   ///////////////////////////////////////
 
-  
   $(".statSheet").click(function statSheet(){ //BUTTON "START GAME" 
     $($mega).hide()
     $($titlescreen).hide()
@@ -321,18 +334,6 @@ function isWrong() {cl("checking is wrong...")
     $('.categories').hide()
     $('.playerScreen').show()
   })
-  
-  $(".reopenQuiz").click(function reopenQuiz(){ //GENERATE QUIZ QUESTION
-          // $('.canvas').css('border',"2px solid white")
-      let $mega = document.getElementsByClassName('mega')
-    $($mega).show()
-    $('.btn2').show()
-    $('.btn3').hide()
-    $($titlescreen).hide()
-    $('.categories').hide()
-        })
-
-
 
    const addH2 = () => {
       let $mega = document.getElementsByClassName('mega')
@@ -347,9 +348,6 @@ function isWrong() {cl("checking is wrong...")
           $('h2').append($playerScore)
         }
     addH2()
-
-  
-
 
     // Citation - Modal declaration adapted from technique learned in Modal lab
   //MODAL DECLARATIONS AND EVENT HANDLERS
@@ -369,7 +367,6 @@ function isWrong() {cl("checking is wrong...")
   $openBtn.on('click', openModal); // REVISE TO OPEN ON QUESTION ANSWER
   $closeBtn.on('click', closeModal);
   
-
       $( ".closeQuiz" ).click(function() {
         $($mega).hide()
         $('.btn3').show()
@@ -378,11 +375,6 @@ function isWrong() {cl("checking is wrong...")
         $('.categories').show()
           // $($bigCanvas.hide())
        console.log("hide game canvas")
-  
      });
-
-
-
-
    });
    
