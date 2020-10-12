@@ -43,8 +43,8 @@ $(() => {
       $($titlescreen).css("text-align", "center")
 
 let $categorydisplay = $('<categoryDisplay>')
-$($categorydisplay).text("3")
-$($categorydisplay).prependTo('.categories')
+$($categorydisplay).text(categoryDisplay)
+$($categorydisplay).appendTo('.categories')
   //API LINK
   //URL = https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986
 
