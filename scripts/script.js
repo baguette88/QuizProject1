@@ -2,7 +2,7 @@ $(() => {
   let data
   let cl = (value) => console.log(value); 
   // cl("Jquery Active")
- 
+  let bonus = 0 //extra time
   let level = 1
   let questionNumber = 0
   let playerScore = 0
@@ -228,9 +228,10 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
   if($(event.target).is('.correct'))  {
     cl("verified correct")
     $(event.target).css('color', "green")
-    
+    bonus= bonus+(6)
     updateScore()
     moreTime()
+    $('#timer').css('color', "gold")
     setTimeout(function(){ nextQuestion(); }, 1000);
      //Play "correct" sound
     }
@@ -244,6 +245,7 @@ function isWrong() {cl("checking is wrong...")
     $($bigCanvas).css('background-color', "lightred")
     $(event.target).css('color', "red")
     $(event.target).css('text-decoration', "line-through")
+    
   
     setTimeout(function(){ nextQuestion(); }, 1000);
     //Play "wrong" sound
@@ -272,21 +274,22 @@ function isWrong() {cl("checking is wrong...")
       var ticks= 0
     //Adapted from https://stackoverflow.com/questions/52547625/1-minutes-30-second-countdown-timer-javascript
     function countdown(minutes, seconds) {
-      var seconds = 60;
+      var seconds = 121;
       var mins = minutes
       
      
     function tick() {
       var counter = document.getElementById("timer");
       ticks++
-      
+      $('#timer').css('color', "white")
       var currentMinutes = mins - 1 
       seconds--;
+     
        if (ticks>150){     // TURN RED ON 30 SECONDS LEFT
         $('#timer').css('color','red')
       }
       counter.innerHTML =
-        "Time Left: "+currentMinutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+        "Time Left: " + String(seconds+bonus);
       if (seconds > 0) {
         timeoutHandle = setTimeout(tick, 1000); //one second
       } else {
