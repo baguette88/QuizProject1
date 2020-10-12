@@ -8,7 +8,7 @@ $(() => {
   let playerScore = 0
   let $currentScore =0
   let highScore =0
-  let rank = "Noob "
+  let rank = "Plebe "
   let questionsCorrect = []
   let doNotRepeat = [51]
 
@@ -20,10 +20,10 @@ $(() => {
       let $playerScore = $('<playerScore>')
       $($playerScore).addClass('score')
       $('body').prepend($playerScore)
-      $($playerScore).css('color', 'white')
+      $($playerScore).css('color', 'black')
       $($playerScore).css('font-size', '24px')
       playerScore= questionNumber
-      $($playerScore).html("NUMBER CORRECT = " +(playerScore*100))
+      $($playerScore).html(playerScore)
      // $($div).style.color("blue")
   
   let $mega = document.getElementsByClassName('mega')
@@ -47,9 +47,11 @@ $($categorydisplay).text("3")
 $($categorydisplay).prependTo('.categories')
   //API LINK
   //URL = https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=url3986
+
+  //18 is SPORTS!!!!
    categoryChoice=18    // COMPUTER SCIENCE   HOW DO I TOGGLE BETWEEN?
    categoryChoice=15   // VIDEO GAMES
-       baseURL =` https://opentdb.com/api.php?amount=50&category=15&type=multiple ` 
+       baseURL =` https://opentdb.com/api.php?amount=50&category=21&type=multiple ` 
     
 
 //// 1   COOSE CAT
@@ -63,27 +65,51 @@ $($categorydisplay).prependTo('.categories')
        isWrong()
 }
 
+// let $totalScore =$('<h2>').text(totalScore) //TEXT ON SCREEN
+// $('.topArea').prepend($totalScore)
+
 function updateScore() {
      //add 100 points to score
+   playerScore = playerScore + 100
+   $($playerScore).html(playerScore = playerScore + 100);
+     
+
 }
 
-function updateTimer() {
-  //Add 5 seconds to timer
+function moreTime() {
+  cl("add time to clock")// seconds = seconds+5 
 }
 
 //// 3   IS ANSWER CORRECT?
-  function isCorrect() {cl("isCorrect")
-      //if yes... toggle or correct() function
-      ///if no...
-      //updateScore()
-      //updateTimer()
-}
+//   function isCorrect() {cl(" checking isCorrect...")
 
-//// 4   IS ANSWER INCORRECT?
-function isWrong() {cl("isCorrect")
-//if yes... toggle or correct() function
-///if no...
-}
+//   if($(event.target).is('.correct'))  {
+//   cl("verified correct")
+//   $(event.target).css('color', "green")
+//   updateScore()
+//   moreTime()
+//   setTimeout(function(){ nextQuestion(); }, 1000);
+
+// }
+//       //if yes... toggle or correct() function
+//       ///if no...
+//       //updateScore()
+//       //updateTimer()
+// }
+
+// //// 4   IS ANSWER INCORRECT?
+// function isWrong() {cl("checking is wrong...")
+// //if yes... toggle or correct() function
+// ///if no...
+
+// if($(event.target).is('.wrongAnswer')) {
+//   cl("verified wrong")
+//   cl($(this))
+//   $(event.target).css('color', "red")
+//   $(event.target).css('text-decoration', "line-through")
+//   setTimeout(function(){ nextQuestion(); }, 1000);
+// }
+// }
 
 //// 4 
   function endGame() {
@@ -140,10 +166,10 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                 
 
        const $topArea = $('<topArea>');
-
+       
 
           $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
-            $($playerScore).html("NUMBER CORRECT = " + questionNumber);
+            
             
                 $('.playerScreen').hide()
                 $('.canvas').css('border',"2px solid white")
@@ -183,7 +209,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
 
                   console.log(doNotRepeat)
 
-                      $('<input type="radio" name="playerChoice" value="incorrect">').addClass('correct').appendTo($ul);   //link to list id#
+                      $('<input type="radio" name="playerChoice" value="correct">').addClass('correct').appendTo($ul);   //link to list id#
                       $('<li>').html(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
                       $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul); //append to each
                       $('<li>').html(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
@@ -198,8 +224,10 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                       
                           $($ul).click(function select() 
                              { 
-                             if (event.target.hasClass('correct'))
-                             {cl("correct")}
+                            //  if (event.target.hasClass('correct'))
+                            isCorrect()
+                            isWrong()
+                          
                           //   isCorrect? Addpoints : WrongAnswer
                              });
 
@@ -215,18 +243,53 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                       $('body').append($canvas);
                       $('.canvas').append($lhead);
                       $('.canvas').append($ul);
-          // $('.APIcontainer').html(`
-          //                // <li> ${obj.results[x].question.appendTo($ul)} </li>
-          //                // <li> ${obj.results[x].correct_answer.appendTo($ul)} </li>
-          //                // <li>  ${obj.results[x].incorrect_answers[0].appendTo($ul)} <li>
-          //                //  <li>  ${obj.results[x].incorrect_answers[1].appendTo($ul)} <li>
-          //                // <li> ${obj.results[x].incorrect_answers[2].appendTo($ul)} <li>
+
+
+
+          function isCorrect() {cl(" checking isCorrect...")  //placed within NEXT question function due to Scoping issues
+
+  if($(event.target).is('.correct'))  {
+  cl("verified correct")
+  $(event.target).css('color', "green")
+  updateScore()
+  moreTime()
+  setTimeout(function(){ nextQuestion(); }, 1000);
+
+}
+      //if yes... toggle or correct() function
+      ///if no...
+      //updateScore()
+      //updateTimer()
+}
+
+//// 4   IS ANSWER INCORRECT?
+function isWrong() {cl("checking is wrong...")
+//if yes... toggle or correct() function
+///if no...
+
+if($(event.target).is('.wrongAnswer')) {
+  cl("verified wrong")
+  cl($(this))
+  $(event.target).css('color', "red")
+  $(event.target).css('text-decoration', "line-through")
+  setTimeout(function(){ nextQuestion(); }, 1000);
+}
+}
+
           //               //   `)
                          });
+
+
+
+
+                         
                   }
 
                 })
-      
+  
+                
+
+                
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
       $($mega).show()
       $($titlescreen).hide()
@@ -312,17 +375,6 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
     addH2()
 
   
-function checkIfCorrect() {
-
-
-    //TOGGLE CLASS technique learned in toggle card lab
-    //const $liPress = $('li').on('click', (event)=>{
-    //   $(event.currentTarget).toggleClass('answered')
-    //   checkIfCorrect()
-    //)
-    // })
-    ////////////////////
-  }
 
 
     // Citation - Modal declaration adapted from technique learned in Modal lab
