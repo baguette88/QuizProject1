@@ -232,6 +232,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
     updateScore()
     moreTime()
     $('#timer').css('color', "gold")
+    $($playerScore).css('color', "gold")
     setTimeout(function(){ nextQuestion(); }, 1000);
      //Play "correct" sound
     }
@@ -282,6 +283,7 @@ function isWrong() {cl("checking is wrong...")
       var counter = document.getElementById("timer");
       ticks++
       $('#timer').css('color', "white")
+      $($playerScore).css('color', "white")
       var currentMinutes = mins - 1 
       seconds--;
      
@@ -336,6 +338,7 @@ function isWrong() {cl("checking is wrong...")
       let $mega = document.getElementsByClassName('mega')
           let $h2 =$('<h2>').text("Score= ") //TEXT ON SCREEN
           $('.topArea').prepend($h2)
+          
           let $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
           $('.topArea').prepend($rank)
           $($rank).css('display', 'inline')
