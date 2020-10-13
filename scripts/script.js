@@ -1,5 +1,6 @@
 $(() => {
   let clickCount = 1
+  let totalCorrect = 0
   let bonus = 0
   let seconds
   let data
@@ -23,7 +24,7 @@ $(() => {
      
       $($playerScore).css('color', 'white')
       $($playerScore).css('font-size', '48px')
-      playerScore= questionNumber
+      // playerScore= questionNumber
       $($playerScore).html(playerScore)
       $($playerScore).prependTo('body')
 
@@ -262,7 +263,7 @@ countdown(2); //three minutes
     cl("verified correct")
     bonus= bonus+5
     $(event.target).css('color', "green")
-
+    totalCorrect++
     updateScore()
   
     $('#timer').css('color', "gold")
@@ -346,7 +347,7 @@ location.reload();
   const openModal = () => {     //open Modal
     $modal.css('display', 'block');
     $modal.css('text-align', 'center');
-    $($modaltextbox).html("Questions Correct: X"+ questionsCorrect + '<br>'+ "Final Score: "+ playerScore + '<br><br>'+ '<button class="restart" id="restart" href="#"><A HREF="javascript:history.go(0)">Main Menu</button>')
+    $($modaltextbox).html("Questions Correct: "+ totalCorrect + '<br>'+ "Final Score: "+ playerScore + '<br>'+"High Score: "+highScore + '<br>'+ '<button class="restart" id="restart" href="#"><A HREF="javascript:history.go(0)">Main Menu</button>')
   }
   const closeModal = () => {     //close Modal
     $modal.css('display', 'none');
