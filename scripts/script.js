@@ -219,7 +219,26 @@ countdown(2); //three minutes
                       $('<li>').html(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
                   
                       $('<li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
+                     
+                     
+                      $.fn.shuffleChildren = function() {       //SHUFFLE LI CHILDREN https://css-tricks.com/snippets/jquery/shuffle-children/
+                        $.each(this.get(), function(index, el) {
+                            var $el = $(el);
+                            var $find = $el.children();
+                    
+                            $find.sort(function() {
+                                return 0.5 - Math.random();
+                            });
+                    
+                            $el.empty();
+                            $find.appendTo($el);
+                        });
+                    };
+                    $($ul).shuffleChildren($li);
+///////////////////////////////////////////////////
 
+
+                    
                  
                       
                           $($ul).click(function select() 
