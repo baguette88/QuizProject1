@@ -51,9 +51,9 @@ $($categorydisplay).appendTo('.categories')
 //API LINK
 
   //18 is SPORTS!!!!
-   categoryChoice=15 
-   categoryChoice=18    //sports?
-   categoryChoice=21   // VIDEO GAMES
+   categoryChoice=18 
+   categoryChoice=21    //sports?
+   categoryChoice=15   // VIDEO GAMES
        baseURL =` https://opentdb.com/api.php?amount=50&category=`+categoryChoice+`&type=multiple ` 
     
 
@@ -137,8 +137,10 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
        
 
           $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
-            
-            clickCount++
+                // if (seconds > 0){
+               clickCount++
+
+
                 $('.playerScreen').hide()
                 $('.canvas').css('border',"2px solid white")
                 $('.canvas').hide() 
@@ -153,8 +155,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                playerScore++
                
                 cl("playerScore= "+ playerScore)
-                     
-                      points = $points
+                  
                       const $bigCanvas = $('<bigCanvas>');
                       const $canvas = $('<canvas>');
                       const $lhead = $('<lhead>').attr('id',questionNumber);
@@ -173,18 +174,18 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                   // }
 
 
-                  function inArray(x,doNotRepeat)
-{
-                        var count=doNotRepeat.length;
-                         for(var i=0;i<count;i++)
-                           {
-                             if(doNotRepeat[i]===x){
-                               console.log("match block")
-                              x= Math.floor(Math.random() * 50)
-                             }
-                           }
-                            return false;
-                          }
+//                   function inArray(x,doNotRepeat)
+// {
+//                         var count=doNotRepeat.length;
+//                          for(var i=0;i<count;i++)
+//                            {
+//                              if(doNotRepeat[i]===x){
+//                                console.log("match block")
+//                               x= Math.floor(Math.random() * 50)
+//                              }
+//                            }
+//                             return false;
+//                           }
                   doNotRepeat.push(x)
                  //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
 
@@ -220,8 +221,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                             } else {
                               "click count depleted"
                             }
-                          
-                          //   isCorrect? Addpoints : WrongAnswer
+                        
                              });
 
 
@@ -313,30 +313,33 @@ function isWrong() {cl("checking is wrong...")
       $($playerScore).css('color', "white")
       var currentMinutes = mins - 1 
       seconds--;
+      console.log(seconds+ " seconds remain")
      
-          if (ticks>60){     // TURN RED ON 30 SECONDS LEFT
-           $('#timer').css('color','red')
+          if (ticks>90){     // TURN RED ON 30 SECONDS LEFT
+           $('#timer').css('color','orange')
           }
 //// SWITCH STATEMENT HERE
-          if (seconds<=0){     // TURN RED ON 30 SECONDS LEFT
+          if (seconds<=20){     // TURN RED ON 30 SECONDS LEFT
             $('#timer').css('color','red')
            }
 
       counter.innerHTML =
       currentMinutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-      if (seconds > 1) {
+      if (seconds > 0) {
         timeoutHandle = setTimeout(tick, 1000); //one second
       } else {
-
+           
         if (seconds = 0) {
+          //THIS CODE IS NOTE TRIGGERING BUT EVERYTHING WORKS
           console.log("timer ended?")
     
           //END GAME FUNCTION HERE
            // never reach “00″ issue solved:Contributed by Victor Streithorst (via Stack Overflow)
            openModal()
-          //  setTimeout(function() {
-          //   countdown(mins - 1);
-          // }, 1000);
+           setTimeout(function() {
+            // countdown(mins - 1);
+            cl("timeout function not needed anymore")
+          }, 1000);
         }
       }
     }
