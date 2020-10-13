@@ -307,6 +307,9 @@ function isWrong() {cl("checking is wrong...")
       
      //TIMER DEVICE AND OUTPUTS
     function tick() {
+      
+
+
       var counter = document.getElementById("timer");
       ticks++
       $('#timer').css('color', "white")
@@ -329,7 +332,8 @@ function isWrong() {cl("checking is wrong...")
         timeoutHandle = setTimeout(tick, 1000); //one second
       } else {
            
-        if (seconds = 0) {
+        if (seconds = -1) {
+          
           //THIS CODE IS NOTE TRIGGERING BUT EVERYTHING WORKS
           console.log("timer ended?")
     
@@ -376,6 +380,7 @@ function isWrong() {cl("checking is wrong...")
   const $openBtn = $('#openModal'); //variables declared
   const $modal = $('#modal');
   const $closeBtn = $('#close');
+  $modal.css('display', 'none');
   //Event Handlers
   const openModal = () => {     //open Modal
     $modal.css('display', 'block');
@@ -385,10 +390,10 @@ function isWrong() {cl("checking is wrong...")
   }
   const closeModal = () => {     //close Modal
     $modal.css('display', 'none');
-
+    location.reload();
 
   }
-  closeModal() //close on START PROGRAM - HOW TO PLAY!
+   //close on START PROGRAM - HOW TO PLAY!
   //Event Listeners for Modal
   $openBtn.on('click', openModal); // REVISE TO OPEN ON QUESTION ANSWER
   $closeBtn.on('click', closeModal);
