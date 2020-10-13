@@ -20,6 +20,7 @@ $(() => {
   let $points = points
   let categoryDisplay = document.getElementById('categoryDisplay')
   let $playerScore = $('<playerScore>')
+  let $highScore = $('<highScore>')
       $($playerScore).addClass('score')
      
       $($playerScore).css('color', 'white')
@@ -190,27 +191,57 @@ countdown(2); //three minutes
                       $($form).appendTo($ul)
                    
                   
-                  var x= Math.floor(Math.random()*Math.random() * 50);  //LOOP redraws question number if player has already had the question
+                  var x= Math.floor(Math.random()*Math.random() * 49);  //LOOP redraws question number if player has already had the question
                 for (i = 0; i < doNotRepeat.length; i++)
                      if (x = doNotRepeat[i]){
                        console.log("match" + x);
-                      x= Math.floor(Math.random() * 50)
+                      x= Math.floor(Math.random() * 49)
                       console.log("changed to" + x);
                      }
-                     doNotRepeat.push(x)
+                     
+
+                     //////////////////////////////// FISHER-YATES SHUFFLE
+                     function shuffle(array) {
+                      var i = array.length,
+                          j = 0,
+                          temp;
+                  
+                      while (i--) {
+                  
+                          j = Math.floor(Math.random() * (i+1));
+                  
+                          // swap randomly chosen element with current element
+                          temp = array[i];
+                          array[i] = array[j];
+                          array[j] = temp;
+                  
+                      }
+                  
+                      return array;
+                  }
+                  
+                  var ranNums = shuffle([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49]);
+  
+                      ////////////////////////////////////
+
+                 
+
+
+
+                   x=ranNums[i+1]
+               
+
 
                   console.log(x)
+                  console.log(doNotRepeat)
                  //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
              
                  
-                 $("input[name='playerChoice']").click(function(){
-                  console.log("Answer selected")
-              });
+             
 
-                  console.log(doNotRepeat)
+        
 
-                    let questionArray = []
-
+             
 
                       $('<li>').html(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
                      
@@ -220,27 +251,26 @@ countdown(2); //three minutes
                   
                       $('<li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
                      
-                     
+                       doNotRepeat.push(x)
+
+
                       $.fn.shuffleChildren = function() {       //SHUFFLE LI CHILDREN https://css-tricks.com/snippets/jquery/shuffle-children/
-                        $.each(this.get(), function(index, el) {
-                            var $el = $(el);
-                            var $find = $el.children();
+                        $.each(this.get(), function(index, list) {
+                            var $list = $(list);     //list saved as JQUERY object
+                            var $find = $list.children();  //select children of list
                     
                             $find.sort(function() {
-                                return 0.5 - Math.random();
+                                return 0.5 - Math.random();   //randomize sort
                             });
                     
-                            $el.empty();
-                            $find.appendTo($el);
+                            $list.empty();                       //empty list
+                            $find.appendTo($list);                //re-append
                         });
                     };
                     $($ul).shuffleChildren($li);
-///////////////////////////////////////////////////
-
-
-                    
-                 
                       
+
+
                           $($ul).click(function select() 
                              { 
                             //  if (event.target.hasClass('correct'))
@@ -276,11 +306,10 @@ countdown(2); //three minutes
                       isWrong()                
                }
                
-
   function isCorrect() {cl(" checking isCorrect...")  //placed within NEXT question function due to Scoping issues
   if($(event.target).is('.correct'))  {
     cl("verified correct")
-    bonus= bonus+5
+    bonus= bonus+6
     $(event.target).css('color', "green")
     totalCorrect++
     updateScore()
@@ -334,8 +363,10 @@ function isWrong() {cl("checking is wrong...")
   if (playerScore >= highScore){
     highScore=playerScore
   }
+
   // seconds = seconds + 5
   $($playerScore).html(playerScore)
+  $($highScore).html(highScore)
   cl("Score: "+playerScore + ", High Score: "+ highScore)
 }
 
@@ -346,7 +377,9 @@ location.reload();
    const addH2 = () => {
       let $mega = document.getElementsByClassName('mega')
           let $h2 =$('<h2>').text("Score= ") //TEXT ON SCREEN
+          $h3 =$('<h3>').text("HighScore= ") //TEXT ON SCREEN
           $('.topArea').prepend($h2)
+          $('.topArea').prepend($h3)
           
           let $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
           $('.topArea').prepend($rank)
@@ -354,6 +387,8 @@ location.reload();
           $($rank).css('float', 'right')
           $($rank).css('font-size', '36px')
           $('h2').append($playerScore)
+          $('h3').append($highScore)
+          
         }
     addH2()
 
