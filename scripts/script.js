@@ -1,4 +1,5 @@
 $(() => {
+  let clickCount = 1
   let data
   let cl = (value) => console.log(value); 
   // cl("Jquery Active")
@@ -20,10 +21,10 @@ $(() => {
       $($playerScore).addClass('score')
      
       $($playerScore).css('color', 'white')
-      $($playerScore).css('font-size', '24px')
+      $($playerScore).css('font-size', '48px')
       playerScore= questionNumber
       $($playerScore).html(playerScore)
-      $($playerScore).appendTo('.openModal')
+      $($playerScore).prependTo('body')
 
      // $($div).style.color("blue")
   
@@ -68,7 +69,8 @@ $($categorydisplay).appendTo('.categories')
 function updateScore() {
      //add 100 points to score
    playerScore = playerScore + 100
-   $($playerScore).html(playerScore = playerScore + 100);
+   $($playerScore).html(playerScore)
+   cl(playerScore)
 
      
 
@@ -136,7 +138,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
 
           $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
             
-            
+            clickCount++
                 $('.playerScreen').hide()
                 $('.canvas').css('border',"2px solid white")
                 $('.canvas').hide() 
@@ -150,7 +152,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                 points++
                playerScore++
                
-                cl("Question # stored as playerScore= "+ playerScore)
+                cl("playerScore= "+ playerScore)
                      
                       points = $points
                       const $bigCanvas = $('<bigCanvas>');
@@ -209,8 +211,15 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                           $($ul).click(function select() 
                              { 
                             //  if (event.target.hasClass('correct'))
+
+                            console.log("clickCount= "+clickCount)
+                            if (clickCount >1) {
                             isCorrect()
                             isWrong()
+                            clickCount--
+                            } else {
+                              "click count depleted"
+                            }
                           
                           //   isCorrect? Addpoints : WrongAnswer
                              });
@@ -222,7 +231,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                       points++
                    
                       $('<lhead>').html("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionNumber).appendTo($lhead); //QUESTION
-                      $('<modal-open>').html($playerScore)
+                      // $('<modal-open>').html($playerScore)
                       $('.canvas').fadeIn(500)                //FADE BACK IN
                       $('body').append($canvas);
                       $('.canvas').append($lhead);
@@ -305,35 +314,35 @@ function isWrong() {cl("checking is wrong...")
       var currentMinutes = mins - 1 
       seconds--;
      
-          // if (ticks>150){     // TURN RED ON 30 SECONDS LEFT
-          //  $('#timer').css('color','red')
-          // }
-
-          // if (seconds<=0){     // TURN RED ON 30 SECONDS LEFT
-          //   $('#timer').css('color','red')
-          //  }
+          if (ticks>60){     // TURN RED ON 30 SECONDS LEFT
+           $('#timer').css('color','red')
+          }
+//// SWITCH STATEMENT HERE
+          if (seconds<=0){     // TURN RED ON 30 SECONDS LEFT
+            $('#timer').css('color','red')
+           }
 
       counter.innerHTML =
       currentMinutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-      if (seconds > 0) {
+      if (seconds > 1) {
         timeoutHandle = setTimeout(tick, 1000); //one second
       } else {
 
-        if (mins > 1) {
+        if (seconds = 0) {
           console.log("timer ended?")
     
           //END GAME FUNCTION HERE
            // never reach “00″ issue solved:Contributed by Victor Streithorst (via Stack Overflow)
            openModal()
-           setTimeout(function() {
-            countdown(mins - 1);
-          }, 1000);
+          //  setTimeout(function() {
+          //   countdown(mins - 1);
+          // }, 1000);
         }
       }
     }
     tick();
   }
-  countdown(2); //three minutes  
+  countdown(1); //three minutes  
   })
   ///////////////////////////////////////
 
