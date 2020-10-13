@@ -85,7 +85,10 @@ function tick() {
   $($playerScore).css('color', "white")
   var currentMinutes = mins - 1 
   seconds--;
-  seconds = seconds+bonus
+  seconds = seconds + bonus
+  bonus = 0   //CLEAR BONUS POINTS
+  
+  // seconds = seconds+ bonus
   // console.log(seconds+ " seconds remain")
  
       if (ticks>90){                                                        // TURN ORANGE ON 30 SECONDS LEFT
@@ -101,7 +104,11 @@ function tick() {
   String(seconds);
   if (seconds > 0) {
     timeoutHandle = setTimeout(tick, 1000); //one second
-  } else {
+  } else if (seconds==0 && bonus!=0) {
+     bonus--
+     timeoutHandle = setTimeout(tick, 1000); 
+  }  else {
+   
     console.log("timer cp?")
     openModal()
     if (seconds=-1 && minutes<1) {
@@ -182,7 +189,7 @@ countdown(2); //three minutes
                       $($form).appendTo($ul)
                    
                   
-                  var x= Math.floor(Math.random() * 50);  //LOOP redraws question number if player has already had the question
+                  var x= Math.floor(Math.random()*Math.random() * 50);  //LOOP redraws question number if player has already had the question
                 for (i = 0; i < doNotRepeat.length; i++)
                      if (x = doNotRepeat[i]){
                        console.log("match" + x);
@@ -257,12 +264,13 @@ countdown(2); //three minutes
     $(event.target).css('color', "green")
 
     updateScore()
-    moreTime(5)
+  
     $('#timer').css('color', "gold")
     $($playerScore).css('color', "gold")
-  
+    questionsCorrect.push(x)
     setTimeout(function(){ nextQuestion(); }, 800); // AUTO MVOE TO NEXT QUESTION
      //Play "correct" sound
+     console.log("correctQuestions" + questionsCorrect)
     }
    }
 
@@ -289,8 +297,6 @@ function isWrong() {cl("checking is wrong...")
       $($titlescreen).hide()
       $('.btn4').hide()
       $('.categories').hide()
-      $('.playerScreen').hide()
-      $('.playerScreen').hide()
       $('.startGame').hide()
       // setTimeout(function(){ nextQuestion(); }, 1000);             AUTO START GAME                      // NEXT QUESTION NOT YET DEFINED
       startTime()
@@ -308,7 +314,7 @@ function isWrong() {cl("checking is wrong...")
   if (playerScore >= highScore){
     highScore=playerScore
   }
-  seconds = seconds + 5
+  // seconds = seconds + 5
   $($playerScore).html(playerScore)
   cl("Score: "+playerScore + ", High Score: "+ highScore)
 }
