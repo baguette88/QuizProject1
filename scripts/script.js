@@ -1,5 +1,6 @@
 $(() => {
   let clickCount = 1
+  let seconds
   let data
   let cl = (value) => console.log(value); 
   // cl("Jquery Active")
@@ -66,18 +67,15 @@ $($categorydisplay).appendTo('.categories')
 // let $totalScore =$('<h2>').text(totalScore) //TEXT ON SCREEN
 // $('.topArea').prepend($totalScore)
 
-function updateScore() {
-     //add 100 points to score
-   playerScore = playerScore + 100
-   $($playerScore).html(playerScore)
-   cl(playerScore)
+// function updateScore() {
+//      //add 100 points to score
+//    playerScore = playerScore + 100
+//    $($playerScore).html(playerScore)
+//    cl(playerScore)
 
      
 
-}
-
-
-
+// }
 
 //// 4 
   function endGame() {
@@ -188,7 +186,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
 //                           }
                   doNotRepeat.push(x)
                  //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
-
+                 
                
                  $("input[name='playerChoice']").click(function(){
                   console.log("Answer selected")
@@ -205,9 +203,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                       // $(' <input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
                       $('<li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
 
-                      $("input[name='playerChoice']").click(function selection(){
-                        console.log("radio button pressed")
-                            })
+                 
                       
                           $($ul).click(function select() 
                              { 
@@ -304,7 +300,7 @@ function isWrong() {cl("checking is wrong...")
     function countdown(minutes, seconds) {
       var seconds = 60;
       var mins = minutes
-      
+       
      //TIMER DEVICE AND OUTPUTS
     function tick() {
       
@@ -346,12 +342,22 @@ function isWrong() {cl("checking is wrong...")
           }, 1000);
         }
       }
-    }
+    } //close Tick FUNCTION
     tick();
-  }
-  countdown(1); //three minutes  
-  })
+  }   //close Countdown Function
+  countdown(2); //three minutes  
+  }) // close StartGame Function
   ///////////////////////////////////////
+  function updateScore() {
+    //add 100 points to score
+  playerScore = playerScore + 100
+  seconds = seconds + 5
+  $($playerScore).html(playerScore)
+  cl(playerScore)
+
+    
+
+}
 
   $(".statSheet").click(function statSheet(){ //BUTTON "START GAME" 
     $($mega).hide()
