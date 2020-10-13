@@ -5,24 +5,26 @@ button {
   display: inline-block;
   border: none;
   padding: 1rem 2rem;
-  margin: 0;
+ 
   text-decoration: none;
-  background: #0069ed;
+  background: #005fd3;
   color: #ffffff;
   font-family: sans-serif;
   font-size: 1rem;
   cursor: pointer;
   border: 3px solid black;
-  border-radius: 10px;
+  border-radius: 1px;
   text-align: center;
   transition: background 250ms ease-in-out,               transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
   width: 150px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  height: 50px;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
+
 }
 button:hover {
   display: inline-block;
@@ -30,13 +32,12 @@ button:hover {
   padding: 1rem 2rem;
   margin: 0;
   text-decoration: none;
-  background: #a1e494;
-  color: #000000;
+  color: white
   font-family: sans-serif;
   font-size: 1rem;
   cursor: pointer;
   border: 3px solid green;
-  border-radius: 10px;
+  
   text-align: center;
   transition: background 250ms ease-in-out,               transform 150ms ease;
   -webkit-appearance: none;
@@ -46,16 +47,41 @@ button:hover {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+
+  border: 3px solid white;
+  background-color: blue
 }
 
+
+.startGame {
+  height: 75px;
+  border: 3px solid white;
+  background-color: blue;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.startGame:hover {
+ 
+  height: 75px;
+  border: 3px solid white;
+  background-color: rgb(79, 167, 84);
+  
+  border-radius: 10px;
+
+}
 .categories{
   display: flex;
   background-color: lightskyblue;
   height: 30%;
-  width: 50%;
+  width: 300px;
   flex-wrap: wrap;
-  margin-left: 30%;
- 
+  margin-left: 39%;
+  align-items: center;
+  border:10px solid rgb(131, 177, 247);
+  border-radius: 10px;
 }
 
 
@@ -114,6 +140,8 @@ input {
   margin-right: 25px;
   margin-top: 10px;
 }
+
+
 ul {
   margin: 0 auto;
   padding: 10px;
@@ -175,7 +203,7 @@ lhead {
 button.nextQuestion {
   float: right;
   height: 75px;
-  border: 3px solid black;
+  border: 3px solid white;
   border: 10px black;
   border-radius: 10px;
 
@@ -183,27 +211,33 @@ button.nextQuestion {
 button.nextQuestion:hover {
   float: right;
   height: 75px;
-  border: 3px solid black;
-  border: 20px black;
+  border: 3px solid white;
+  background-color: blue;
+  
   border-radius: 10px;
 
 }
 
-.clickCircle {
-  float: right;
-  height: 100px;
-  border: 3px solid black;
-  border-radius: 20 px;
-  border-radius: 50%;
+button.category {
+  height: 75px;
+  border: 3px solid white;
+  background-color: blue;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
-.clickCircle:hover {
-  float: right;
-  height: 100px;
-  border: 3px solid black;
-  border-radius: 20 px;
-  border-radius: 50%;
+button.category:hover {
+ 
+  height: 75px;
+  border: 3px solid white;
+  background-color: rgb(79, 167, 84);
+  
+  border-radius: 10px;
 
 }
+
 
 body{
   background-color: rgb(23, 53, 109);
@@ -217,7 +251,7 @@ body{
   display: flex;
   background-color: lightskyblue;
   height: 30%;
-  width: 80%;
+  width: 32%;
   flex-wrap: wrap;
   margin-left: 10%;
  
@@ -256,14 +290,11 @@ overflow: auto;
 }
 
 .modal-buttons {
-padding: 14px 18px;
-background-color: #677996;
-border: none;
-outline: none;
-border-radius: 3px;
-color: white;
-font-family: 'Arial';
-  cursor: pointer;
+  float: right;
+  height: 75px;
+  border: 3px solid white;
+  border: 10px black;
+  border-radius: 10px;
 
 }
 
@@ -296,6 +327,7 @@ li:hover{
   color: blue;
   font-size: 12px;
   margin-left: 50px;
+
 }
 
 .lhead {
@@ -325,19 +357,6 @@ li:hover{
   margin-left: 10%
   */
 
-
-
-.square {
-  height: 50px;
-  flex-basis: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-shadow: 1px 1px 1px black;
-  border: 1px solid gray;
-}
-
 .nextQuestion {
   float: right;
   height: 30px;
@@ -348,21 +367,6 @@ li:hover{
   margin-top: 50%;
 }
 
-.clickCircle {
-  float: right;
-  height: 100px;
-  border: 3px solid black;
-  border-radius: 20 px;
-  border-radius: 50%;
-}
-.clickCircle:hover {
-  float: right;
-  height: 100px;
-  border: 3px solid black;
-  border-radius: 20 px;
-  border-radius: 50%;
-
-}
 
 body{
   background-color: rgb(23, 53, 109);
@@ -370,6 +374,37 @@ body{
 }
 .playerScore{
   font-size: 12px;
+}
+button.nextQuestion {
+  float: right;
+  height: 75px;
+  border: 3px solid white;
+  border: 10px black;
+  border-radius: 10px;
+
+}
+button.nextQuestion:hover {
+  float: right;
+  height: 75px;
+  border: 3px solid white;
+  background-color: blue
+  border-radius: 10px;
+}
+
+button.category {
+  float: right;
+  height: 75px;
+  border: 3px solid white;
+  border: 10px black;
+  border-radius: 10px;
+}
+button.category {
+  float: right;
+  height: 75px;
+  border: 3px solid white;
+  background-color: blue
+  border-radius: 10px;
+
 }
 }
 @media screen and (max-width: 700px){

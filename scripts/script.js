@@ -23,6 +23,8 @@ $(() => {
       $($playerScore).css('font-size', '24px')
       playerScore= questionNumber
       $($playerScore).html(playerScore)
+      $($playerScore).appendTo('.openModal')
+
      // $($div).style.color("blue")
   
   let $mega = document.getElementsByClassName('mega')
@@ -67,6 +69,7 @@ function updateScore() {
      //add 100 points to score
    playerScore = playerScore + 100
    $($playerScore).html(playerScore = playerScore + 100);
+
      
 
 }
@@ -219,7 +222,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                       points++
                    
                       $('<lhead>').html("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionNumber).appendTo($lhead); //QUESTION
-                      $('<modal-open>').html("SCORE = " + questionNumber + ". " + obj.results[x].incorrect).attr('id',questionNumber)
+                      $('<modal-open>').html($playerScore)
                       $('.canvas').fadeIn(500)                //FADE BACK IN
                       $('body').append($canvas);
                       $('.canvas').append($lhead);
@@ -290,7 +293,7 @@ function isWrong() {cl("checking is wrong...")
       var ticks= 0
     //Adapted from https://stackoverflow.com/questions/52547625/1-minutes-30-second-countdown-timer-javascript
     function countdown(minutes, seconds) {
-      var seconds = 121;
+      var seconds = 60;
       var mins = minutes
       
      //TIMER DEVICE AND OUTPUTS
@@ -302,20 +305,27 @@ function isWrong() {cl("checking is wrong...")
       var currentMinutes = mins - 1 
       seconds--;
      
-       if (ticks>150){     // TURN RED ON 30 SECONDS LEFT
-        $('#timer').css('color','red')
-      }
+          // if (ticks>150){     // TURN RED ON 30 SECONDS LEFT
+          //  $('#timer').css('color','red')
+          // }
+
+          // if (seconds<=0){     // TURN RED ON 30 SECONDS LEFT
+          //   $('#timer').css('color','red')
+          //  }
+
       counter.innerHTML =
-        "Time Left: " + String(seconds+bonus);
+      currentMinutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
       if (seconds > 0) {
         timeoutHandle = setTimeout(tick, 1000); //one second
       } else {
 
         if (mins > 1) {
           console.log("timer ended?")
+    
           //END GAME FUNCTION HERE
-           countdown(mins-1);  // never reach “00″ issue solved:Contributed by Victor Streithorst (via Stack Overflow)
-          setTimeout(function() {
+           // never reach “00″ issue solved:Contributed by Victor Streithorst (via Stack Overflow)
+           openModal()
+           setTimeout(function() {
             countdown(mins - 1);
           }, 1000);
         }
@@ -323,7 +333,7 @@ function isWrong() {cl("checking is wrong...")
     }
     tick();
   }
-  countdown(3); //three minutes  
+  countdown(2); //three minutes  
   })
   ///////////////////////////////////////
 
@@ -357,10 +367,14 @@ function isWrong() {cl("checking is wrong...")
   //Event Handlers
   const openModal = () => {     //open Modal
     $modal.css('display', 'block');
+    $modal.css('text-align', 'center');
+
 
   }
   const closeModal = () => {     //close Modal
     $modal.css('display', 'none');
+
+
   }
   closeModal() //close on START PROGRAM - HOW TO PLAY!
   //Event Listeners for Modal
