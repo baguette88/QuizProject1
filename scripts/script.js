@@ -1,6 +1,6 @@
 $(() => {
   let clickCount = 1
- 
+  let bonus = 0
   let seconds
   let data
   let cl = (value) => console.log(value); // cl("Jquery Active")
@@ -62,10 +62,6 @@ $($categorydisplay).appendTo('.categories')
   categoryChoice=15
 })
 
-  function endGame() {
-    //if timer = 0
-    //freeze the score
-  }
 
 
 $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GAME"
@@ -73,8 +69,61 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
     //To DO modify URL of API to include categoryCHOICE
     loadAPI()
     })
-
+let ticks
  //// 5 LOAD API FUNCTION AROUND GETAPI 
+ //Adapted from https://stackoverflow.com/questions/52547625/1-minutes-30-second-countdown-timer-javascript
+
+function startTime() {
+ function countdown(minutes, seconds) {
+  var seconds = 120;
+  var mins = minutes
+
+function tick() {
+  var counter = document.getElementById("timer");
+  ticks++
+  $('#timer').css('color', "white")
+  $($playerScore).css('color', "white")
+  var currentMinutes = mins - 1 
+  seconds--;
+  seconds = seconds+bonus
+  // console.log(seconds+ " seconds remain")
+ 
+      if (ticks>90){                                                        // TURN ORANGE ON 30 SECONDS LEFT
+       $('#timer').css('color','orange')
+      }
+                                                                    //// SWITCH STATEMENT HERE
+      if (seconds<=15 && minutes == 0){                                     // TURN RED ON 15 SECONDS LEFT
+        $('#timer').css('color','red')
+       }
+
+  counter.innerHTML =
+  // currentMinutes.toString() + ":" + (seconds < 10 ? "0" : "") + 
+  String(seconds);
+  if (seconds > 0) {
+    timeoutHandle = setTimeout(tick, 1000); //one second
+  } else {
+    console.log("timer cp?")
+    openModal()
+    if (seconds=-1 && minutes<1) {
+      
+      //THIS CODE IS NOTE TRIGGERING BUT EVERYTHING WORKS 
+      console.log("timer ended?")
+
+      //END GAME FUNCTION HERE
+       // never reach “00″ issue solved:Contributed by Victor Streithorst (via Stack Overflow)
+       openModal()
+       setTimeout(function() {
+        // countdown(mins - 1);
+        cl("timeout function not needed anymore")
+      }, 1000);
+    }
+  }
+} //close Tick FUNCTION
+tick();
+}   //close Countdown Function
+countdown(2); //three minutes  
+}
+
 
 //function categoryChosen(){
   const apiKey = ``  
@@ -119,7 +168,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                 
                 // cl(questionNumber + "old") 
                 questionNumber++
-                points++
+               
                playerScore++
                
                 cl("playerScore= "+ playerScore)
@@ -132,11 +181,19 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                       const $form = $('<form>')
                       $($form).appendTo($ul)
                    
-                   
-                  var x= Math.floor(Math.random() * 50);
+                  
+                  var x= Math.floor(Math.random() * 50);  //LOOP redraws question number if player has already had the question
+                for (i = 0; i < doNotRepeat.length; i++)
+                     if (x = doNotRepeat[i]){
+                       console.log("match" + x);
+                      x= Math.floor(Math.random() * 50)
+                      console.log("changed to" + x);
+                     }
+                     doNotRepeat.push(x)
+
                   console.log(x)
                  //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
-                  doNotRepeat.push(x)
+             
                  
                  $("input[name='playerChoice']").click(function(){
                   console.log("Answer selected")
@@ -144,13 +201,15 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
 
                   console.log(doNotRepeat)
 
-                      // $('<input type="radio" name="playerChoice" value="correct">').addClass('correct').appendTo($ul);   //link to list id#
+                    let questionArray = []
+
+
                       $('<li>').html(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
-                      // $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul); //append to each
+                     
                       $('<li>').html(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
-                      // $('<input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
+                    
                       $('<li>').html(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
-                      // $(' <input type="radio" name="playerChoice" value="incorrect">').addClass('wrongAnswer').appendTo($ul);
+                  
                       $('<li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
 
                  
@@ -181,8 +240,8 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
                       $('.canvas').append($lhead);
                       $('.canvas').append($ul);
 
-                      function moreTime() {
-                        cl("add time to clock")// seconds = seconds+5 
+                      function moreTime(seconds) {
+                        seconds=seconds+5// seconds = seconds+5 
                       }            
 
                       function chooseAnswer() {cl("chooseAnswer")
@@ -194,14 +253,15 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
   function isCorrect() {cl(" checking isCorrect...")  //placed within NEXT question function due to Scoping issues
   if($(event.target).is('.correct'))  {
     cl("verified correct")
+    bonus= bonus+5
     $(event.target).css('color', "green")
 
     updateScore()
-    moreTime()
+    moreTime(5)
     $('#timer').css('color', "gold")
     $($playerScore).css('color', "gold")
-
-    setTimeout(function(){ nextQuestion(); }, 1000); // AUTO MVOE TO NEXT QUESTION
+  
+    setTimeout(function(){ nextQuestion(); }, 800); // AUTO MVOE TO NEXT QUESTION
      //Play "correct" sound
     }
    }
@@ -214,8 +274,9 @@ function isWrong() {cl("checking is wrong...")
     $($bigCanvas).css('background-color', "lightred")
     $(event.target).css('color', "red")
     $(event.target).css('text-decoration', "line-through")
+    $('.correct').css('color', "green")
     
-    setTimeout(function(){ nextQuestion(); }, 1000);
+    setTimeout(function(){ nextQuestion(); }, 800);
     //Play "wrong" sound
     }
   }
@@ -232,65 +293,18 @@ function isWrong() {cl("checking is wrong...")
       $('.playerScreen').hide()
       $('.startGame').hide()
       // setTimeout(function(){ nextQuestion(); }, 1000);             AUTO START GAME                      // NEXT QUESTION NOT YET DEFINED
-
-  
+      startTime()
       $('#timer').appendTo('rank').css('color','white')
       let timeoutHandle;
       var ticks= 0
 
-    //Adapted from https://stackoverflow.com/questions/52547625/1-minutes-30-second-countdown-timer-javascript
-    function countdown(minutes, seconds) {
-      var seconds = 120;
-      var mins = minutes
-  
-    function tick() {
-      var counter = document.getElementById("timer");
-      ticks++
-      $('#timer').css('color', "white")
-      $($playerScore).css('color', "white")
-      var currentMinutes = mins - 1 
-      seconds--;
-      console.log(seconds+ " seconds remain")
-     
-          if (ticks>90){                                                        // TURN ORANGE ON 30 SECONDS LEFT
-           $('#timer').css('color','orange')
-          }
-                                                                        //// SWITCH STATEMENT HERE
-          if (seconds<=15 && minutes == 0){                                     // TURN RED ON 15 SECONDS LEFT
-            $('#timer').css('color','red')
-           }
-
-      counter.innerHTML =
-      // currentMinutes.toString() + ":" + (seconds < 10 ? "0" : "") + 
-      String(seconds);
-      if (seconds > 0) {
-        timeoutHandle = setTimeout(tick, 1000); //one second
-      } else {
-        console.log("timer cp?")
-        openModal()
-        if (seconds=-1 && minutes<1) {
-          
-          //THIS CODE IS NOTE TRIGGERING BUT EVERYTHING WORKS 
-          console.log("timer ended?")
-    
-          //END GAME FUNCTION HERE
-           // never reach “00″ issue solved:Contributed by Victor Streithorst (via Stack Overflow)
-           openModal()
-           setTimeout(function() {
-            // countdown(mins - 1);
-            cl("timeout function not needed anymore")
-          }, 1000);
-        }
-      }
-    } //close Tick FUNCTION
-    tick();
-  }   //close Countdown Function
-  countdown(2); //three minutes  
+ 
   }) // close StartGame Function
-  ///////////////////////////////////////
+
   function updateScore() {
     //add 100 points to score
   playerScore = playerScore + 100
+  
   if (playerScore >= highScore){
     highScore=playerScore
   }
