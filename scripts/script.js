@@ -195,7 +195,7 @@ $(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GA
   if($(event.target).is('.correct'))  {
     cl("verified correct")
     $(event.target).css('color', "green")
-    bonus= bonus+(6)
+
     updateScore()
     moreTime()
     $('#timer').css('color', "gold")
