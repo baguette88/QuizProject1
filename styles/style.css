@@ -81,7 +81,7 @@ button:hover {
   height: 30%;
   width: 300px;
   flex-wrap: wrap;
-  margin-left: 30%;
+  margin-left: 40%;
   align-items: center;
   border:10px solid rgb(131, 177, 247);
   border-radius: 10px;
@@ -153,18 +153,19 @@ ul {
   margin: 0 auto;
   padding: 10px;
   margin-left: 50px;
-  font-size: 36px;
+  font-size: 24px;
   list-style-type: upper-alpha; }
 li:{
    margin-top: 10px;
    margin-left: 50px;
    display: inline;
-   font-size: 36px;
+   font-size: 24px;
    list-style-type: upper-alpha; 
 
 }
 li:hover{
   color: blue;
+  size: 24px;
   list-style-type: upper-alpha; 
   
   
@@ -177,6 +178,8 @@ lhead {
   background-color:black;
   color: white;
   margin-bottom: 10px;
+  background-color: black;
+  width: 100%;
 }
 
 .canvas {
@@ -261,10 +264,12 @@ body{
   align-items: center;
   background-color: lightskyblue;
   height: 15%;
-margin-left: 5%;
+margin-left: 20%;
   flex-wrap: wrap;
- 
- 
+}
+
+category {
+  font-size: 12px;
 }
 
 .Cat1{
@@ -308,7 +313,7 @@ overflow: auto;
   border-radius: 10px;
 
 }
-
+/* 
 input {
   display: inline;
   float: left;
@@ -318,32 +323,34 @@ input {
   padding-left: 10px;
   margin-right: 10px;
   margin-top: 2px;
-}
+} */
 ul {
   margin: 0 auto;
   padding: 3px;
   font-size: 14px;
-  list-style-type: upper-alpha; 
+  list-style-type: none; 
   margin-left: 50px;
+  list-style-type: upper-alpha;
 }
 li:{
    margin-top: 0px;
    display: block;
-   font-size: 12px;
-   list-style-type: upper-alpha; 
+   font-size: 24px;
+   list-style-type: none; 
    margin-left: 50px;
-
+   list-style-type: upper-alpha;
 }
+
 li:hover{
 
   display: block;
-  list-style-type: upper-alpha; 
-
-  
+  list-style-type: none; 
+  font-size: 24px;
+  list-style-type: upper-alpha;
 }
 
 .lhead {
-  font: 14px;
+  font: 28px;
   font-style: bold;
   padding: 3px;
   background-color:black;
@@ -366,7 +373,8 @@ li:hover{
   border-radius: 5px;
   width: 80%;
   height: 40%;
-  margin-left: 0%
+  margin-left: 0%;
+  font-size: 12px;
   
   }
 /* .nextQuestion {
@@ -381,15 +389,15 @@ li:hover{
 
 
 .playerScore{
-  font-size: 12px;
+  font-size: 36px;
 }
 button.nextQuestion {
-  float: right;
+  float: center;
   height: 75px;
   border: 3px solid white;
   border: 10px black;
   border-radius: 10px;
-  margin-right: 20%;
+  justify-content: center;
 
 }
 button.nextQuestion:hover {
@@ -409,12 +417,12 @@ button.category {
 
 }
 h1, h2, h3{
-  font-size: 14px;
+  font-size: 36px;
   height: 40px;
   margin-top: 0px;
 }
   }
-}
+
 @media screen and (max-width: 700px){
 }
 @media screen and (max-width: 960px){
