@@ -1,4 +1,27 @@
 $(() => {
+
+
+  let nextsound = document.getElementById('audio')
+  let completesound = document.getElementById('audio1')
+  let endsound = document.getElementById('audio2')
+  let startsound = document.getElementById('audio3')
+  let landsound1 = document.getElementById('audio4')
+  
+  function preload () {
+    nextsound = loadSound ('JBBcode/QuizProject1/sounds/nextsound.wav')
+    completesound = loadSound ('JBBcode/QuizProject1/sounds/completesound.wav')
+    endsound = loadSound ('JBBcode/QuizProject1/sounds/endsound.mp3')
+    startsound = loadSound ('JBBcode/QuizProject1/sounds/startsound.mp3')
+    landsound1 = loadSound ('JBBcode/QuizProject1/sounds/landsound1.wav')
+  }
+
+
+
+
+
+
+
+ // landsound.play()//
   let clickCount = 1
   let totalCorrect = 0
   let bonus = 0
@@ -71,7 +94,7 @@ $($categorydisplay).appendTo('.categories')
        $(".nextQuestion").click(function nextQuestion() { //NEXT QUIZ QUESTION
              // if (seconds > 0){
             clickCount++
-
+            // completesound.play()
              $('.playerScreen').hide()
              $('.canvas').css('border',"2px solid white")
              $('.canvas').hide() 
@@ -80,6 +103,9 @@ $($categorydisplay).appendTo('.categories')
              $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
              $('.canvas').css('color',"black")
              
+
+$('audio#audio1')[0].play()
+
              // cl(questionNumber + "old") 
              questionNumber++
             
@@ -208,7 +234,7 @@ if($(event.target).is('.correct'))  {
  $('#timer').css('color', "gold")
  $($playerScore).css('color', "gold")
  questionsCorrect.push(x)
- setTimeout(function(){ nextQuestion(); }, 800); // AUTO MVOE TO NEXT QUESTION
+ setTimeout(function(){ nextQuestion(); }, 1000); // AUTO MVOE TO NEXT QUESTION
   //Play "correct" sound
   console.log("correctQuestions" + questionsCorrect)
  }
@@ -240,7 +266,7 @@ function loadAPI(categoryChoice) {
   baseURL =` https://opentdb.com/api.php?amount=50&category=`+categoryChoice+`&type=multiple ` 
   $('.startGame').show()
   generateCall()
-
+  $('audio#audio2')[0].play()
   
 }
 
@@ -384,7 +410,6 @@ function generateCall() {
           
                           
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
-
       $($mega).show()
       $($titlescreen).hide()
       $('.btn4').hide()
