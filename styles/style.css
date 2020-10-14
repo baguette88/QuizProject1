@@ -341,13 +341,13 @@ li:{
    list-style-type: upper-alpha;
 }
 
-li:hover{
+/* li:hover{
 
   display: block;
   list-style-type: none; 
   font-size: 24px;
   list-style-type: upper-alpha;
-}
+} */
 
 .lhead {
   font: 28px;
