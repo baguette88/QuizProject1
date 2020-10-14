@@ -25,6 +25,7 @@ $(() => {
       $($playerScore).css('font-size', '48px')
       $($playerScore).html(playerScore)
       $($playerScore).prependTo('body')
+      $($playerScore).hide()
 
     
   let $mega = document.getElementsByClassName('mega')
@@ -386,6 +387,7 @@ function isWrong() {cl("checking is wrong...")
       $('#timer').appendTo('rank').css('color','white')
       let timeoutHandle;
       var ticks= 0
+      $($playerScore).show()
   }) // close StartGame Function
 
   function updateScore() {

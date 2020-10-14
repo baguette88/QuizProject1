@@ -253,11 +253,13 @@ body{
  
 .categories{
   display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: lightskyblue;
   height: 15%;
-  width: 32%;
+  width: 64%;
   flex-wrap: wrap;
-  margin-left: 30%;
+ 
  
 }
 
@@ -402,18 +404,8 @@ button.category {
   float: right;
   height: 75px;
   border: 3px solid white;
-  border: 10px black;
-  border-radius: 10px;
-}
-button.category {
-  float: right;
-  height: 75px;
-  border: 3px solid white;
   background-color: blue;
   border-radius: 10px;
-
-
-
 
 }
 h2, h3{
