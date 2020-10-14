@@ -24,7 +24,7 @@ $(() => {
       $($playerScore).css('color', 'white')
       $($playerScore).css('font-size', '48px')
       $($playerScore).html(playerScore)
-      $($playerScore).prependTo('body')
+    
       $($playerScore).hide()
 
     
@@ -66,7 +66,7 @@ $($categorydisplay).appendTo('.categories')
        baseURL =` https://opentdb.com/api.php?amount=50&category=`+categoryChoice+`&type=multiple ` 
     
 
-       const $topArea = $('<topArea>');
+      //  const $topArea = $('<topArea>');
        
        $(".nextQuestion").click(function nextQuestion() { //NEXT QUIZ QUESTION
              // if (seconds > 0){
@@ -381,176 +381,6 @@ function generateCall() {
           }})
         }    // END GENERATE CALL        
 
-//        const $topArea = $('<topArea>');
-       
-//           $(".nextQuestion").click(function nextQuestion() { //NEXT QUIZ QUESTION
-//                 // if (seconds > 0){
-//                clickCount++
-
-//                 $('.playerScreen').hide()
-//                 $('.canvas').css('border',"2px solid white")
-//                 $('.canvas').hide() 
-//                  $('.canvas').empty()   //slideDown(450)
-//                 $('.canvas').css('border',"2px solid black")           //STYLING THE QUESTION CANVAS 
-//                 $('.canvas').css('background-color',"lightgreen")       // CHANGE COLOR AT NEW LEVEL?
-//                 $('.canvas').css('color',"black")
-                
-//                 // cl(questionNumber + "old") 
-//                 questionNumber++
-               
-//                playerScore++
-               
-//                 cl("playerScore= "+ playerScore)
-                  
-//                       const $bigCanvas = $('<bigCanvas>');
-//                       const $canvas = $('<canvas>');
-//                       const $lhead = $('<lhead>').attr('id',questionNumber);
-//                       const $ul = $('<ul>').attr('id',questionNumber);
-//                       const $li = $('<li>')
-//                       const $form = $('<form>')
-//                       $($form).appendTo($ul)
-                   
-                  
-//                   var x= Math.floor(Math.random()*Math.random() * 49);  //LOOP redraws question number if player has already had the question
-//                 for (i = 0; i < doNotRepeat.length; i++)
-//                      if (x = doNotRepeat[i]){
-//                        console.log("match" + x);
-//                       x= Math.floor(Math.random() * 49)
-//                       console.log("changed to" + x);
-//                      }
-                     
-
-//                      //////////////////////////////// FISHER-YATES SHUFFLE
-//                      function shuffle(array) {
-//                       var i = array.length,
-//                           j = 0,
-//                           temp;
-                  
-//                       while (i--) {
-                  
-//                           j = Math.floor(Math.random() * (i+1));
-                  
-//                           // swap randomly chosen element with current element
-//                           temp = array[i];
-//                           array[i] = array[j];
-//                           array[j] = temp;
-                  
-//                       }
-                  
-//                       return array;
-//                   }
-                  
-//                   var ranNums = shuffle([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49]);
-  
-//                       ////////////////////////////////////
-
-                 
-
-
-
-//                    x=ranNums[i+1]
-               
-
-
-//                   console.log(x)
-//                   console.log(doNotRepeat)
-//                  //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
-
-//                       $('<li>').html(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
-                     
-//                       $('<li>').html(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
-                    
-//                       $('<li>').html(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
-                  
-//                       $('<li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
-                     
-//                        doNotRepeat.push(x)
-
-
-//                       $.fn.shuffleChildren = function() {       //SHUFFLE LI CHILDREN https://css-tricks.com/snippets/jquery/shuffle-children/
-//                         $.each(this.get(), function(index, list) {
-//                             var $list = $(list);     //list saved as JQUERY object
-//                             var $find = $list.children();  //select children of list
-                    
-//                             $find.sort(function() {
-//                                 return 0.5 - Math.random();   //randomize sort
-//                             });
-                    
-//                             $list.empty();                       //empty list
-//                             $find.appendTo($list);                //re-append
-//                         });
-//                     };
-//                     $($ul).shuffleChildren($li);                // shuffle just li in ul
-                      
-
-
-//                           $($ul).click(function select()            // SPAM BLOCKER! 2 count required to select an answer, each new question ups the counter
-//                              {  
-//                             //  if (event.target.hasClass('correct'))
-
-//                             console.log("clickCount= "+clickCount)
-//                             if (clickCount >1) {
-//                             isCorrect()
-//                             isWrong()
-//                             clickCount--
-//                             } else {
-//                               "click count depleted"
-//                             }
-                        
-//                              });
-
-//                       //  $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
-//                       $('<category>').html(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
-
-//                       points++
-//                       $('<lhead>').html("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionNumber).appendTo($lhead); //QUESTION
-//                       // $('<modal-open>').html($playerScore)
-//                       $('.canvas').fadeIn(500)                //FADE BACK IN
-//                       $('body').append($canvas);
-//                       $('.canvas').append($lhead);
-//                       $('.canvas').append($ul);
-
-//                       function moreTime(seconds) {
-//                         seconds=seconds+5// seconds = seconds+5 
-//                       }            
-
-//                       function chooseAnswer() {cl("chooseAnswer")
-//                       isCorrect()
-//                       isWrong()                
-//                }
-               
-//   function isCorrect() {cl(" checking isCorrect...")  //placed within NEXT question function due to Scoping issues
-//   if($(event.target).is('.correct'))  {
-//     cl("verified correct")
-//     bonus= bonus+6
-//     $(event.target).css('color', "green")
-//     totalCorrect++
-//     updateScore()
-  
-//     $('#timer').css('color', "gold")
-//     $($playerScore).css('color', "gold")
-//     questionsCorrect.push(x)
-//     setTimeout(function(){ nextQuestion(); }, 800); // AUTO MVOE TO NEXT QUESTION
-//      //Play "correct" sound
-//      console.log("correctQuestions" + questionsCorrect)
-//     }
-//    }
-
-// function isWrong() {cl("checking is wrong...")
-//   if($(event.target).is('.wrongAnswer')) {
-//     cl("verified wrong")
-//     cl($(this))
-//     $($ul).css('background-color', "lightred")
-//     $($bigCanvas).css('background-color', "lightred")
-//     $(event.target).css('color', "red")
-//     $(event.target).css('text-decoration', "line-through")
-//     $('.correct').css('color', "green")
-    
-//     setTimeout(function(){ nextQuestion(); }, 800);
-//     //Play "wrong" sound
-//     }
-//   }
-//                          });   //NEXT QUESTION END   
           
                           
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
@@ -562,11 +392,12 @@ function generateCall() {
       $('.startGame').hide()
       // setTimeout(function(){ nextQuestion(); }, 1000);             AUTO START GAME                      // NEXT QUESTION NOT YET DEFINED
       startTime()
-      $('#timer').appendTo('rank').css('color','white')
+     
+      // $('#timer').html("Time Left: "+seconds)
       let timeoutHandle;
       var ticks= 0
       $($playerScore).show()
-      // nextQuestion()
+      //  nextQuestion()
       // $($canvas).show()
   }) // close StartGame Function
 
@@ -579,8 +410,9 @@ function generateCall() {
   }
 
   // seconds = seconds + 5
-  $($playerScore).html(playerScore)
-  $($highScore).html(highScore)
+  $($playerScore).html("Score: "+playerScore)
+  $($highScore).html("High Score: "+highScore)
+ 
   cl("Score: "+playerScore + ", High Score: "+ highScore)
 }
 
@@ -588,22 +420,19 @@ $(".restart").click(function restart(){ //BUTTON "RESTART GAME"
 location.reload();
 })
 
-   const addH2 = () => {
+  //  const addH2 = () => {
       
-          let $h2 =$('<h2>').text("Score= ") //TEXT ON SCREEN
-          $h3 =$('<h3>').text("HighScore= ") //TEXT ON SCREEN
-          $('.topArea').prepend($h2)
-          $('.topArea').prepend($h3)
+       
           
-           $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
-          $('.topArea').prepend($rank)
-          $($rank).css('display', 'inline')
-          $($rank).css('float', 'right')
-          $($rank).css('font-size', '36px')
-          $('h2').append($playerScore)
-          $('h3').append($highScore)
+  //          $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
+  //         $('.topArea').prepend($rank)
+  //         $($rank).css('display', 'inline')
+  //         $($rank).css('float', 'right')
+  //         $($rank).css('font-size', '36px')
+  //         $('body').prepend("Player Score: "+$playerScore)
+  //         $('body').prepend("High Score: "+$highScore)
           
-        }
+  //       }
     // addH2()
 
     // Citation - Modal declaration adapted from technique learned in Modal lab
@@ -627,6 +456,11 @@ location.reload();
   
    ;
    
+
+
+  $($playerScore).appendTo('.banner')
+
+
 }
 
 )
