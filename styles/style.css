@@ -425,7 +425,17 @@ button.category {
 
 }
 
+button.category:hover {
+  float: right;
+  height: 60px;
+  border: 3px solid white;
+  background-color: blue;
+  border-radius: 10px;
 
+  background-color: rgb(79, 167, 84);
+
+
+}
 
 h1, h2, h3{
   font-size: 36px;
