@@ -83,7 +83,7 @@ $($categorydisplay).appendTo('.categories')
              // cl(questionNumber + "old") 
              questionNumber++
             
-            playerScore++
+            // playerScore++
             
              cl("playerScore= "+ playerScore)
                
