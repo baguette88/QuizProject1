@@ -567,7 +567,7 @@ function generateCall() {
       var ticks= 0
       $($playerScore).show()
       // nextQuestion()
-      $($canvas).show()
+      // $($canvas).show()
   }) // close StartGame Function
 
   function updateScore() {
