@@ -164,7 +164,7 @@ li:{
 
 }
 li:hover{
-  color: blue;
+  /* color: blue; */
   size: 24px;
   list-style-type: upper-alpha; 
   
@@ -416,6 +416,9 @@ button.category {
   border-radius: 10px;
 
 }
+
+
+
 h1, h2, h3{
   font-size: 36px;
   height: 40px;
