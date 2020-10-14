@@ -257,7 +257,7 @@ body{
   align-items: center;
   background-color: lightskyblue;
   height: 15%;
-  width: 64%;
+margin-left: 5%;
   flex-wrap: wrap;
  
  
@@ -363,8 +363,8 @@ li:hover{
   width: 80%;
   height: 40%;
   margin-left: 10%
-  */
-
+  
+  }
 /* .nextQuestion {
   float: right;
   height: 30px;
@@ -376,10 +376,6 @@ li:hover{
 } */
 
 
-body{
-  background-color: rgb(23, 53, 109);
-  color: white;
-}
 .playerScore{
   font-size: 12px;
 }
@@ -408,8 +404,9 @@ button.category {
   border-radius: 10px;
 
 }
-h2, h3{
+h1, h2, h3{
   font-size: 14px;
+  height: 40px;
 }
   }
 }

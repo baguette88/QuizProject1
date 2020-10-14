@@ -39,11 +39,20 @@ $(() => {
   const $titlescreen = $('<div>')
       $($titlescreen).addClass('h1')
       $('body').prepend($titlescreen)
-      $($titlescreen).text("NoobCheck TRIVIA")
+      $($titlescreen).text("Welcome to Trivia League")
       $($titlescreen).css("font-size", "64px")
       $($titlescreen).css("color", "white")
       $($titlescreen).css("background-color", "green")
       $($titlescreen).css("text-align", "center")
+      $($titlescreen).css("justify-content", "center")
+const $selectacat = $('<h3>')
+      $($selectacat).addClass('h3')
+      $($titlescreen).append($selectacat)
+      $($selectacat).text("Select a Category:")
+      $($selectacat).css("font-size", "36px")
+      $($selectacat).css("color", "white")
+      $($selectacat).css("background-color", "green")
+      $($selectacat).css("text-align", "center")
 
 let $categorydisplay = $('<categoryDisplay>')
 $($categorydisplay).text(categoryDisplay)
@@ -120,14 +129,7 @@ $($categorydisplay).appendTo('.categories')
 
                    ////////////////////////////////////
 
-              
-
-
-
                 x=ranNums[i+1]
-            
-
-
                console.log(x)
                console.log(doNotRepeat)
               //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
@@ -176,7 +178,7 @@ $($categorydisplay).appendTo('.categories')
                           });
 
                    //  $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
-                   $('<category>').html(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty).css('font-size', '18px').appendTo($ul);
+                   $('<category>').html(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty+'<br>').css('font-size', '18px').appendTo($lhead);
 
                    points++
                    $('<lhead>').html("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionNumber).appendTo($lhead); //QUESTION
@@ -564,6 +566,8 @@ function generateCall() {
       let timeoutHandle;
       var ticks= 0
       $($playerScore).show()
+      // nextQuestion()
+      $($canvas).show()
   }) // close StartGame Function
 
   function updateScore() {
