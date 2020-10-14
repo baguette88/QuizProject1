@@ -2,8 +2,7 @@ $(() => {
   let clickCount = 1
   let totalCorrect = 0
   let bonus = 0
-  let seconds
-  let data
+  let seconds, data, baseURL
   let cl = (value) => console.log(value); // cl("Jquery Active")
   // let bonus = 0 //extra time
   let level = 1
@@ -14,7 +13,6 @@ $(() => {
   let rank = "Noob "
   let questionsCorrect = []
   let doNotRepeat = [51]
-  let baseURL
   let categoryChoice = 1
   let points = 0
   let $points = points
@@ -25,13 +23,12 @@ $(() => {
      
       $($playerScore).css('color', 'white')
       $($playerScore).css('font-size', '48px')
-      // playerScore= questionNumber
       $($playerScore).html(playerScore)
       $($playerScore).prependTo('body')
 
-     // $($div).style.color("blue")
-  
+    
   let $mega = document.getElementsByClassName('mega')
+  
   $($mega).hide()
   //////
   // TITLE SCREEN LOGIC HERE
@@ -51,28 +48,70 @@ let $categorydisplay = $('<categoryDisplay>')
 $($categorydisplay).text(categoryDisplay)
 $($categorydisplay).appendTo('.categories')
  
-//API LINK
 
-   categoryChoice=18 
-   categoryChoice=21    //sports?
-   categoryChoice=15   // VIDEO GAMES
+// cATEGORY SELECTION
+
+  
+   categoryChoice=15   // DEFAULT CATEGIRY AUTO-SELECTED. keep or remove?
        baseURL =` https://opentdb.com/api.php?amount=50&category=`+categoryChoice+`&type=multiple ` 
     
 
+       $('.startGame').hide()
+function loadAPI(categoryChoice) {
+  // call API 
+  cl("load API.. CATEGORY: " + categoryChoice)
+  baseURL =` https://opentdb.com/api.php?amount=50&category=`+categoryChoice+`&type=multiple ` 
+  $('.startGame').show()
+  generateCall()
+  
+}
 
- $(".categoryComputers").click(function categoryComputers(){ //BUTTON "START GAME" 
-  categoryChoice=15
-})
+$('#b1').click(function() {
 
+  loadAPI(18); // CHOOSES CATEGORY
+});
 
+$('#b2').click(function() {
 
-$(".categoryVideoGames").click(function categoryVideoGames(){ //BUTTON "START GAME"
-    categoryChoice=18
-    //To DO modify URL of API to include categoryCHOICE
-    loadAPI()
-    })
+  loadAPI(15); // CHOOSES CATEGORY
+});
+
+$('#b3').click(function() {
+ 
+  loadAPI(21); // CHOOSES CATEGORY
+});
+$('#b4').click(function() {
+ 
+  loadAPI(16); // CHOOSES CATEGORY
+});
+$('#b5').click(function() {
+ 
+  loadAPI(9); // CHOOSES CATEGORY
+});
+$('#b6').click(function() {
+ 
+  loadAPI(12); // CHOOSES CATEGORY
+});
+$('#b7').click(function() {
+ 
+  loadAPI(17); // CHOOSES CATEGORY
+});
+$('#b8').click(function() {
+  categoryChoice=18
+  loadAPI(14); // CHOOSES CATEGORY
+});
+$('#b9').click(function() {
+  categoryChoice=18
+  loadAPI(22); // CHOOSES CATEGORY
+});
+$('#b0').click(function() {
+  categoryChoice=18
+  loadAPI(11); // CHOOSES CATEGORY
+});
+
+///CODE FOR KEEPING TIME
 let ticks
- //// 5 LOAD API FUNCTION AROUND GETAPI 
+
  //Adapted from https://stackoverflow.com/questions/52547625/1-minutes-30-second-countdown-timer-javascript
 
 function startTime() {
@@ -87,17 +126,17 @@ function tick() {
   $($playerScore).css('color', "white")
   var currentMinutes = mins - 1 
   seconds--;
-  seconds = seconds + bonus
+  seconds = seconds + bonus           //ADD BONUS TIME
   bonus = 0   //CLEAR BONUS POINTS
   
   // seconds = seconds+ bonus
   // console.log(seconds+ " seconds remain")
  
-      if (ticks>90){                                                        // TURN ORANGE ON 30 SECONDS LEFT
+      if (ticks>90){                                  // TURN ORANGE ON 30 SECONDS LEFT
        $('#timer').css('color','orange')
       }
-                                                                    //// SWITCH STATEMENT HERE
-      if (seconds<=15 && minutes == 0){                                     // TURN RED ON 15 SECONDS LEFT
+                                                   //// SWITCH STATEMENT HERE
+      if (seconds<=15 && minutes == 0){                  // TURN RED ON 15 SECONDS LEFT
         $('#timer').css('color','red')
        }
 
@@ -115,7 +154,7 @@ function tick() {
     openModal()
     if (seconds=-1 && minutes<1) {
       
-      //THIS CODE IS NOTE TRIGGERING BUT EVERYTHING WORKS 
+      //THIS CODE IS NOT TRIGGERING BUT EVERYTHING WORKS 
       console.log("timer ended?")
 
       //END GAME FUNCTION HERE
@@ -134,19 +173,20 @@ countdown(2); //three minutes
 }
 
 
-//function categoryChosen(){
+let obj
+function generateCall() {
   const apiKey = ``  
+
   let currentQuestion=0
   
   const queryType = `t=`
  
-  let obj
+  
   let queryURL = baseURL + apiKey + '&' + queryType   
-
 
                                    // ADD FUNCTION SO THIS DOES NOT RUN IMMEDIATELY ON LOAD (UNTIL AFTER CATEGORY SELECTION)
                                     //function startGame()  **BRING UP HERE***
-  
+ 
         jQuery.ajax({
             url:baseURL,   /////// Charles helped debug
             dataType: 'text',
@@ -160,7 +200,9 @@ countdown(2); //three minutes
                 let category= data.category
                 let myquestions = data
                 console.log(obj.results[1])
-                
+          }})
+        }    // END GENERATE CALL        
+
        const $topArea = $('<topArea>');
        
           $(".nextQuestion").click(function nextQuestion(){ //NEXT QUIZ QUESTION
@@ -235,13 +277,6 @@ countdown(2); //three minutes
                   console.log(x)
                   console.log(doNotRepeat)
                  //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
-             
-                 
-             
-
-        
-
-             
 
                       $('<li>').html(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
                      
@@ -267,12 +302,12 @@ countdown(2); //three minutes
                             $find.appendTo($list);                //re-append
                         });
                     };
-                    $($ul).shuffleChildren($li);
+                    $($ul).shuffleChildren($li);                // shuffle just li in ul
                       
 
 
-                          $($ul).click(function select() 
-                             { 
+                          $($ul).click(function select()            // SPAM BLOCKER! 2 count required to select an answer, each new question ups the counter
+                             {  
                             //  if (event.target.hasClass('correct'))
 
                             console.log("clickCount= "+clickCount)
@@ -337,9 +372,8 @@ function isWrong() {cl("checking is wrong...")
     //Play "wrong" sound
     }
   }
-                         });      
-                  }
-                }) // END OF ASYNC
+                         });   //NEXT QUESTION END   
+          
                           
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
       $($mega).show()
@@ -352,8 +386,6 @@ function isWrong() {cl("checking is wrong...")
       $('#timer').appendTo('rank').css('color','white')
       let timeoutHandle;
       var ticks= 0
-
- 
   }) // close StartGame Function
 
   function updateScore() {
@@ -375,13 +407,13 @@ location.reload();
 })
 
    const addH2 = () => {
-      let $mega = document.getElementsByClassName('mega')
+      
           let $h2 =$('<h2>').text("Score= ") //TEXT ON SCREEN
           $h3 =$('<h3>').text("HighScore= ") //TEXT ON SCREEN
           $('.topArea').prepend($h2)
           $('.topArea').prepend($h3)
           
-          let $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
+           $rank =$('<rank>').text("Rank= " + rank) //TEXT ON SCREEN
           $('.topArea').prepend($rank)
           $($rank).css('display', 'inline')
           $($rank).css('float', 'right')
@@ -390,7 +422,7 @@ location.reload();
           $('h3').append($highScore)
           
         }
-    addH2()
+    // addH2()
 
     // Citation - Modal declaration adapted from technique learned in Modal lab
   const $openBtn = $('#openModal'); //variables declared
@@ -411,5 +443,8 @@ location.reload();
   //Event Listeners for Modal
   $openBtn.on('click', openModal); // REVISE TO OPEN ON QUESTION ANSWER
   
-   });
+   ;
    
+}
+
+)
