@@ -104,7 +104,7 @@ $($categorydisplay).appendTo('.categories')
              $('.canvas').css('color',"black")
              
 
-$('audio#audio1')[0].play()
+           $('audio#audio1')[0].play()
 
              // cl(questionNumber + "old") 
              questionNumber++
@@ -230,6 +230,7 @@ if($(event.target).is('.correct'))  {
  $(event.target).css('color', "green")
  totalCorrect++
  updateScore()
+ $('audio#audio3')[0].play()
 
  $('#timer').css('color', "gold")
  $($playerScore).css('color', "gold")
@@ -249,7 +250,7 @@ if($(event.target).is('.wrongAnswer')) {
  $(event.target).css('color', "red")
  $(event.target).css('text-decoration', "line-through")
  $('.correct').css('color', "green")
- 
+ $('audio#audio2')[0].play()
  setTimeout(function(){ nextQuestion(); }, 800);
  //Play "wrong" sound
  }
