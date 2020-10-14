@@ -250,7 +250,7 @@ if($(event.target).is('.wrongAnswer')) {
  $(event.target).css('color', "red")
  $(event.target).css('text-decoration', "line-through")
  $('.correct').css('color', "green")
- $('audio#audio2')[0].play()
+ $('audio#audio4')[0].play()
  setTimeout(function(){ nextQuestion(); }, 800);
  //Play "wrong" sound
  }
