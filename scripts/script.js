@@ -234,9 +234,10 @@ if($(event.target).is('.correct'))  {
  $('audio#audio3')[0].play()
 
  $('#timer').css('color', "gold")
+ $('#timer').text("+5")
  $($playerScore).css('color', "gold")
  questionsCorrect.push(x)
- setTimeout(function(){ nextQuestion(); }, 1000); // AUTO MVOE TO NEXT QUESTION
+ setTimeout(function(){ nextQuestion(); }, 1100); // AUTO MVOE TO NEXT QUESTION
   //Play "correct" sound
   console.log("correctQuestions" + questionsCorrect)
  }
@@ -313,8 +314,6 @@ $('#b9').click(function() {
 });
 $('#b0').click(function() {
 
-  
-  return false;
   loadAPI(11); // CHOOSES CATEGORY
 });
 
