@@ -155,7 +155,7 @@ $($categorydisplay).appendTo('.categories')
 
                    ////////////////////////////////////
 
-                x=ranNums[i+1]
+                x=x+1
                console.log(x)
                console.log(doNotRepeat)
               //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
@@ -204,7 +204,7 @@ $($categorydisplay).appendTo('.categories')
                           });
 
                    //  $('<span>').text(obj.results[x].category).addClass('answer').appendTo('body').css('color','white');
-                   $('<category>').html(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty+'<br>').css('font-size', '18px').appendTo($lhead);
+                   $('<category>').html(obj.results[x].category + ". Difficulty Level: " +obj.results[x].difficulty+'<br>').appendTo($lhead);
 
                    points++
                    $('<lhead>').html("Question #" + questionNumber + ". " + obj.results[x].question).attr('id',questionNumber).appendTo($lhead); //QUESTION
