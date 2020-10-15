@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
-
+.playerScore{
+  margin-top: -50px;
+}
 
 #timer{
   display: inline-block;
+  float: center;
   font-size: 24px;
 }
 
@@ -280,7 +283,10 @@ body{
 
 
 @media screen and (max-width: 560px){
- 
+ .playerScore{
+   font-size: 12px;
+  
+ }
 
 .button{
   font-size: 24px;
@@ -424,6 +430,7 @@ li:{
 
 .playerScore{
   font-size: 36px;
+  margin-top: -50px;
 
 }
 button.nextQuestion {
@@ -483,7 +490,11 @@ h1, h2, h3{
 
 
 @media screen and (max-width: 1025px){
-}
+  .playerScore{
+    font-size: 12px;
+   
+  }
+ 
 .banner{
   width: 100%;
 }

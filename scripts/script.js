@@ -297,7 +297,7 @@ $('#b5').click(function() {
 });
 $('#b6').click(function() {
  
-  loadAPI(17); // CHOOSES CATEGORY
+  loadAPI(12); // CHOOSES CATEGORY
 });
 $('#b7').click(function() {
  
@@ -444,7 +444,7 @@ function generateCall() {
   }
 
   // seconds = seconds + 5
-  $($playerScore).html("Score: "+playerScore).css('float','right').css('margin-top', '-105px')
+  $($playerScore).html("Score: "+playerScore).css('float','right').css('margin-top', '-75px')
   $($playerScore).show()
   $($highScore).html("High Score: "+highScore)
 
