@@ -42,6 +42,7 @@ $(() => {
   let categoryDisplay = document.getElementById('categoryDisplay')
   let $playerScore = $('<playerScore>')
   let $highScore = $('<highScore>')
+  let x = -1 //counter for shuffle
       $($playerScore).addClass('score')
     
      
@@ -122,15 +123,9 @@ $($categorydisplay).appendTo('.categories')
                    const $form = $('<form>')
                    $($form).appendTo($ul)
                 
-               
-               var x= Math.floor(Math.random()*Math.random() * 49);  //LOOP redraws question number if player has already had the question
-             for (i = 0; i < doNotRepeat.length; i++)
-                  if (x = doNotRepeat[i]){
-                    console.log("match" + x);
-                   x= Math.floor(Math.random() * 49)
-                   console.log("changed to" + x);
-                  }
-                  
+           
+              //LOOP redraws question number if player has already had the question
+   x=x+1
 
                   //////////////////////////////// FISHER-YATES SHUFFLE
                   function shuffle(array) {
@@ -150,13 +145,15 @@ $($categorydisplay).appendTo('.categories')
                    }
                
                    return array;
+                
                }
                
                var ranNums = shuffle([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49]);
-
+               shuffledChoice= ranNums[x];
+               console.log(ranNums)
                    ////////////////////////////////////
 
-                x=x+1
+                x++
                console.log(x)
                console.log(doNotRepeat)
               //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
@@ -436,7 +433,9 @@ function generateCall() {
 
   function updateScore() {
     //add 100 points to score
-  playerScore = playerScore + 100
+  
+  //MODIFY POINT VALUES
+   playerScore = playerScore + 100
   
   if (playerScore >= highScore){
     highScore=playerScore
