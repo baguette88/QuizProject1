@@ -26,7 +26,7 @@ $(() => {
   let playerScore = 0
   let $currentScore =0
   let highScore =0
-  // highScore = localStorage.getItem("highscore", score)// "SCORE""?
+  highScore = localStorage.getItem("highScore", highScore)// "SCORE""?
   let rank = "Noob "
   let questionsCorrect = []
   let doNotRepeat = [51]
@@ -38,12 +38,12 @@ $(() => {
   let $highScore = $('<highScore>')
   let x = -1 //counter for shuffle
   let score = 0
-  // if (score == 0) {
-  //   localStorage.getItem("highscore", highScore);      
-  //   highScoreDisplay.innerHTML = highScore
+  if (score == 0) {
+    localStorage.getItem("highScore", highScore);      
+    $highScore.innerHTML = highScore
     
    
-  // }
+  }
       $($playerScore).addClass('score')
     
      
@@ -445,7 +445,7 @@ function generateCall() {
   
   if (playerScore >= highScore){
     highScore=playerScore
-  //   localStorage.setItem("highscore", score);      
+    localStorage.setItem("highScore", highScore);      
   
   // localStorage.setItem(highScore, highScore)
   }
