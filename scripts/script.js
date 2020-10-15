@@ -43,6 +43,7 @@ $(() => {
   let $playerScore = $('<playerScore>')
   let $highScore = $('<highScore>')
       $($playerScore).addClass('score')
+    
      
       $($playerScore).css('color', 'white')
       $($playerScore).css('font-size', '48px')
@@ -329,6 +330,7 @@ function startTime() {
 
 function tick() {
   var counter = document.getElementById("timer");
+  $timer = counter
   ticks++
   $('#timer').css('color', "white")
   $($playerScore).css('color', "white")
@@ -414,6 +416,7 @@ function generateCall() {
           
                           
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
+  // $(counter).appendTo('.banner').css('font-size', '24px')
       $($mega).show()
       $($titlescreen).hide()
       $('.btn4').hide()
@@ -490,7 +493,7 @@ location.reload();
 
 
   $($playerScore).appendTo('.banner')
-  $($highScore).appendTo('.banner').css('float','right')
+  $($highScore).appendTo('.banner').css('font-size', '24px')
  
   $($banner).hide()
 }
