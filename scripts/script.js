@@ -268,10 +268,11 @@ function loadAPI(categoryChoice) {
   $('.startGame').show()
   generateCall()
   $('audio#audio2')[0].play()
-  
+  $("html, body").animate({ scrollTop: 0 }, "slow");
 }
 
 $('#b1').click(function() {
+  
 
   loadAPI(18); // CHOOSES CATEGORY
 });
@@ -302,15 +303,17 @@ $('#b7').click(function() {
   loadAPI(17); // CHOOSES CATEGORY
 });
 $('#b8').click(function() {
-  categoryChoice=18
+
   loadAPI(14); // CHOOSES CATEGORY
 });
 $('#b9').click(function() {
-  categoryChoice=18
+
   loadAPI(22); // CHOOSES CATEGORY
 });
 $('#b0').click(function() {
-  categoryChoice=18
+
+  
+  return false;
   loadAPI(11); // CHOOSES CATEGORY
 });
 
@@ -416,6 +419,7 @@ function generateCall() {
       $('.btn4').hide()
       $('.categories').hide()
       $('.startGame').hide()
+      $($banner).show()
       // setTimeout(function(){ nextQuestion(); }, 1000);             AUTO START GAME                      // NEXT QUESTION NOT YET DEFINED
       startTime()
      
@@ -466,6 +470,7 @@ location.reload();
   const $modal = $('#modal');
   const $modaltextbox = $('#modal-textbox');
   const $restart = $('#restart');
+  const $banner = $('.banner');
   $modal.css('display', 'none');
   const openModal = () => {     //open Modal
     $modal.css('display', 'block');
@@ -486,8 +491,8 @@ location.reload();
 
   $($playerScore).appendTo('.banner')
   $($highScore).appendTo('.banner').css('float','right')
-  $($highScore).appendTo('.banner').css('margin-top','50px;')
-
+ 
+  $($banner).hide()
 }
 
 )

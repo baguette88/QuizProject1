@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
 .banner{
-width: 100%;
+
 background-color: #2ECC40;
 color: black;
 }
@@ -32,12 +32,12 @@ button {
 
 }
 button:hover {
-  display: inline-block;
+  /* display: inline-block; */
   border: none;
   padding: 1rem 2rem;
-  margin: 0;
+  /* margin: 0; */
   text-decoration: none;
-  color:;
+  color: black;
   whitefont-family: sans-serif;
   font-size: 1rem;
   cursor: pointer;
@@ -62,14 +62,15 @@ button:hover {
 
 .startGame {
   height: 75px;
-  border: 3px solid white;
+  border: 5px solid white;
   background-color: blue;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  margin-left: 30%;
+  margin-top: 10px;
+  display: flex;
 }
 .startGame:hover {
  
@@ -77,14 +78,14 @@ button:hover {
   border: 3px solid white;
   background-color: rgb(79, 167, 84);
   border-radius: 10px;
-  margin-left: 30%;
+  display: flex;
 
 }
 .categories{
   display: flex;
   background-color: lightskyblue;
   height: 30%;
-  width: 300px;
+  width: 80%;
   flex-wrap: wrap;
   margin-left: 40%;
   align-items: center;
@@ -248,9 +249,12 @@ button.category:hover {
  
   height: 75px;
   border: 3px solid white;
-  background-color: rgb(79, 167, 84);
-  
+  background-color:green;
   border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 
 }
 
@@ -478,7 +482,7 @@ button {
 @media screen and (max-width: 960px){
 }
 .categories{
-  /* margin-left: 30%; */
+  width: 80%;
 }
 
 
@@ -490,7 +494,7 @@ button {
   height: 120px;
 }
 .categories{
-  width: 500px;
+  width: ;
   height: 500px;
   margin: 0 auto;
 }
@@ -506,7 +510,7 @@ button {
     height: 100px;
   }
   .categories{
-    width: 150px;
+    width: 80%;
     margin-left: 20%
   }
   }
