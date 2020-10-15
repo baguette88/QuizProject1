@@ -96,6 +96,8 @@ $($categorydisplay).appendTo('.categories')
        $(".nextQuestion").click(function nextQuestion() { //NEXT QUIZ QUESTION
              // if (seconds > 0){
             clickCount++
+
+           
             // completesound.play()
              $('.playerScreen').hide()
              $('.canvas').css('border',"2px solid white")
@@ -125,7 +127,7 @@ $($categorydisplay).appendTo('.categories')
                 
            
               //LOOP redraws question number if player has already had the question
-   x=x+1
+  
 
                   //////////////////////////////// FISHER-YATES SHUFFLE
                   function shuffle(array) {
@@ -149,11 +151,15 @@ $($categorydisplay).appendTo('.categories')
                }
                
                var ranNums = shuffle([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49]);
+               x++
                shuffledChoice= ranNums[x];
                console.log(ranNums)
+               if (ranNums.length > 25) {  /// REFRESH QUESTIONS IF EXHAUSTED
+                generateCall()
+              }
                    ////////////////////////////////////
 
-                x++
+                // x++
                console.log(x)
                console.log(doNotRepeat)
               //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
