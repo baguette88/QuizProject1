@@ -485,6 +485,7 @@ location.reload();
 
 
   $($playerScore).appendTo('.banner')
+  $($highScore).appendTo('.banner').css('float','right')
 
 
 }
