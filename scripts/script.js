@@ -166,15 +166,15 @@ $($categorydisplay).appendTo('.categories')
                console.log(x)
             
 
-                   $('<li>').html(obj.results[shuffledChoice].correct_answer).addClass('correct').appendTo($ul);
+                   $('<li>').html(obj.results[x].correct_answer).addClass('correct').appendTo($ul);
  
-                   $('<li>').html(obj.results[shuffledChoice].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
+                   $('<li>').html(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
                  
-                   $('<li>').html(obj.results[shuffledChoice].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
+                   $('<li>').html(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
                
-                   $('<li>').html(obj.results[shuffledChoice].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
+                   $('<li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
                   
-                    doNotRepeat.push(shuffledChoice)
+                    doNotRepeat.push(x)
 
 
                    $.fn.shuffleChildren = function() {       //SHUFFLE LI CHILDREN https://css-tricks.com/snippets/jquery/shuffle-children/
@@ -329,7 +329,7 @@ let ticks
 
 function startTime() {
  function countdown(minutes, seconds) {
-  var seconds = 120;
+  var seconds = 101;
   var mins = minutes
 
 function tick() {
@@ -443,7 +443,12 @@ function generateCall() {
     //add 100 points to score
   
   //MODIFY POINT VALUES
-   playerScore = playerScore + 100
+  playerScore = playerScore+100
+  
+  if (Object.results[shuffledChoice].difficulty!="easy") {
+    playerScore = playerScore+100
+  }
+
   
   if (playerScore >= highScore){
     highScore=playerScore
