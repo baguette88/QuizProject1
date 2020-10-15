@@ -487,6 +487,7 @@ button {
 }
 .banner{
   width: 100%;
+  height: 120px;
 }
 .categories{
   width: 500px;
@@ -502,6 +503,7 @@ button {
 
   .banner{
     width: 100%;
+    height: 100px;
   }
   .categories{
     width: 150px;
