@@ -445,9 +445,6 @@ function generateCall() {
   //MODIFY POINT VALUES
   playerScore = playerScore+100
   
-  if (Object.results[shuffledChoice].difficulty!="easy") {
-    playerScore = playerScore+100
-  }
 
   
   if (playerScore >= highScore){
