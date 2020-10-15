@@ -129,7 +129,7 @@ $($categorydisplay).appendTo('.categories')
               //LOOP redraws question number if player has already had the question
   
 
-                  //////////////////////////////// FISHER-YATES SHUFFLE
+                  //////////////////////////////// FISHER-YATES SHUFFLE where I have added a variable X to iterate through
                   function shuffle(array) {
                    var i = array.length,
                        j = 0,
@@ -151,28 +151,30 @@ $($categorydisplay).appendTo('.categories')
                }
                
                var ranNums = shuffle([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49]);
-               x++
+               x++    // 
+               console.log(ranNums)
                shuffledChoice= ranNums[x];
                console.log(ranNums)
-               if (ranNums.length > 25) {  /// REFRESH QUESTIONS IF EXHAUSTED
-                generateCall()
+                  // console.log(doNotRepeat)
+                  console.log("shuffled CHoice"+ shuffledChoice)
+               if (ranNums.length > 48) {  /// REFRESH QUESTIONS IF EXHAUSTED
+                //  console.log("generate call if maxed")
               }
                    ////////////////////////////////////
 
-                // x++
+             
                console.log(x)
-               console.log(doNotRepeat)
-              //// questionsCorrect.push(x) ONLY IF CORRECT, OTHER WISE JUST PUSH TO DO NOT REPEAT
+            
 
-                   $('<li>').html(obj.results[x].correct_answer).addClass('correct').appendTo($ul)
-                  
-                   $('<li>').html(obj.results[x].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
+                   $('<li>').html(obj.results[shuffledChoice].correct_answer).addClass('correct').appendTo($ul);
+ 
+                   $('<li>').html(obj.results[shuffledChoice].incorrect_answers[0]).addClass('wrongAnswer').appendTo($ul);
                  
-                   $('<li>').html(obj.results[x].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
+                   $('<li>').html(obj.results[shuffledChoice].incorrect_answers[1]).addClass('wrongAnswer').appendTo($ul);
                
-                   $('<li>').html(obj.results[x].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
+                   $('<li>').html(obj.results[shuffledChoice].incorrect_answers[2]).addClass('wrongAnswer').appendTo($ul);
                   
-                    doNotRepeat.push(x)
+                    doNotRepeat.push(shuffledChoice)
 
 
                    $.fn.shuffleChildren = function() {       //SHUFFLE LI CHILDREN https://css-tricks.com/snippets/jquery/shuffle-children/
