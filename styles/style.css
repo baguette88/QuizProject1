@@ -299,7 +299,7 @@ body{
   height: 15%;
    margin: 0 auto;
   flex-wrap: wrap;
-  width: 300px;
+  width: 80%;
  justify-content: center;
 
 
@@ -499,9 +499,9 @@ h1, h2, h3{
   width: 100%;
 }
 .categories{
-  width: 500px;
+  width: 80%;
   height: 500px;
-  margin-left: 25%
+  margin: 0 auto;
 }
 button {
   margin: 0 auto;
@@ -529,11 +529,12 @@ li {
   height: 120px;
 }
 .categories{
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
 }
 button {
-  margin: 0 auto;
+
+  margin-top: 15px;
 }
 li {
   font-size: 24px;
