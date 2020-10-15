@@ -297,7 +297,7 @@ $('#b5').click(function() {
 });
 $('#b6').click(function() {
  
-  loadAPI(12); // CHOOSES CATEGORY
+  loadAPI(17); // CHOOSES CATEGORY
 });
 $('#b7').click(function() {
  
@@ -429,7 +429,8 @@ function generateCall() {
       // $('#timer').html("Time Left: "+seconds)
       let timeoutHandle;
       var ticks= 0
-      $($playerScore).show()
+  
+      $($highScore).prependTo($banner)
       //  nextQuestion()
       // $($canvas).show()
   }) // close StartGame Function
@@ -443,8 +444,11 @@ function generateCall() {
   }
 
   // seconds = seconds + 5
-  $($playerScore).html("Score: "+playerScore)
+  $($playerScore).html("Score: "+playerScore).css('float','right').css('margin-top', '-105px')
+  $($playerScore).show()
   $($highScore).html("High Score: "+highScore)
+
+  $($highScore).prependTo($banner)
  
   cl("Score: "+playerScore + ", High Score: "+ highScore)
 }
@@ -488,7 +492,7 @@ location.reload();
   //Event Listeners for Modal
   $openBtn.on('click', openModal); // REVISE TO OPEN ON QUESTION ANSWER
   
-   ;
+   
    
 
 

@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
+
+
+#timer{
+  display: inline-block;
+  font-size: 24px;
+}
+
 .banner{
 
 background-color: #2ECC40;
 color: black;
+height: 100px;
 }
 
 button {
@@ -93,8 +101,8 @@ button:hover {
   height: 30%;
   width: 80%;
   flex-wrap: wrap;
-  margin-left: 40%;
-  align-items: center;
+  margin: 0 auto;
+
   border:10px solid rgb(131, 177, 247);
   border-radius: 10px;
 }
@@ -250,6 +258,7 @@ button.category {
   border: 3px solid white;
   background-color: blue;
   border-radius: 10px;
+  text-align: center;
 
 }
 button.category:hover {
@@ -258,6 +267,7 @@ button.category:hover {
   border: 3px solid white;
   background-color:green;
   border-radius: 10px;
+  text-align: center;
  
 
 }
@@ -281,7 +291,7 @@ body{
 
   background-color: lightskyblue;
   height: 15%;
-   margin-left: 5%;
+   margin: 0 auto;
   flex-wrap: wrap;
   width: 300px;
  justify-content: center;
@@ -293,7 +303,7 @@ body{
 .category {
   font-size: 16px;
   padding: 10px, 10px, 10px, 10px;
-  margin: 0px;
+  text-align: center
 }
 
 .Cat1{
@@ -414,6 +424,7 @@ li:{
 
 .playerScore{
   font-size: 36px;
+
 }
 button.nextQuestion {
   float: center;
@@ -440,7 +451,8 @@ button.category {
   border: 3px solid white;
   background-color: blue;
   border-radius: 10px;
-  padding 5px;
+  padding: 5px;
+  text-align: center;
 
 }
 
@@ -450,7 +462,7 @@ button.category:hover {
   border: 3px solid white;
   background-color: blue;
   border-radius: 10px;
-
+  text-align: center;
   background-color: rgb(79, 167, 84);
 
 
