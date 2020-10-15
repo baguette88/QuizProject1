@@ -326,7 +326,7 @@ let ticks
 
 function startTime() {
  function countdown(minutes, seconds) {
-  var seconds = 101;
+  var seconds = 61;
   var mins = minutes
 
 function tick() {
@@ -415,8 +415,6 @@ function generateCall() {
                           
   $(".startGame").click(function startGame(){ //BUTTON "START GAME" 
   // $(counter).appendTo('.banner').css('font-size', '24px')
-          
-  
   $($mega).show()
       $($titlescreen).hide()
       $('.btn4').hide()
@@ -489,7 +487,13 @@ location.reload();
   $($banner).hide()
 
 
+
+
+
 //TURN BACK! CODE IS NOT DRY! THIS IS A REPEAT FUNCTION
+
+
+
 
 
 
@@ -631,14 +635,14 @@ location.reload();
 function isCorrect() {cl(" checking isCorrect...")  //placed within NEXT question function due to Scoping issues
 if($(event.target).is('.correct'))  {
 cl("verified correct")
-bonus= bonus+6
+bonus= bonus+4
 $(event.target).css('color', "green")
 totalCorrect++
 updateScore()
 $('audio#audio3')[0].play()
 
 $('#timer').css('color', "gold")
-$('#timer').text("+5")
+$('#timer').text("+3 seconds")
 $($playerScore).css('color', "gold")
 questionsCorrect.push(x)
 setTimeout(function(){ nextQuestion(); }, 1100); // AUTO MVOE TO NEXT QUESTION
